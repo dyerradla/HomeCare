@@ -1,0 +1,24 @@
+@CHARSET "ISO-8859-1";
+/* Start of CSS for tables */
+table {
+	empty-cells: show;
+}
+
+.table {
+	background-color: #669933;
+	border: medium groove #660000;
+}
+
+/* End of CSS for tables */
+
+.textarea, .TEXTAREA {
+   text-align: left;
+   color: black;
+   font-family: arial, helvetica, sans-serif;
+	}
+	
+	.text, .Text, .TEXT {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+	}
