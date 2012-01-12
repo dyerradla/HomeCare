@@ -1,0 +1,1603 @@
+@CHARSET "ISO-8859-1";
+*{
+	font-family: Tahoma;
+	font-size: 12px;
+}
+
+table {
+	empty-cells: show;
+}
+
+th {
+	white-space: nowrap;
+}
+
+.pageBreak {
+	page-break-before: always;	
+}
+.notetext, noteText {
+	font-size: 12px;
+}
+.maintext, .mainText, .Maintext {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+}
+.highlight {
+	border: 1px solid #444;
+	padding: 2px;
+	text-decoration: none;
+	background-color: yellow;
+}
+.grey{
+    border-bottom: 1px solid #c0c0c0;
+ }
+.divlabel {
+  float: left; 
+  width: 100px;
+ }
+ 
+.greydashed{
+    border-bottom: 1px dashed #c0c0c0;
+ }
+
+.mainWhiteText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	color:#FFFFFF;
+}
+.alert {
+	font-size: 10pt;
+	color:#FF0000;
+}
+.checkbox {
+	
+	height: 10px;
+	width: 10px;
+}
+.radiobutton {
+	
+	height: 10px;
+	width: 10px;
+}
+.inputbox {
+	
+	font-size: 7pt;
+	height: 15px;
+	
+}
+.datebox {
+	
+	font-size: 7pt;
+	height: 15px;
+	
+}
+.mainItalictext, .mainItalicText {
+	
+	font-size: 8pt;
+	font-style: italic;
+
+}
+.mainBigItalictext, .mainBigItalicText {
+	
+	font-size: 10pt;
+	font-style: italic;
+
+}
+.mainBoldText, .MainBoldText, .mainBoldtext, .mainboldText, .mainboldtext {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+.ulText, .UlText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	text-decoration: underline;
+	font-weight: normal;
+	color:#008000;
+}
+.ulBoldText{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	text-decoration: underline;
+	font-weight: bold;
+	color:#008000;
+}
+
+.mainBold485Text {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color:#0000CD;
+
+}
+.mainBigtext, .mainBigText, .MainBigText {
+	font-size: 12px;
+}
+.mainBigBoldtext, .mainBigBoldText, .MainBigBoldText, .mainBigboldText {
+	
+	font-size: 10pt;
+	font-weight: bold;
+
+}
+.mainBigUnderlinetext, .mainBigUnderlineText {
+	
+	font-size: 10pt;
+	text-decoration: underline;
+
+}
+.mainGrayText {
+	
+	font-size: 8pt;
+	color: #e0e0e0;
+
+}
+.mainPrintText {
+	
+	font-size: medium;
+
+}
+.mainPrintBoldText {
+	
+	font-size: medium;
+	font-weight: bold;
+
+}
+.formTitle {
+	
+	font-size: 14pt;
+	font-weight: bold;
+}
+.formSubtitle {
+	
+	font-size: 10pt;
+	font-weight: bold;
+
+}
+.introHead {
+	
+	font-size: 9pt;
+	font-weight: bold;
+	color: #00008B;
+
+}
+.keyLabel {
+	
+	font-size: 10pt;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #00008B;
+
+}
+.reverseText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 10pt;
+	color: #FFFFFF;
+	background-color: #696969;
+
+}
+.reverseNote {
+	
+	font-size: 8pt;
+	font-weight: bold;
+	background-color: #e0e0e0;
+}
+.backgroundNote {
+	
+	font-size: 8pt;
+	color: #0000bB;
+	background-color: #e0e0e0;
+}
+.highlightBackgroundNote {
+	
+	font-size: 8pt;
+	color: #0000bB;
+	background-color: #B0C4DE;
+}
+.keyText {
+	
+	font-size: 8pt;
+	font-weight: bold;
+	color: #00008B;
+
+}
+.directText, .directtext {
+	
+	font-size: 9pt;
+	font-weight: bold;
+	font-style: italic;
+
+
+}
+
+.m00Title, .m00title {
+	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color:#008000;
+
+}
+.m00Text, .m00text {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+	color:#008000;
+
+}
+.m00Title1 {
+	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+
+}
+.m00Text1, .m00text1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+
+}
+.m00Title2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+	
+
+}
+.m00Text2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+
+}
+.small, .Small {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-weight: normal;
+
+}
+.underText, .undertext {
+	
+	font-size: 7pt;
+
+}
+.underText1 {
+	
+	font-size: 7pt;
+	font-weight: bold;
+
+}
+.sideText1 {
+	
+	font-size: 6pt;
+	font-weight: bold;
+
+}
+.blankDate {
+	
+	font-size: 8pt;
+	text-decoration: underline;
+
+}
+.maintext1, .mainText1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	color: #000000;
+	font-weight: bold;
+
+}
+.pageNumText {
+    font-size: 9pt;
+}
+.pageNumText a {
+    padding: 0px 0px;
+    text-decoration: none;
+}
+.pageNumText .nolink {
+    padding: 0px 0px;
+    color: #C0C0C0;
+}
+.pageNumText .haslink {
+    padding: 0px 0px;
+    text-decoration: none;
+}
+.pageNumText .current, .pageNumText .Current {
+    padding: 0px 0px;
+    font-weight: bold;
+    background-color: #e0e0e0;
+}
+.pageNumText .noted {
+    padding: 0px 0px;
+    border: 2px solid #FF9999;
+}
+.currentPageNumText {
+	
+	font-size: 9pt;
+	color: #000000;
+	background-color: #e0e0e0;
+
+}
+.underlineText, .underlinetext{
+	
+	font-size: 8pt;
+	text-decoration: underline;
+}
+.underlineText1, .UnderlineText1{
+	
+	font-size: 8pt;
+	text-decoration: underline;
+	color: #00008B;
+}
+.underlineBoldText, .underlineBoldtext, .underlineboldText {
+	
+	font-size: 8pt;
+	text-decoration: underline;
+	font-weight: bold;
+}
+.underlineBoldText1, .underlineboldText1 {
+	
+	font-size: 8pt;
+	text-decoration: underline;
+	font-weight: bold;
+	color: #00008B;
+}
+.inputNoBorder{
+
+	font-size: 8pt;
+	border: 0;
+}
+
+.mainLink {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 30px;
+	color: #000000;
+	text-decoration: underline;
+
+}
+a {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #CC0000;
+
+}
+a:active {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #CC0000;
+}
+a:visited{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+a:hover{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #555;
+}
+a.sidelink:link{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #000000;
+	font-weight: bold;
+	text-decoration: none;
+}
+a.sidelink:visited{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #000000;
+	font-weight: bold;
+	text-decoration: none;
+}
+a.sidelink:active{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #000000;
+	font-weight: bold;
+}
+a.sidelink:hover{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;	
+	font-weight: bold;
+	color: #555;	
+}
+a.subHeader:link{
+	font-size: 16px;
+	color: #000000;
+	font-style: normal;
+	font-weight: bold;
+}
+a.subHeader:visited{	
+	font-size: 16px;
+	color: #000000;
+	font-style: normal;
+	font-weight: bold;
+}
+a.subHeader:active{	
+	font-size: 16px;
+	color: #000000;
+	font-style: normal;
+	font-weight: bold;
+}
+a.subHeader:hover{	
+	font-size: 16px;
+	font-style: normal;
+	font-weight: bold;
+	color: #555;	
+}
+.image {
+	border: medium solid #660000;
+}
+.header {	
+	font-size: 12px;
+	color: #000000;
+	font-style: normal;
+	font-weight: bold;
+}
+.maintext2, .mainText2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.table {
+	background-color: #669933;
+	border: medium groove #660000;
+}
+.subHeader {	
+	font-size: 14px;
+	color: #000000;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.menuTitle {	
+	font-size: 16px;
+	color: #000000;
+	font-style: normal;
+	font-weight: bold;
+}
+.sidebar {
+	background-color: #FFCC66;
+}
+.title {
+	font-family: Tahoma;
+	font-size: 24px;
+	color: #000000;
+	font-weight: bolder;
+}
+.footer {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.sidebar2 {
+	background-color: #666666;
+	border-top: medium dotted #CCCCCC;
+	border-right: medium dotted #CCCCCC;
+	border-bottom: medium dotted #CCCCCC;
+	border-left: medium dotted #CCCCCC;
+}
+.mainBackground {
+	background-color: #FFFFFF;
+}
+.table1, .Table1 {
+	border: medium groove #990000;
+}
+.subTitle {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 14px;
+	color: #000000;
+	font-weight: bolder;
+	font-style: italic;
+}
+.menuText {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.patientText {
+	font-size: 11pt;
+}
+.mainHeader {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #FFFFFF;
+	font-style: normal;
+	font-weight: bold;
+}
+.headerBar {
+	background-color: #CC0000;
+	color: #FFCC66;
+}
+.footerBar {
+	background-color: #696969;
+	color: #990000;
+}
+.maintext3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #CC0000;
+	font-weight: normal;
+}
+.dgHighlight {background-color: #ffffcc; font-weight:normal; cursor:pointer}
+
+.dgItem {background-color: #eeeeee}
+.dgItemb {background-color: #FFFFFF}
+
+.dgSelected {background-color: #FFCC00}
+
+.dgHeader {
+	font-weight: bold;
+}
+.mainGrid, .maingrid, .MainGrid {
+  border-top: 1px solid #000000;
+  border-right: 1px solid #000000;
+  padding: 0px;
+}
+.mainGrid td, .maingrid td, .MainGrid td {
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  padding: 3px;
+}
+.mainGrid td td, .maingrid td td, .MainGrid td td {
+  border: 0px;
+  padding: 0px;
+}
+.text-field.readonly, .text-field.disabled, textarea.readonly, textarea.disabled {
+	background-color: #EBEBE4;
+	border: 1px solid gray;
+	padding: 2px 1px;
+}
+textarea {
+	text-align: left;
+	font-weight: normal;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 10pt;
+}
+textarea, input {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+.maintext1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	font-weight: normal;
+}
+.mainBoldText1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+}
+.mainBoldText2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+}
+table.sample2 {
+	border-width: 1px 1px 0 0;
+	border-spacing: 0px;
+	border-style: solid;
+	border-color: black;
+	border-collapse: separate;
+}
+
+table.sample2 td {
+	border-width: 0 0 1px 1px;
+	padding:0px;
+	border-style: solid;
+	border-color: black;
+
+}
+table.sample, table.Sample {
+	border-width: 1px;
+	border-spacing: 0px;
+	border-style: solid;
+	border-color: black;
+	border-collapse: separate;
+
+}
+
+table.sample td, table.Sample td {
+	border-width: 0px;
+	border-style: solid;
+	padding:0px;
+	border-color: black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+
+}
+
+table.innerGrid, table.innergrid {
+	border-width: 1px;
+	border-spacing: 0px;
+	border-style: solid;
+	border-color: black;
+	border-collapse: separate;
+
+}
+
+table.innerGridEpic {
+	border-width: 1px;
+	border-spacing: 15px;
+	border-style: solid;
+	border-color: black;
+	border-collapse: separate;
+
+}
+
+table.innerGrid td, table.innergrid td {
+	border-width: 0px;
+	border-style: solid;
+	padding:3px;
+	border-color: black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+
+}
+
+table.innerGrid2, table.innergrid2, table.InnerGrid2 {
+	border-width: 1px 1px 0 0;
+	border-spacing: 0px;
+	border-style: solid;
+	border-color: black;
+	border-collapse: separate;
+}
+
+table.innerGrid2 td, table.innergrid2 td, table.InnerGrid2 td {
+	border-width: 0 0 1px 1px;
+	padding:3px;
+	border-style: solid;
+	border-color: black;
+
+}
+
+table.sample3 {
+	border-width: 1px;
+	border-spacing: 0px;
+	border-style: solid;
+	border-color: black;
+	border-collapse: separate;
+	background-color: white;
+}
+
+table.sample3 td {
+	border-width: 1px;
+	padding: 0px;
+	border-style: solid;
+	border-color: black;
+	background-color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-weight: normal;
+
+}
+
+HR {
+    height:1.5px;
+    width:100%;
+    color: black;
+    margin: 0px;  
+   }
+.dgHighlight {background-color: #FFFFCC; font-weight:normal; cursor:pointer}
+
+.dgItem {background-color: #EEEEEE}
+
+.dgSelected {background-color: #FFCC00}
+
+.dgHeader {
+	font-weight: bold;
+}
+.sectionHead, .SectionHead {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #696969;
+	text-align: center;
+
+}
+
+.divAddRemove {
+	background-color: #FFFFFF;
+	height: 250px;
+	width: 400px;
+	border: 1px solid #6699CC;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+.btnAddRemove {
+	height: 25px;
+	width: 80px;	
+}
+
+.footer_mid_color {
+background-color: #FFFFF0;	
+}
+
+/* COMMON STYLES CREATED ON 2/29/2008 */
+
+.label, .LABEL, .Label, .labEL {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	}
+.textarea, .TEXTAREA {
+   text-align: left;
+   color: black;
+   font-family: arial, helvetica, sans-serif;
+	}
+.tables {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+	}
+
+.text, .Text, .TEXT {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+	}
+.heading, .Heading {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	font-weight: bold;
+	}
+.MainTable, .Maintable, .maintable {
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+padding: 1px 6px 1px 6px;
+}
+.MainTable td, .Maintable td, .maintable td {
+  border-bottom: 1px solid #000000;
+  border-right: 1px solid #000000;
+  padding: 1px 6px 1px 6px;
+}
+.MainTable td td, .Maintable td td, .maintable td td {
+  border-bottom: 1px solid #000000;
+  border-right: 0px;
+  padding: 1px 6px 1px 6px;
+}
+.MainRow td {
+  padding: 1px 6px 1px 6px;
+}
+
+.login_label, .login_input, .login_error  {
+  padding:10px;
+  color:#000;
+  text-align:left;
+  float:left;
+  width:100px;
+  color:#64355A;
+}
+.login_label, .login_input, .login_error span  {
+  font-size:20px;
+}
+
+.login_input {
+  width:200px;
+}
+
+.login_error {
+  width:250px;
+  color:#F00;
+}
+
+.login_input input {
+  width:100%;
+}
+#login {
+  background:#123;
+}
+div.login_title.title_window {
+	font-size: 20px;
+	height: 20px;
+	font-weight: normal;
+}
+.login_message {
+	color: #64355A;
+	font-size: 14px;
+	padding: 10px;
+}
+
+
+/* END COMMON STYLES CREATED ON 2/29/2008 */
+/* END COMMON STYLES CREATED ON 3/4/2008 */
+.underlineText2, .Underlinetext2, .underLineText2, .underlinetext2 {
+	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	text-decoration: underline;
+	font-weight: normal;
+}
+
+.underlineBoldText2, .UnderlineBoldText2, .Underlineboldtext2, .underLineBoldText2, .underlineBoldtext2, .underlineboldText2, .underlineboldtext2 {
+	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+/* END COMMON STYLES CREATED ON 3/4/2008 */
+/* COMMON STYLES ON 6/17/08*/
+.smalltext, .smallText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-weight: normal;
+	}
+	
+.textBlackBack {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color:#FFFFFF;
+	background-color: #000000;
+	}
+.textBlueBack, .textBlueback {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color:#FFFFFF;
+	background-color: #0000FF;
+	}
+.textBlueBackUnder {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	text-decoration: underline;
+	color:#FFFFFF;
+	background-color: #00008B;
+	}
+/* END COMMON STYLES CREATED ON 6/17/2008 */
+/* COMMON STYLES ON 6/18/08*/	
+.headingBlackBack {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	font-weight: bold;
+	color:#FFFFFF;
+	background-color: #000000;
+	}
+.textYellowBack {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color:#000000;
+	background-color: #FFD700;
+	}	
+/* END COMMON STYLES CREATED ON 6/18/2008 */
+/* COMMON STYLES ON 6/24/08*/
+.smalltextBlueBack {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-weight: normal;
+	color:#FFFFFF;
+	background-color: #00008B;
+	}
+.OuterTable, .outerTable, .outertable {border:1px solid #000000;}
+
+.mainSmalltext {font-size: 9pt;}
+.headingBlueBack {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	font-weight: bold;
+	color:#FFFFFF;
+	background-color: #0000FF;
+	}
+	
+/*End of common sytles on 6/24/08*/
+/* COMMON STYLES ON 6/29/08*/
+.smallTxtInput {
+	padding-left: 0px; padding-right: 0px; margin-left: 0px; margin-right: 0px; height: 20px; width: 20px;
+}
+.smallTxtInput input {
+	padding-left: 0px; padding-right: 0px; margin-left: 0px; margin-right: 0px; height: 20px; width: 20px; 
+}
+/*End of common sytles on 6/29/08*/
+
+/* COMMON STYLES ON 7/3/08*/
+.cellBox {
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-left: 1px solid #000000;
+}
+/*End of common sytles on 7/3/08*/
+
+/* COMMON STYLES ON 7/9/08*/
+
+.headingDimGreyBack {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	font-weight: bold;
+	color:#000000;
+	background-color: #696969;
+	}
+.textLightGreyBack {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color:#000000;
+	background-color: #D3D3D3;
+	}
+.textDimGreyBack {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color:#000000;
+	background-color: #696969;
+	}	
+/*End of common sytles on 7/9/08*/
+
+/* COMMON STYLES ON 7/15/08*/
+
+
+
+
+.sectionHeadLightGrey, .SectionHeadLightGrey, .sectionHeadLightgrey, .sectionHeadlIghtGrey, .sectionHeadlightGrey, .sectionHeadlightgrey, .sectionheadLightGrey, .sectionheadLightgrey, .sectionheadlightGrey, .sectionheadlightgrey, .sectionHeadLightGrey1  {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #000000;
+	background-color: #D3D3D3;
+
+}
+
+/*End of common sytles on 7/16/08*/
+
+/* COMMON STYLES ON 7/18/08*/
+
+.sectionHeadLightBlue {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #3399CC;
+}
+.LabelBlue, .labelBlue {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #3399CC;
+	}
+.LabelRed, .labelRed {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #E41B17;
+	}
+.textBlue {
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 10pt;
+		font-weight: normal;
+		color:#3399CC;
+	}
+.mainBigItalictextBlue{
+	
+	font-size: 10pt;
+	font-style: italic;
+	color: #3399CC;
+
+}
+/*End of common sytles on 7/18/08*/
+	
+/* COMMON STYLES ON 7/18/08*/
+
+table.sample4, table.Sample4 {
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+}
+
+table.sample4 td, table.Sample4 td {
+  border-bottom: 0px solid #000000;
+  border-right: 1px solid #000000;
+}
+
+table.sample4 td td, table.Sample4 td td {
+  border-bottom: 0px;
+  border-right: 0px;
+}
+
+/* COMMON STYLES ON 7/23/08*/
+.mainBoldItalicUnderlinetext {
+	
+	font-size: 10pt;
+	text-decoration: underline;
+	font-style: italic;
+	font-weight: bold;
+}
+
+#menuMain {
+	margin-bottom:18px;
+	position:relative;
+}
+
+#menuImg {
+	float:left;
+}
+
+.menuHead {
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 10px 10px 10px 0px;
+}
+
+.menuHead-container {	
+	width: 100%;
+	border-spacing: 0px;
+	padding: 2px 0px 2px 0px;
+}
+
+#menuTitle {
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 10px 10px 10px 0px;
+	float: left;
+}
+
+.menuAddition {
+	float: right;
+}
+
+.container
+{
+	width: 100%;
+	overflow: hidden;
+}
+
+/*******
+* css inline hack (makes this element truly act like an inline element) 
+.inline-block {
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+********/
+
+.warningMessage {
+  height: 14px;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  margin: 0;
+  padding: 10px;
+}
+
+/*Added for small txt box */
+.smlTxtBox { 
+	padding-left: 0px; 
+	padding-right: 0px; 
+	margin-left: 0px; 
+	margin-right: 0px; 
+	height: 10px; 
+	width: 10px; 
+}
+
+#myPatients {
+	display: inline;
+}
+
+.myPatients-follower {
+	display: inline;
+	padding-left: 10px;
+}
+
+.agentMenuBorder {
+	margin: 0 0;
+}
+
+.groupText {
+	font-style: italic;
+	font-weight: bold;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.summary {
+    margin-left : 2em;
+    border : solid rgb(134,194,171) 1px;
+    -moz-border-radius: 0.2em;
+    padding : 0.2em 0.2em 0.2em 0.4em;
+}
+
+.indented {
+	margin-left: 20px;
+}
+
+.printText {
+    font-weight: bold;
+}
+
+table.printTextArea {
+	table-layout: fixed;
+	text-align: left;
+}
+table.printTextArea pre {
+	table-layout: fixed;
+}
+.printTextArea pre {
+    font-weight: bold;
+    font-size: 12px;
+    
+	white-space: pre; /* CSS2 */
+	white-space: -moz-pre-wrap; /* Mozilla */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	white-space: -pre-wrap; /* Opera 4-6 */
+	white-space: pre-wrap; /* CSS 2.1 */
+	word-wrap: break-word; /* IE */
+}
+table.printTextArea tr td {
+	border-width: 0;
+}
+
+.printImg {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.pocFieldText, .pocFieldText pre, .pocFieldText b {
+	font-size: 14px;
+	font-family: monospace;
+	font-weight: normal;
+	margin: 0 4px;
+}
+.pocFieldText b {
+	font-weight: bold;
+}
+
+table.dropDownTable, div.dropDownTable table {
+	background-color: white;
+	cursor: default;
+	font-size: 13px;
+	line-height: 17px;
+	margin: 0;
+	width: 300px;
+}
+table.dropDownTable, div.dropDownTable {
+	border: 1px solid gray;
+	position: absolute;
+	z-index: 9;
+}
+div.dropDownTable {
+	height: 272px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	margin-top: -1px;
+}
+.dropDownRow.hover {
+	background-color: #cdf;
+}
+.dropDownRow.selected {
+	background-color: #ff9;
+}
+.dropDownRow.selected.hover {
+	background-color: #abf;
+}
+.dropDownDescription {
+	overflow: hidden;
+	padding-left: 3px;
+	text-align: left;
+	white-space: nowrap;
+}
+.dropDownCode, .dropDownExtra, .dropDownExtra div {
+	color: green;
+	font-size: 10px;
+	overflow: hidden;
+	padding: 0 3px;
+	text-align: right;
+	white-space: nowrap;
+}
+.dropDownRowLast td {
+	font-size: 10px;
+	line-height: 15px;
+	padding: 0 3px 2px;
+	text-align: right;
+}
+.dropDownRowLast span {
+	color: #00c;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+div.libraryWrapper, div.slaveLibraryWrapper {
+	border: 1px solid gray;
+	width: 300px;
+	padding: 2px;
+	height: 22px;
+	background-color: white;
+}
+input.libraryNameText, input.slaveLibraryNameText {
+	vertical-align: top;
+	padding: 1px;
+	border: 0;
+	height: 20px;
+	margin: 0;
+	width: 276px;
+	font-size: 14px;
+	
+	float: left;
+	white-space: nowrap;
+	overflow: hidden;
+}
+img.libraryIcon, img.slaveLibraryIcon {
+	background-color: white;
+	vertical-align: top;
+	padding: 0;
+	border: 0;
+	margin: 1px;
+	cursor: pointer;
+	
+	float: right;
+	display: block;
+}
+
+.filter-container {
+	width: 100%;
+	min-height: 22px;
+}
+.filter, .Filter {
+	white-space: nowrap;
+	margin: 3px 12px 3px 0;
+	display: inline-block;
+}
+.filter input.submit, .Filter input.submit, .filter input.Submit, .Filter input.Submit {
+	width: 50px;
+	height: 22px;
+}
+
+#overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	
+	background-color: white;
+	opacity: 0.5;
+	filter: alpha(opacity=50); /* ie 7 & 8 */
+}
+
+/* admin menu */
+.tbl1{
+	background-color:#F2F2F2;
+	padding:0px;
+	border-spacing:0px;
+	height:100%;
+}
+.tblShell{
+	border-right:2px solid #BFBFBF;
+	border-bottom:2px solid #BFBFBF;
+}
+.menuSectionHeader{
+	background-color:#666666;
+	background: url(../images/bg1.png) repeat-x; 
+	color:#FFFFFF;
+	padding:5px;
+	font-weight:bold;
+}
+table.menuSection {
+	padding-bottom:15px;
+}
+table.menuSection a {
+	color: #CC0000;
+	font-style: normal;
+	text-decoration: underline;
+	padding:5px;
+	padding-top:5px;
+}
+table.menuSection a:link{	
+	color: #CC0000;
+	font-style: normal;
+}
+table.menuSection a:visited{
+	color: #CC0000;
+	font-style: normal;
+}
+table.menuSection a:active{
+	color: #CC0000;
+	font-style: normal;
+}
+table.menuSection a:hover{	
+	font-style: normal;
+	color: #555;	
+}
+table.menuSection td{
+	padding:5px;
+}
+
+/* menuSection2 */
+.menuSection2Header a{
+	font-weight:normal;
+}
+table.menuSection2 a {
+	color: #CC0000;
+	font-style: normal;
+	text-decoration: underline;
+	padding:5px;
+	padding-top:5px;
+}
+table.menuSection2 a:link{	
+	color: #CC0000;
+	font-style: normal;
+}
+table.menuSection2 a:visited{
+	color: #CC0000;
+	font-style: normal;
+}
+table.menuSection2 a:active{
+	color: #CC0000;
+	font-style: normal;
+}
+table.menuSection2 a:hover{	
+	font-style: normal;
+	color: #555;	
+}
+table.menuSection2{
+	padding:0px;
+	border-spacing:0px;
+	border-bottom:1px solid #EBE8D6;
+}
+table.menuSection2 td{
+	padding-top:5px;
+	padding-bottom:5px;
+}
+table.menuSection2 td.menuSection2HeaderTopCorner{
+	padding-top:0px;
+	padding-bottom:0px;
+}
+table.menuSection2 td.menuSection2HeaderTop{
+	padding-top:0px;
+	padding-bottom:0px;
+	background:url(../images/bg2.png) repeat;	
+	font-weight:bold;
+}
+table.menuSection2 td.menuSection2Header{
+	padding-top:5px;
+	padding-bottom:5px;
+	background:url(../images/bg2.png) repeat;
+	color: #000000;
+	font-weight:bold;
+}
+table.menuSection2 td.borderLeft{
+	border-left:1px solid #EBE8D6;		
+	
+}
+table.menuSection2 td.borderRight{
+	border-right:2px solid #EBE8D6;	
+}
+.footer2 {
+	background-image: url(../images/bg_footer.gif);
+}
+.footer2Text {
+	font-size: 10px;
+	font-weight: normal;
+	color: #636363;
+}
+/* end admin menu */
+.expired, .Expired {
+	background-color: #6699FF
+}
+
+.choices {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.choices .updateSection {
+	text-align: center
+}
+.choices a {
+	margin: 4px;
+}
+.choices div {
+	padding-top: 12px;
+}
+.choices .trackingInclude a {
+	margin: 0;
+}
+.choices .trackingInclude div {
+	padding-top: 0;
+}
+
+.reportHeader {
+	background:none repeat scroll 0 0 #F1F1F1;
+	border-bottom:1px solid #D7D7D7;
+	margin:2em 0 0;
+	padding:0 0.33em;
+	font-size:16px;
+	font-weight: bold;	
+	font-family: Arial,Verdana,'Bitstream Vera Sans',Helvetica,sans-serif;	
+	cursor: pointer;
+	user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+}
+.reportHeader a {
+	font-weight: normal;
+}
+h2 .numrows {
+	color:#999999;
+	font-size:65%;
+	font-weight:normal;
+	margin-left:1em;
+}	
+table.items {
+	border-bottom:1px solid #D7D7D7;
+	border-collapse:collapse;
+	border-spacing:0;
+	clear:both;
+	margin-top:1em;
+}	
+table.items thead th {
+	border-color:#D7D7D7 #D7D7D7 #999999;
+	border-style:solid;
+	border-width:1px;
+	font-size:12px;
+	font-weight:bold;
+	padding:2px 0.5em;
+	vertical-align:bottom;
+}	
+table.items thead th a {
+	border:medium none;
+	padding-right: 5px;
+}	
+table.items thead th {
+	background:none repeat scroll 0 0 #F7F7F0;
+}		
+table.items tbody tr.prio6 {
+	background:none repeat scroll 0 0 #F0F0F0;
+	border-color:#DDDDDD;
+}	
+table.items tbody tr.even, table.items tbody tr.Even {
+	background-color:#FCFCFC;
+}	
+table.items tbody tr.odd {
+	background-color:#F7F7F7;
+}
+table.items tbody tr {
+	border-top:1px solid #DDDDDD;
+}	
+table.items tbody td, table.items tbody th {
+	border:1px dotted #DDDDDD;
+	padding:0.3em 0.5em;
+}
+.items tbody td {
+	padding:0.1em 0.5em !important;
+}	
+.column {
+	float: left;
+}
+.clear-column { 
+	clear: left 
+}
+.column-container {
+	overflow: auto;
+	width: 100%
+}
+.legend td {
+	text-align: left;
+	padding: 2px 0px;
+	white-space: nowrap;
+}
+.frame {
+	border: none;
+	display: inline-block;
+}
+.frame table {
+	width: 100%;
+}
+.frame td {
+	padding-left: 2px;
+	padding-right: 4px;
+}
+.frame legend {
+	color: black;
+	font-weight: bold;
+}
+
+.bordered {
+	border: 1px solid #ddd;
+	padding: 0.75em;
+	margin: 0 1em 1em 0;
+}
+
+.checklist {
+	border: solid black 1px;
+	background-color: white;
+	position: absolute;
+}
+.checklist ul, .checklist li, .checklist label {
+	display: block;
+	width: 100%;
+	cursor: pointer;
+}
+.checklist ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+.checklist label:hover {
+	background-color: #cdf;
+}
+.checklist input {
+	vertical-align: middle;
+}
+.checklist .closebar {
+	width: 100%;
+	text-align: right;
+	padding: 2px 0;
+	clear: left;
+}
+.checklist .closebar a {
+	margin-right: 10px;
+}
+.checkresults {
+	color: black;
+	text-decoration: none;
+	display: block;
+}
+.checkresults:hover {
+	text-decoration: underline;
+	color: #CC0000;
+}
+
+/* time in / time out */
+.timeContainer {
+	margin: 0 0;
+	padding: 0;
+	height: 24px;
+	position: relative;
+	width: 88px;
+}
+
+.timeInput {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+
+.timeDropdown {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	opacity: 0;
+	filter: alpha(opacity=0); /* ie 7 & 8 */
+}
+
+.timeInput input,.timeDropdown select {
+	width: 88px;
+	height: 24px;
+	padding: 2px;
+	margin: 0px;
+	border-width: 2px;
+}
+
+.timeLink a {
+	margin: 0 10px 0 0;
+	padding: 0 0 0 0;
+	vertical-align: baseline;
+}
+
+#internalInfo table {
+	padding: 10px;
+	margin: 0;
+}
+
+#internalInfo td {
+	padding: 2px;
+	margin: 0;
+}
+img {
+	border: none;
+	vertical-align: middle;
+}
+
