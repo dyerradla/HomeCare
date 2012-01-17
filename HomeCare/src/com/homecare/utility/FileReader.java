@@ -92,7 +92,7 @@ public class FileReader
 					break;
 				case 5:
 					String nullable = "";
-					if(st.nextToken().equals("Y"))
+					if(st.nextToken().equals("N"))
 					{
 						nullable = "NOT NULL";
 					}
@@ -196,7 +196,7 @@ public class FileReader
 			createSQL.append(columnName.get(j));
 			createSQL.append(" ");
 			createSQL.append(dataType.get(j));
-			if(!(dataType.get(j).equals("DATE") || dataType.get(j).equals("BLOB")))
+			if(!(dataType.get(j).equals("TIMESTAMP") || dataType.get(j).equals("BLOB")))
 			{
 				createSQL.append("(");
 				createSQL.append(size.get(j));
