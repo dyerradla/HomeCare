@@ -2,7 +2,6 @@ package com.homecare.utility;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -26,8 +25,10 @@ public class FileReader
 		List<String> isNull = new ArrayList<String>();
 		List<String> constraint = new ArrayList<String>();
 		List<String> createSQLList = new ArrayList<String>();
+		List<String> deleteSQLList = new ArrayList<String>();
 		List<String> createConstraintsList = new ArrayList<String>();
 		StringBuffer createSQL = new StringBuffer();
+		StringBuffer deleteSQL = new StringBuffer();
 		StringBuffer createPKConstraint = new StringBuffer();
 		StringBuffer createFKConstraint = new StringBuffer();
 		
@@ -42,6 +43,9 @@ public class FileReader
 			{
 				if(strLine.trim().length() == 0)
 				{
+					
+					deleteSQLString(tableName, deleteSQLList, deleteSQL);
+					
 					createTableSQL(tableName, columnName, dataType, size, isNull, constraint, createSQLList, createConstraintsList, createSQL, createPKConstraint, createFKConstraint);
 
 					System.out.println("\n");
@@ -53,6 +57,7 @@ public class FileReader
 					isNull.clear();
 					constraint.clear();
 					createSQL = new StringBuffer();
+					deleteSQL = new StringBuffer();
 					createPKConstraint = new StringBuffer();
 					createFKConstraint = new StringBuffer();
 					continue;
@@ -69,6 +74,16 @@ public class FileReader
 			System.err.println("Error: " + e.getMessage());
 		}
 
+	}
+
+	private static void deleteSQLString(List<String> tableName,
+			List<String> deleteSQLList, StringBuffer deleteSQL) {
+		deleteSQL.append("DROP TABLE ");
+		deleteSQL.append(SCHEMA_NAME);
+		deleteSQL.append(tableName.get(0));
+		deleteSQL.append(";");
+		deleteSQLList.add(deleteSQL.toString());
+		System.out.println(deleteSQL.toString());
 	}
 
 	private static void readTokensAndAssign(List<String> tableName, List<String> columnName, List<String> dataType, List<String> size, List<String> isNull, List<String> constraint, StringTokenizer st)
