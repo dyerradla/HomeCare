@@ -18,6 +18,8 @@
 			<list>
 				<value>com.homecare.domain.Patient</value>
 				<value>com.homecare.domain.Patient_Audit</value>
+				<value>com.homecare.domain.EmployeeInfo</value>
+				<value>com.homecare.domain.EmployeeInfoAudit</value>
 			</list>
 		</property>
 		<property name="configLocation" value="/WEB-INF/hibernate.cfg.xml"></property>

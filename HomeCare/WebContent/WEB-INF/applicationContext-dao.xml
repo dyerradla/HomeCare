@@ -13,4 +13,7 @@
 	<bean id="patientDAO" class="com.homecare.dao.PatientDAOImpl">
 		<property name="sessionFactory" ref="mySessionFactory"></property>
 	</bean>
+	<bean id="employeeDAO" class="com.homecare.dao.EmployeeDAOImpl">
+		<property name="sessionFactory" ref="mySessionFactory"></property>
+	</bean>
 </beans>
