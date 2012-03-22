@@ -3,6 +3,7 @@ package com.homecare.domain;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -55,7 +56,7 @@ public class EmployeeInfo implements java.io.Serializable {
 	private Character hvbTest;
 	private String emailAddress;
 	private String phoneNumber;
-	private Set employeeInfoAudits = new HashSet(0);
+	private Set<EmployeeInfoAudit> employeeInfoAudits = new HashSet<EmployeeInfoAudit>(0);
 
 	public EmployeeInfo() {
 	}
@@ -472,11 +473,11 @@ public class EmployeeInfo implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employeeInfo")
-	public Set getEmployeeInfoAudits() {
+	public Set<EmployeeInfoAudit> getEmployeeInfoAudits() {
 		return this.employeeInfoAudits;
 	}
 
-	public void setEmployeeInfoAudits(Set employeeInfoAudits) {
+	public void setEmployeeInfoAudits(Set<EmployeeInfoAudit> employeeInfoAudits) {
 		this.employeeInfoAudits = employeeInfoAudits;
 	}
 
