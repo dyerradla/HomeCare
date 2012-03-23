@@ -1,5 +1,7 @@
 package com.homecare.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,26 +9,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.homecare.bo.PatientBO;
-import com.homecare.domain.Patient;
+import com.homecare.bo.IEmployeeInfoBO;
+import com.homecare.domain.EmployeeInfo;
 
 @Controller
 public class EmployeeController extends BaseFormController{
 	
 	@Autowired
-	private PatientBO patientBO;
+	private IEmployeeInfoBO employeeInfoBO;
 	
 	@RequestMapping("/employeeInfo")
 	public ModelAndView test(){
 		System.out.println("**********Inside Employee Controller******");
-		List<Patient> patientList = patientBO.getPatients();
+		List<EmployeeInfo> employeeList = new ArrayList<EmployeeInfo>();
+		EmployeeInfo empInfo = new EmployeeInfo();
+		empInfo.setFirstName("First");
+		empInfo.setLastName("Last");
+		empInfo.setMiddleName("Middle");
+		empInfo.setCreateDt(new Date());
+		empInfo.setCreateUserId("testUser");
+		employeeList.add(empInfo);
 		
-		patientList.get(0).setFirstName(patientList.get(0).getFirstName()+"p");
-		patientBO.updatePatient(patientList);
-		
-		patientList = patientBO.getPatients();
 		ModelAndView modelAndView = new ModelAndView("default"); 
-		modelAndView.addObject("patients", patientList);
+		modelAndView.addObject("employeeInfo", employeeList);
 		return modelAndView;
 	}
 	
