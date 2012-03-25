@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 @Table(name = "employee_info", catalog = "homecare")
 public class EmployeeInfo implements java.io.Serializable {
 
-	private int employeeId;
+	private Long employeeId;
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -61,7 +61,7 @@ public class EmployeeInfo implements java.io.Serializable {
 	public EmployeeInfo() {
 	}
 
-	public EmployeeInfo(int employeeId, String firstName, String lastName,
+	public EmployeeInfo(Long employeeId, String firstName, String lastName,
 			Date createDt, String createUserId,
 			Date initialCompetencyEvaluation, Date ongoinCompetencyEvaluation,
 			Date annualEvaluation, Date cprCard, Date profLicense,
@@ -81,7 +81,7 @@ public class EmployeeInfo implements java.io.Serializable {
 		this.tbTest = tbTest;
 	}
 
-	public EmployeeInfo(int employeeId, String firstName, String middleName,
+	public EmployeeInfo(Long employeeId, String firstName, String middleName,
 			String lastName, Date createDt, String createUserId,
 			String designation, Character application, Character resume,
 			Character referenceChecks, Character signedJobDescription,
@@ -138,11 +138,11 @@ public class EmployeeInfo implements java.io.Serializable {
 
 	@Id
 	@Column(name = "EMPLOYEE_ID", unique = true, nullable = false)
-	public int getEmployeeId() {
+	public Long getEmployeeId() {
 		return this.employeeId;
 	}
 
-	public void setEmployeeId(int employeeId) {
+	public void setEmployeeId(Long employeeId) {
 		this.employeeId = employeeId;
 	}
 
