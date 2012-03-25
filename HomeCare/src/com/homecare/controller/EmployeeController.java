@@ -5,12 +5,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.homecare.bo.IEmployeeInfoBO;
+import com.homecare.command.EmployeeInfoForm;
 import com.homecare.domain.EmployeeInfo;
 
 @Controller
@@ -20,7 +24,7 @@ public class EmployeeController extends BaseFormController{
 	private IEmployeeInfoBO employeeInfoBO;
 	
 	@RequestMapping("/employeeInfo")
-	public ModelAndView getEmployeeInformation(){
+	public ModelAndView getEmployeeInformation(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
 		System.out.println("**********Inside Employee Controller******");
 		List<EmployeeInfo> employeeList = new ArrayList<EmployeeInfo>();
 		EmployeeInfo empInfo = new EmployeeInfo();
@@ -31,8 +35,9 @@ public class EmployeeController extends BaseFormController{
 		empInfo.setCreateUserId("testUser");
 		employeeList.add(empInfo);
 		
-		ModelAndView modelAndView = new ModelAndView("default"); 
+		ModelAndView modelAndView = new ModelAndView("employeeInfo"); 
 		modelAndView.addObject("employeeInfo", employeeList);
+		employeeInfoForm.setEmployeeInfo(empInfo);
 		return modelAndView;
 	}
 	
@@ -48,7 +53,7 @@ public class EmployeeController extends BaseFormController{
 	}
 	
 	@RequestMapping("/saveEmployeeInfo")
-	public ModelAndView saveData(){
+	public ModelAndView saveData(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest) throws Exception{
 		System.out.println("*******************Inside Save Employee Info");
 		ModelAndView modelAndView = new ModelAndView("default"); 
 		return modelAndView;
