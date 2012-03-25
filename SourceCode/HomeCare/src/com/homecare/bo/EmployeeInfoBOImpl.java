@@ -1,5 +1,7 @@
 package com.homecare.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.homecare.dao.IEmployeeDAO;
@@ -18,4 +20,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 
 	}
 
+	public List<EmployeeInfo> getAllEmployees(){
+		return employeeDAO.getAllEmployees();
+	}
 }
