@@ -10,11 +10,20 @@ import com.homecare.domain.EmployeeInfo;
 
 public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 	private Log logger = LogFactory.getLog(EmployeeDAOImpl.class);
+	
+	/**
+	 * Get the Employee information for the given employeeId
+	 */
 	public EmployeeInfo getEmployeeInfo(Long employeeId) {
-		// TODO Auto-generated method stub
-		return null;
+		logger.debug("Entering getEmployeeInfo of EmployeeDAOImpl with employeeId:"+employeeId);
+		EmployeeInfo employeeInfo = (EmployeeInfo)loadObjectByPrimaryKey(EmployeeInfo.class, employeeId);
+		logger.debug("Exiting getEmployeeInfo of EmployeeDAOImpl with employeeId:"+employeeId);
+		return employeeInfo;
 	}
 
+	/**
+	 * Get the List of all the employees
+	 */
 	public List<EmployeeInfo> getAllEmployees() {
 		logger.debug("Entering getAllEmplyees of EmployeeDAOImpl");
 		Criteria criteria = getSession().createCriteria(EmployeeInfo.class);
@@ -24,8 +33,10 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 	}
 
 
+	/**
+	 * Update or Add the given Employee
+	 */
 	public void updateEmployeeInfo(EmployeeInfo employeeInfo) {
-		// TODO Auto-generated method stub
-
+		saveOrUpdateObject(employeeInfo);
 	}
 }
