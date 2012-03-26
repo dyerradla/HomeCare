@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="../../styles/common.css" type="text/css">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <form:form name="employeeInfoForm" action="saveEmployeeInfo.do">
+	<input type="hidden" name="employeeInfo.employeeId" value="${command.employeeInfo.employeeId}" />
 	<table>
 		<tr>
 			<td>First Name:</td>
