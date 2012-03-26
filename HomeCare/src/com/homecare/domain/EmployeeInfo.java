@@ -137,7 +137,7 @@ public class EmployeeInfo implements java.io.Serializable {
 	}
 
 	@Id
-	@Column(name = "EMPLOYEE_ID", unique = true, nullable = false)
+	@Column(name = "EMPLOYEE_ID", unique = true)
 	public Long getEmployeeId() {
 		return this.employeeId;
 	}
@@ -174,7 +174,7 @@ public class EmployeeInfo implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "CREATE_DT", nullable = false, length = 19)
+	@Column(name = "CREATE_DT", length = 19)
 	public Date getCreateDt() {
 		return this.createDt;
 	}
@@ -266,7 +266,7 @@ public class EmployeeInfo implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "INITIAL_COMPETENCY_EVALUATION", nullable = false, length = 19)
+	@Column(name = "INITIAL_COMPETENCY_EVALUATION", length = 19)
 	public Date getInitialCompetencyEvaluation() {
 		return this.initialCompetencyEvaluation;
 	}
@@ -276,7 +276,7 @@ public class EmployeeInfo implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "ONGOIN_COMPETENCY_EVALUATION", nullable = false, length = 19)
+	@Column(name = "ONGOIN_COMPETENCY_EVALUATION", length = 19)
 	public Date getOngoinCompetencyEvaluation() {
 		return this.ongoinCompetencyEvaluation;
 	}
@@ -286,7 +286,7 @@ public class EmployeeInfo implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "ANNUAL_EVALUATION", nullable = false, length = 19)
+	@Column(name = "ANNUAL_EVALUATION", length = 19)
 	public Date getAnnualEvaluation() {
 		return this.annualEvaluation;
 	}
@@ -314,7 +314,7 @@ public class EmployeeInfo implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "CPR_CARD", nullable = false, length = 19)
+	@Column(name = "CPR_CARD", length = 19)
 	public Date getCprCard() {
 		return this.cprCard;
 	}
@@ -324,7 +324,7 @@ public class EmployeeInfo implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "PROF_LICENSE", nullable = false, length = 19)
+	@Column(name = "PROF_LICENSE", length = 19)
 	public Date getProfLicense() {
 		return this.profLicense;
 	}
@@ -361,7 +361,7 @@ public class EmployeeInfo implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DRIVERS_LICENSE", nullable = false, length = 19)
+	@Column(name = "DRIVERS_LICENSE", length = 19)
 	public Date getDriversLicense() {
 		return this.driversLicense;
 	}
@@ -371,7 +371,7 @@ public class EmployeeInfo implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "PROOF_VALID_CAR_INSURANCE", nullable = false, length = 19)
+	@Column(name = "PROOF_VALID_CAR_INSURANCE", length = 19)
 	public Date getProofValidCarInsurance() {
 		return this.proofValidCarInsurance;
 	}
@@ -436,7 +436,7 @@ public class EmployeeInfo implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "TB_TEST", nullable = false, length = 19)
+	@Column(name = "TB_TEST", length = 19)
 	public Date getTbTest() {
 		return this.tbTest;
 	}

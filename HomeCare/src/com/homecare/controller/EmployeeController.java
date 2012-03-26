@@ -1,8 +1,6 @@
 package com.homecare.controller;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +54,9 @@ public class EmployeeController extends BaseFormController{
 	@RequestMapping("/saveEmployeeInfo")
 	public ModelAndView saveData(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest) throws Exception{
 		System.out.println("*******************Inside Save Employee Info");
-		employeeInfoBO.updateEmployeeInfo(employeeInfoForm.getEmployeeInfo());
+		EmployeeInfo employeeInfo = employeeInfoForm.getEmployeeInfo();
+		employeeInfo.setCreateUserId("1");
+		employeeInfoBO.updateEmployeeInfo(employeeInfo);
 		ModelAndView modelAndView = new ModelAndView("default"); 
 		return modelAndView;
 	}
