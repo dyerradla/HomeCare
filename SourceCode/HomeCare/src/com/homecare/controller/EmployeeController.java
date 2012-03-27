@@ -51,6 +51,15 @@ public class EmployeeController extends BaseFormController{
 		return modelAndView;
 	}
 	
+	@RequestMapping("/loadEmployeeInfo")
+	public ModelAndView getEmployeeInfo(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
+		System.out.println("*******Load Employee Info**************");
+		EmployeeInfo empInfo = new EmployeeInfo();
+		ModelAndView modelAndView = new ModelAndView("employeeInfo"); 
+		employeeInfoForm.setEmployeeInfo(empInfo);
+		return modelAndView;
+	}
+	
 	@RequestMapping("/saveEmployeeInfo")
 	public ModelAndView saveData(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest) throws Exception{
 		System.out.println("*******************Inside Save Employee Info");
