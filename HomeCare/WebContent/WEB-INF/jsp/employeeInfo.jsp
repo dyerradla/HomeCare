@@ -41,23 +41,38 @@
 					</tr>
 					<tr>
 						<td>referenceChecks:</td>
-						<td><form:input path="employeeInfo.referenceChecks" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.referenceChecks" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.referenceChecks" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>signedJobDescription:</td>
-						<td><form:input path="employeeInfo.signedJobDescription" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.signedJobDescription" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.signedJobDescription" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>orientationChecklist:</td>
-						<td><form:input path="employeeInfo.orientationChecklist" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.orientationChecklist" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.orientationChecklist" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>statementOfConfidentiality:</td>
-						<td><form:input path="employeeInfo.statementOfConfidentiality" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.statementOfConfidentiality" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.statementOfConfidentiality" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>policy:</td>
-						<td><form:input path="employeeInfo.policy" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.policy" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.policy" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>initialCompetencyEvaluation:</td>
@@ -73,11 +88,17 @@
 					</tr>
 					<tr>
 						<td>hippaTraining:</td>
-						<td><form:input path="employeeInfo.hippaTraining" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.hippaTraining" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.hippaTraining" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>oshaTraining:</td>
-						<td><form:input path="employeeInfo.oshaTraining" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.oshaTraining" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.oshaTraining" value="N" label="N" />
+						</td>
 					</tr>
 					
 				</table>		
@@ -94,15 +115,24 @@
 					</tr>
 					<tr>
 						<td>verificationProfLicense:</td>
-						<td><form:input path="employeeInfo.verificationProfLicense" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.verificationProfLicense" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.verificationProfLicense" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>socialSecurityCard:</td>
-						<td><form:input path="employeeInfo.socialSecurityCard" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.socialSecurityCard" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.socialSecurityCard" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>nonCompete:</td>
-						<td><form:input path="employeeInfo.nonCompete" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.nonCompete" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.nonCompete" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>driversLicense:</td>
@@ -114,27 +144,45 @@
 					</tr>
 					<tr>
 						<td>authorizationCriminalCheck:</td>
-						<td><form:input path="employeeInfo.authorizationCriminalCheck" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.authorizationCriminalCheck" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.authorizationCriminalCheck" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>criminalCheck:</td>
-						<td><form:input path="employeeInfo.criminalCheck" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.criminalCheck" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.criminalCheck" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>fingerprintsResults:</td>
-						<td><form:input path="employeeInfo.fingerprintsResults" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.fingerprintsResults" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.fingerprintsResults" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>federalW4:</td>
-						<td><form:input path="employeeInfo.federalW4" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.federalW4" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.federalW4" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>michiganW4:</td>
-						<td><form:input path="employeeInfo.michiganW4" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.michiganW4" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.michiganW4" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>i9:</td>
-						<td><form:input path="employeeInfo.i9" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.i9" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.i9" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>tbTest:</td>
@@ -142,7 +190,10 @@
 					</tr>
 					<tr>
 						<td>hvbTest:</td>
-						<td><form:input path="employeeInfo.hvbTest" /></td>
+						<td>
+							<form:radiobutton path="employeeInfo.hvbTest" value="Y" label="Y" /> 
+							<form:radiobutton path="employeeInfo.hvbTest" value="N" label="N" />
+						</td>
 					</tr>
 					<tr>
 						<td>emailAddress:</td>
