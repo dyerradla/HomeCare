@@ -1,8 +1,18 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<link rel="stylesheet" href="../../styles/common.css" type="text/css">
+<link rel="stylesheet" href="styles/common.css" type="text/css">
+<link rel="stylesheet" href="styles/jquery-ui-1.8.18.custom.css" type="text/css">
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
+ <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<script>
+	$(function() {
+		$( '.datepicker' ).datepicker();
+	});
+	</script>
 <form:form name="employeeInfoForm" action="saveEmployeeInfo.do">
 	<input type="hidden" name="employeeInfo.employeeId" value="${command.employeeInfo.employeeId}" />
 	<table>
@@ -76,15 +86,15 @@
 					</tr>
 					<tr>
 						<td>initialCompetencyEvaluation:</td>
-						<td><form:input path="employeeInfo.initialCompetencyEvaluation" /></td>
+						<td><form:input path="employeeInfo.initialCompetencyEvaluation" cssClass="datepicker"/></td>
 					</tr>
 					<tr>
 						<td>ongoinCompetencyEvaluation:</td>
-						<td><form:input path="employeeInfo.ongoinCompetencyEvaluation" /></td>
+						<td><form:input path="employeeInfo.ongoinCompetencyEvaluation" cssClass="datepicker"/></td>
 					</tr>
 					<tr>
 						<td>annualEvaluation:</td>
-						<td><form:input path="employeeInfo.annualEvaluation" /></td>
+						<td><form:input path="employeeInfo.annualEvaluation" cssClass="datepicker"/></td>
 					</tr>
 					<tr>
 						<td>hippaTraining:</td>
@@ -107,11 +117,11 @@
 				<table>
 					<tr>
 						<td>cprCard:</td>
-						<td><form:input path="employeeInfo.cprCard" /></td>
+						<td><form:input path="employeeInfo.cprCard" cssClass="datepicker"/></td>
 					</tr>
 					<tr>
 						<td>profLicense:</td>
-						<td><form:input path="employeeInfo.profLicense" /></td>
+						<td><form:input path="employeeInfo.profLicense" cssClass="datepicker"/></td>
 					</tr>
 					<tr>
 						<td>verificationProfLicense:</td>
@@ -136,11 +146,11 @@
 					</tr>
 					<tr>
 						<td>driversLicense:</td>
-						<td><form:input path="employeeInfo.driversLicense" /></td>
+						<td><form:input path="employeeInfo.driversLicense" cssClass="datepicker"/></td>
 					</tr>
 					<tr>
 						<td>proofValidCarInsurance:</td>
-						<td><form:input path="employeeInfo.proofValidCarInsurance" /></td>
+						<td><form:input path="employeeInfo.proofValidCarInsurance" cssClass="datepicker"/></td>
 					</tr>
 					<tr>
 						<td>authorizationCriminalCheck:</td>
@@ -186,7 +196,7 @@
 					</tr>
 					<tr>
 						<td>tbTest:</td>
-						<td><form:input path="employeeInfo.tbTest" /></td>
+						<td><form:input path="employeeInfo.tbTest" cssClass="datepicker"/></td>
 					</tr>
 					<tr>
 						<td>hvbTest:</td>
