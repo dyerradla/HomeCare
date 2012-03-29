@@ -1,11 +1,14 @@
 package com.homecare.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.Query;
 
 import com.homecare.domain.EmployeeInfo;
 
@@ -45,13 +48,91 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 	 * Get all the Reminders
 	 * @return
 	 */
-	public List<EmployeeInfo> getAllReminders(){
-		
+	public Map<String,List<String>> getAllReminders(){
+		Map<String,List<String>> employeeRemindersMap = new HashMap<String, List<String>>();
 		logger.debug("Entering getAllReminders of EmployeeDAOImpl");
-		Criteria criteria = getSession().createCriteria(EmployeeInfo.class);
-		criteria.add(Restrictions.ne("application", "Y"));
-		List<EmployeeInfo> employeeList = criteria.list();
-		logger.debug("Exiting getAllReminders of EmployeeDAOImpl");
-		return employeeList;
+		 StringBuilder query = new StringBuilder("from EmployeeInfo ");
+		
+		 //Applying the restrictions on Application
+		 query.append(" where application != 'Y'");
+		 
+		//Applying the restrictions on Resume
+		 query.append(" OR resume != 'Y'");
+		 
+		//Applying the restrictions on Reference Checks
+		 query.append(" OR referenceChecks != 'Y'");
+		 
+		//Applying the restrictions on SignedJobDescription
+		 query.append(" OR signedJobDescription != 'Y'");
+		 
+		//Applying the restrictions on OrientationChecklist
+		 query.append(" OR orientationChecklist != 'Y'");
+		 
+		//Applying the restrictions on StatementOfConfidentiality
+		 query.append(" OR statementOfConfidentiality != 'Y'");
+		 
+		//Applying the restrictions on Policy
+		 query.append(" OR policy != 'Y'"); 
+
+		//Applying the restrictions on HippaTraining
+		 query.append(" OR hippaTraining != 'Y'");  
+		
+		//Applying the restrictions on OshaTraining
+		 query.append(" OR oshaTraining != 'Y'");  
+		
+		//Applying the restrictions on VerificationProfLicense
+		 query.append(" OR verificationProfLicense != 'Y'");
+		 
+		//Applying the restrictions on SocialSecurityCard
+		 query.append(" OR socialSecurityCard != 'Y'");
+		 
+		//Applying the restrictions on NonCompete
+		 query.append(" OR nonCompete != 'Y'"); 
+		
+		//Applying the restrictions on AuthorizationCriminalCheck
+		 query.append(" OR authorizationCriminalCheck != 'Y'");
+		 
+		//Applying the restrictions on CriminalCheck
+		 query.append(" OR criminalCheck != 'Y'");
+		 
+		//Applying the restrictions on FingerprintsResults
+		 query.append(" OR fingerprintsResults != 'Y'");
+		 
+		//Applying the restrictions on FederalW4
+		 query.append(" OR federalW4 != 'Y'");
+		 
+		//Applying the restrictions on MichiganW4
+		 query.append(" OR michiganW4 != 'Y'"); 
+		
+		//Applying the restrictions on I9
+		 query.append(" OR i9 != 'Y'");
+		 
+		//Applying the restrictions on HvbTest
+		 query.append(" OR hvbTest != 'Y'");
+		 
+		 Query selectQuery = getSession().createQuery(query.toString());
+		
+		List<EmployeeInfo> employeeList = selectQuery.list();
+		if(null != employeeList && !employeeList.isEmpty()){
+			for(EmployeeInfo employeeInfo : employeeList){
+				List<String> employeeReminderList = new ArrayList<String>();
+				if(employeeInfo.getApplication() != 'Y'){
+					employeeReminderList.add("Application Not set properly");
+				}
+				
+				if(employeeInfo.getResume() != 'Y'){
+					employeeReminderList.add("Resume Not set properly");
+				}
+
+				// If any of the reminders there then Put it in the Map with Last Name and First Name
+				if(!employeeReminderList.isEmpty()){
+					employeeRemindersMap.put(employeeInfo.getLastName()+" "+employeeInfo.getMiddleName() + " "+employeeInfo.getFirstName(),
+							employeeReminderList);
+				}
+			}
+		}
+		
+		logger.debug("Exiting getAllReminders of EmployeeDAOImpl"+employeeList.size());
+		return employeeRemindersMap;
 	}
 }
