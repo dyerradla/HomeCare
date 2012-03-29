@@ -23,4 +23,8 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	public List<EmployeeInfo> getAllEmployees(){
 		return employeeDAO.getAllEmployees();
 	}
+
+	public List<EmployeeInfo> getAllReminders() {
+		return employeeDAO.getAllReminders();
+	}
 }

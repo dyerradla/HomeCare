@@ -11,5 +11,6 @@ public interface IEmployeeDAO {
 	public List<EmployeeInfo> getAllEmployees();
 	
 	public void updateEmployeeInfo(EmployeeInfo employeeInfo);
-
+	
+	public List<EmployeeInfo> getAllReminders();
 }

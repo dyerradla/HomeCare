@@ -69,5 +69,13 @@ public class EmployeeController extends BaseFormController{
 		ModelAndView modelAndView = new ModelAndView("default"); 
 		return modelAndView;
 	}
+	
+	@RequestMapping("/getReminders")
+	public ModelAndView getReminders(){
+		List<EmployeeInfo> employeeReminders = employeeInfoBO.getAllReminders();
+		ModelAndView modelAndView = new ModelAndView("employeeReminders"); 
+		modelAndView.addObject("employeeReminders", employeeReminders);
+		return modelAndView;
+	}
 }
 
