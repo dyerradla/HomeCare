@@ -1,6 +1,7 @@
 package com.homecare.bo;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,5 +16,5 @@ public interface IEmployeeInfoBO {
 
 	public void updateEmployeeInfo(EmployeeInfo employeeInfo);
 	
-	public List<EmployeeInfo> getAllReminders();
+	public Map<String,List<String>> getAllReminders();
 }

@@ -3,6 +3,7 @@ package com.homecare.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -72,9 +73,9 @@ public class EmployeeController extends BaseFormController{
 	
 	@RequestMapping("/getReminders")
 	public ModelAndView getReminders(){
-		List<EmployeeInfo> employeeReminders = employeeInfoBO.getAllReminders();
+		Map<String,List<String>> employeeRemindersMap = employeeInfoBO.getAllReminders();
 		ModelAndView modelAndView = new ModelAndView("employeeReminders"); 
-		modelAndView.addObject("employeeReminders", employeeReminders);
+//		modelAndView.addObject("employeeReminders", employeeReminders);
 		return modelAndView;
 	}
 }

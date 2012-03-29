@@ -1,6 +1,7 @@
 package com.homecare.bo;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,7 +25,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		return employeeDAO.getAllEmployees();
 	}
 
-	public List<EmployeeInfo> getAllReminders() {
+	public Map<String,List<String>> getAllReminders() {
 		return employeeDAO.getAllReminders();
 	}
 }
