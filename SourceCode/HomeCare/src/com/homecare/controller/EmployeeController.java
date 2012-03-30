@@ -66,8 +66,9 @@ public class EmployeeController extends BaseFormController{
 		System.out.println("*******************Inside Save Employee Info");
 		EmployeeInfo employeeInfo = employeeInfoForm.getEmployeeInfo();
 		employeeInfo.setCreateUserId("1");
+		employeeInfo.setEmployeeId(new Long(12));
 		employeeInfoBO.updateEmployeeInfo(employeeInfo);
-		ModelAndView modelAndView = new ModelAndView("default"); 
+		ModelAndView modelAndView = new ModelAndView("home"); 
 		return modelAndView;
 	}
 	
@@ -75,7 +76,7 @@ public class EmployeeController extends BaseFormController{
 	public ModelAndView getReminders(){
 		Map<String,List<String>> employeeRemindersMap = employeeInfoBO.getAllReminders();
 		ModelAndView modelAndView = new ModelAndView("employeeReminders"); 
-//		modelAndView.addObject("employeeReminders", employeeReminders);
+		modelAndView.addObject("employeeReminders", employeeRemindersMap);
 		return modelAndView;
 	}
 }
