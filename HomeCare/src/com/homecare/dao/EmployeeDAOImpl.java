@@ -1,5 +1,6 @@
 package com.homecare.dao;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -48,7 +49,9 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 	public List<EmployeeInfo> getAllReminders(){
 		logger.debug("Entering getAllReminders of EmployeeDAOImpl");
 		 StringBuilder query = new StringBuilder("from EmployeeInfo ");
-		
+		 Calendar currentcal = Calendar.getInstance();
+		 currentcal.add(Calendar.MONTH, 1);
+		 
 		 //Applying the restrictions on Application
 		 query.append(" where application != 'Y'");
 		 
@@ -107,8 +110,28 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 		 query.append(" OR hvbTest != 'Y'");
 		 
 		 // Applying the Restrictions on CPR card
-//		 query.append(" WHERE cprCard <= (select DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 MONTH))");
-		 
+		 query.append(" OR initialCompetencyEvaluation <= '"+currentcal.getTime()+"'");
+		
+		 // Applying the Restrictions on CPR card
+		 query.append(" OR ongoinCompetencyEvaluation <= '"+currentcal.getTime()+"'");
+		
+		 // Applying the Restrictions on CPR card
+		 query.append(" OR annualEvaluation <= '"+currentcal.getTime()+"'");
+		
+		 // Applying the Restrictions on CPR card
+		 query.append(" OR cprCard <= '"+currentcal.getTime()+"'");
+		
+		 // Applying the Restrictions on CPR card
+		 query.append(" OR profLicense <= '"+currentcal.getTime()+"'");
+		
+		 // Applying the Restrictions on CPR card
+		 query.append(" OR driversLicense <= '"+currentcal.getTime()+"'");
+		
+		 // Applying the Restrictions on CPR card
+		 query.append(" OR proofValidCarInsurance <= '"+currentcal.getTime()+"'");
+		
+		 // Applying the Restrictions on CPR card
+		 query.append(" OR tbTest <= '"+currentcal.getTime()+"'");
 		 
 		 Query selectQuery = getSession().createQuery(query.toString());
 		
