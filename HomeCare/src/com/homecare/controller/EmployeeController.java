@@ -32,10 +32,10 @@ public class EmployeeController extends BaseFormController{
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 	
-	@RequestMapping("/employeeInfo")
-	public ModelAndView getEmployeeInformation(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
-		System.out.println("**********Inside Employee Controller******");
-		EmployeeInfo empInfo = employeeInfoBO.getEmployeeInfo(new Long(1));
+	@RequestMapping("/getSelectedEmployeeInfo")
+	public ModelAndView getSelectedEmployeeInfo(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
+		System.out.println("**********Inside Employee Controller******"+employeeInfoForm.getSelectedEmployeeId());
+		EmployeeInfo empInfo = employeeInfoBO.getEmployeeInfo(employeeInfoForm.getSelectedEmployeeId());
 		ModelAndView modelAndView = new ModelAndView("employeeInfo"); 
 		employeeInfoForm.setEmployeeInfo(empInfo);
 		return modelAndView;
