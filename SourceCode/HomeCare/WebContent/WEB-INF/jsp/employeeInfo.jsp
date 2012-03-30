@@ -17,6 +17,12 @@
 	<input type="hidden" name="employeeInfo.employeeId" value="${command.employeeInfo.employeeId}" />
 	<table>
 		<tr>
+			<td><form:input type="text" path="selectedEmployeeId"></form:input><input type="button" value="Search Employee" onclick="searchEmployee()"/></td>
+			<td><input type="button" value="Get Reminders" onclick="getReminders()"></td>
+		</tr>
+	</table>
+	<table>
+		<tr>
 			<td>
 				<table>
 					<tr>
@@ -217,13 +223,18 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="Submit"><input type="button" value="Get Reminders" onclick="getReminders()"></td>
+			<td colspan="2"><input type="submit" value="Submit"></td>
 		</tr>
 	</table>
 </form:form>
 <script>
 	function getReminders(){
 		$("#employeeInfoForm").attr("action","/HomeCare/getReminders.do");
+		$("#employeeInfoForm").submit();
+	}
+	
+	function searchEmployee(){
+		$("#employeeInfoForm").attr("action","/HomeCare/getSelectedEmployeeInfo.do");
 		$("#employeeInfoForm").submit();
 	}
 
