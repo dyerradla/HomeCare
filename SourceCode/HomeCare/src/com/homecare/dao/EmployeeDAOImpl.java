@@ -1,9 +1,11 @@
 package com.homecare.dao;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -49,6 +51,13 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 	 * @return
 	 */
 	public Map<String,List<String>> getAllReminders(){
+		Properties properties = new Properties();
+		try {
+		    properties.load(this.getClass().getResourceAsStream("/application.properties"));
+		} catch (IOException e) {
+			logger.error("Properties File not found");
+		}
+		
 		Map<String,List<String>> employeeRemindersMap = new HashMap<String, List<String>>();
 		logger.debug("Entering getAllReminders of EmployeeDAOImpl");
 		 StringBuilder query = new StringBuilder("from EmployeeInfo ");
@@ -113,16 +122,85 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 		 Query selectQuery = getSession().createQuery(query.toString());
 		
 		List<EmployeeInfo> employeeList = selectQuery.list();
+		
 		if(null != employeeList && !employeeList.isEmpty()){
 			for(EmployeeInfo employeeInfo : employeeList){
 				List<String> employeeReminderList = new ArrayList<String>();
-				if(employeeInfo.getApplication() != 'Y'){
-					employeeReminderList.add("Application Not set properly");
+				if(null == employeeInfo.getApplication() || 'Y' != employeeInfo.getApplication()){
+					employeeReminderList.add(properties.getProperty("APPLICATION_REMINDER"));
 				}
 				
-				if(employeeInfo.getResume() != 'Y'){
-					employeeReminderList.add("Resume Not set properly");
+				if(null == employeeInfo.getResume() || employeeInfo.getResume() != 'Y'){
+					employeeReminderList.add(properties.getProperty("RESUME_REMINDER"));
 				}
+				
+				if(null == employeeInfo.getReferenceChecks() || 'Y' != employeeInfo.getReferenceChecks()){
+					employeeReminderList.add(properties.getProperty("REFERENCES_CHECK_REMINDER"));
+				}
+				
+				if(null == employeeInfo.getSignedJobDescription() || employeeInfo.getSignedJobDescription() != 'Y'){
+					employeeReminderList.add(properties.getProperty("SIGNED_JOB_REMINDER"));
+				}
+				
+				if(null == employeeInfo.getOrientationChecklist() || employeeInfo.getOrientationChecklist() != 'Y'){
+					employeeReminderList.add(properties.getProperty("ORIENTATION_CHECKLIST_REMINDER"));
+				}
+				
+				if(null == employeeInfo.getStatementOfConfidentiality() || employeeInfo.getStatementOfConfidentiality() != 'Y'){
+					employeeReminderList.add(properties.getProperty("STATEMENT_OF_CONFIDENTIALITY_REMINDER"));
+				}
+				
+				if(null == employeeInfo.getPolicy() || employeeInfo.getPolicy() != 'Y'){
+					employeeReminderList.add(properties.getProperty("POLICY_REMINDER"));
+				}
+				
+				if(null == employeeInfo.getHippaTraining() || employeeInfo.getHippaTraining() != 'Y'){
+					employeeReminderList.add(properties.getProperty("HIPPA_REMINDER"));
+				}
+				 
+				if(null == employeeInfo.getOshaTraining() || employeeInfo.getOshaTraining() != 'Y'){
+					employeeReminderList.add(properties.getProperty("OSHA_REMINDER"));
+				}
+				
+				if(null == employeeInfo.getVerificationProfLicense() || employeeInfo.getVerificationProfLicense() != 'Y'){
+					employeeReminderList.add(properties.getProperty("VERIFICATION_OF_PROF_LICENSE_REMINDER"));
+				}
+				
+				if(null == employeeInfo.getSocialSecurityCard() || employeeInfo.getSocialSecurityCard() != 'Y'){
+					employeeReminderList.add(properties.getProperty("SSN_REMINDER"));
+				}
+				
+				if(null == employeeInfo.getNonCompete() || employeeInfo.getNonCompete() != 'Y'){
+					employeeReminderList.add(properties.getProperty("NON_COMPETE_REMINDER"));
+				}
+				 
+				if(null == employeeInfo.getAuthorizationCriminalCheck() || employeeInfo.getAuthorizationCriminalCheck() != 'Y'){
+					employeeReminderList.add(properties.getProperty("AUTHORIZATION_CRIMINAL_CHECK_REMINDER"));
+				}
+				
+				if(null == employeeInfo.getCriminalCheck() || employeeInfo.getCriminalCheck() != 'Y'){
+					employeeReminderList.add(properties.getProperty("CRIMINAL_CHECK_REMINDER"));
+				}
+				
+				if(null == employeeInfo.getFingerprintsResults() || employeeInfo.getFingerprintsResults() != 'Y'){
+					employeeReminderList.add(properties.getProperty("FINGER_PRINT_RESULTS_REMINDER"));
+				}
+				
+				if(null == employeeInfo.getFederalW4() || employeeInfo.getFederalW4() != 'Y'){
+					employeeReminderList.add(properties.getProperty("FEDERAL_W4_REMINDER"));
+				} 
+				 
+				if(null == employeeInfo.getMichiganW4() || employeeInfo.getMichiganW4() != 'Y'){
+					employeeReminderList.add(properties.getProperty("MICHIGAN_W4_REMINDER"));
+				}
+				
+				if(null == employeeInfo.getI9() || employeeInfo.getI9() != 'Y'){
+					employeeReminderList.add(properties.getProperty("I9_REMINDER"));
+				}
+				
+				if(null == employeeInfo.getHvbTest() || employeeInfo.getHvbTest() != 'Y'){
+					employeeReminderList.add(properties.getProperty("TBTEST_REMINDER"));
+				} 
 
 				// If any of the reminders there then Put it in the Map with Last Name and First Name
 				if(!employeeReminderList.isEmpty()){
