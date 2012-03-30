@@ -1,0 +1,1 @@
+<p align="center">Copyright &copy; ParagonHHC</p>

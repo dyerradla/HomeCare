@@ -17,4 +17,6 @@
 		parent="baseController" />
 	<bean id="employeeController" class="com.homecare.controller.EmployeeController"
 		parent="baseController" />
+	<bean id="homeController" class="com.homecare.controller.HomeController"
+		parent="baseController" />	
 </beans>
