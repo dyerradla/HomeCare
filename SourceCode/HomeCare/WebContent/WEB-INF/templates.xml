@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <!-- Default Main Template -->
+    <definition name=".mainTemplate" template="/WEB-INF/jsp/layout.jsp">
+        <put-attribute name="title" value="Paragon HHC" type="string" />
+        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/jsp/menu.jsp" />
+        <put-attribute name="body" value="" />
+    </definition>
+ 
+    <definition name="home" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/Home.jsp" />
+    </definition>
+    
+    <definition name="employeeInfoDetails" extends=".mainTemplate">
+        <put-attribute name="title" value="Employee Information" />
+        <put-attribute name="body" value="/WEB-INF/jsp/employeeInfo.jsp" />
+    </definition>
+    
+</tiles-definitions>
