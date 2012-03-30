@@ -13,7 +13,7 @@
 		$( '.datepicker' ).datepicker();
 	});
 	</script>
-<form:form name="employeeInfoForm" action="saveEmployeeInfo.do">
+<form:form id="employeeInfoForm" name="employeeInfoForm" action="saveEmployeeInfo.do">
 	<input type="hidden" name="employeeInfo.employeeId" value="${command.employeeInfo.employeeId}" />
 	<table>
 		<tr>
@@ -217,7 +217,14 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="Submit"></td>
+			<td colspan="2"><input type="submit" value="Submit"><input type="button" value="Get Reminders" onclick="getReminders()"></td>
 		</tr>
 	</table>
 </form:form>
+<script>
+	function getReminders(){
+		$("#employeeInfoForm").attr("action","/HomeCare/getReminders.do");
+		$("#employeeInfoForm").submit();
+	}
+
+</script>

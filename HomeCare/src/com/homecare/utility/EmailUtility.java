@@ -10,7 +10,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailUtility {
-	public static void sendEmail(){
+	public static void sendEmail(String subject,String email,String body){
 		final String username = "dreddy.lnt@gmail.com";
 		final String password = "ultimatedp";
  
@@ -32,10 +32,9 @@ public class EmailUtility {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("dreddy.lnt@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
-				InternetAddress.parse("prasad14_gitam@yahoo.com"));
-			message.setSubject("Testing Subject");
-			message.setText("Dear Mail Crawler,"
-				+ "\n\n No spam to my email, please!");
+				InternetAddress.parse(email));
+			message.setSubject(subject);
+			message.setText(body);
  
 			Transport.send(message);
  
