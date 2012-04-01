@@ -17,7 +17,7 @@
 	<input type="hidden" name="employeeInfo.employeeId" value="${command.employeeInfo.employeeId}" />
 	<table>
 		<tr>
-			<td><form:input type="text" path="selectedEmployeeId"></form:input><input type="button" value="Search Employee" onclick="searchEmployee()"/></td>
+			<td>Last name:<form:input type="text" path="employeeInfo.lastName"></form:input><input type="button" value="Search Employee" onclick="searchEmployee()"/></td>
 			<td><input type="button" value="Get Reminders" onclick="getReminders()"></td>
 		</tr>
 	</table>

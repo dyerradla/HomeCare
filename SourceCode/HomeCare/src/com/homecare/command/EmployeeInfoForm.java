@@ -5,7 +5,8 @@ import com.homecare.domain.EmployeeInfo;
 public class EmployeeInfoForm {
 	
 	private EmployeeInfo employeeInfo = new EmployeeInfo();
-	private Long selectedEmployeeId;
+	
+	public String selectedEmployeeLastName;
 	public EmployeeInfo getEmployeeInfo() {
 		return employeeInfo;
 	}
@@ -14,12 +15,12 @@ public class EmployeeInfoForm {
 		this.employeeInfo = employeeInfo;
 	}
 
-	public Long getSelectedEmployeeId() {
-		return selectedEmployeeId;
+	public String getSelectedEmployeeLastName() {
+		return selectedEmployeeLastName;
 	}
 
-	public void setSelectedEmployeeId(Long selectedEmployeeId) {
-		this.selectedEmployeeId = selectedEmployeeId;
+	public void setSelectedEmployeeLastName(String selectedEmployeeLastName) {
+		this.selectedEmployeeLastName = selectedEmployeeLastName;
 	}
-
+	
 }

@@ -19,13 +19,18 @@ import com.homecare.utility.EmailUtility;
 
 public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	
-	private Log logger = LogFactory.getLog(EmployeeDAOImpl.class);
+	private Log logger = LogFactory.getLog(EmployeeInfoBOImpl.class);
 	@Autowired
 	private IEmployeeDAO employeeDAO;
 
-	public EmployeeInfo getEmployeeInfo(Long employeeId) {
-		return employeeDAO.getEmployeeInfo(employeeId);
+	public EmployeeInfo getEmployeeInfoByEmployeeId(Long employeeId) {
+		return employeeDAO.getEmployeeInfoByEmployeeId(employeeId);
 	}
+	
+	public EmployeeInfo getEmployeeInfo(EmployeeInfo employeeInfo) {
+		return employeeDAO.getEmployeeInfo(employeeInfo);
+	}
+	
 
 	public void updateEmployeeInfo(EmployeeInfo employeeInfo) {
 		employeeDAO.updateEmployeeInfo(employeeInfo);
@@ -36,7 +41,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		return employeeDAO.getAllEmployees();
 	}
 
-	public Map<String,List<String>> getAllReminders() {
+	public Map<String,EmployeeInfo> getAllReminders() {
 		Properties properties = new Properties();
 		try {
 		    properties.load(this.getClass().getResourceAsStream("/application.properties"));
@@ -44,7 +49,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 			logger.error("Properties File not found");
 		}
 		
-		Map<String,List<String>> employeeRemindersMap = new HashMap<String, List<String>>();
+		Map<String,EmployeeInfo> employeeRemindersMap = new HashMap<String, EmployeeInfo>();
 		
 		List<EmployeeInfo> employeeList = employeeDAO.getAllReminders();
 		
@@ -158,8 +163,9 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 
 				// If any of the reminders there then Put it in the Map with Last Name and First Name
 				if(!employeeReminderList.isEmpty()){
+					employeeInfo.setEmployeeReminderMessage(employeeReminderList);
 					employeeRemindersMap.put(employeeInfo.getLastName()+" "+employeeInfo.getMiddleName() + " "+employeeInfo.getFirstName(),
-							employeeReminderList);
+							employeeInfo);
 				}
 				
 				// Send an email
@@ -168,7 +174,8 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 					concatenatedReminderString += remiderString + "\n\n";
 				}
 						
-				EmailUtility.sendEmail("Reminders", employeeInfo.getEmailAddress(), concatenatedReminderString);
+				EmailUtility emailUtility = new EmailUtility();
+				emailUtility.sendEmail("Reminders", employeeInfo.getEmailAddress(), concatenatedReminderString);
 			}
 		}
 		return employeeRemindersMap;

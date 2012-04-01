@@ -7,6 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 
 import com.homecare.domain.EmployeeInfo;
 
@@ -16,13 +17,30 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 	/**
 	 * Get the Employee information for the given employeeId
 	 */
-	public EmployeeInfo getEmployeeInfo(Long employeeId) {
+	public EmployeeInfo getEmployeeInfoByEmployeeId(Long employeeId) {
 		logger.debug("Entering getEmployeeInfo of EmployeeDAOImpl with employeeId:"+employeeId);
 		EmployeeInfo employeeInfo = (EmployeeInfo)loadObjectByPrimaryKey(EmployeeInfo.class, employeeId);
 		logger.debug("Exiting getEmployeeInfo of EmployeeDAOImpl with employeeId:"+employeeId);
 		return employeeInfo;
 	}
 
+	
+	/**
+	 * Get the List of all the employees by given Search Criteria
+	 */
+	public EmployeeInfo getEmployeeInfo(EmployeeInfo employeeInfo) {
+		logger.debug("Entering getAllEmployees of EmployeeDAOImpl");
+		Criteria criteria = getSession().createCriteria(EmployeeInfo.class);
+		criteria.add(Restrictions.like("lastName", employeeInfo.getLastName()));
+		List<EmployeeInfo> employeeList = criteria.list();
+		logger.debug("Exiting getAllEmployees of EmployeeDAOImpl");
+		EmployeeInfo selectedEmployeeInfo = null;
+		if(null != employeeList && !employeeList.isEmpty()){
+			selectedEmployeeInfo = employeeList.get(0);
+		}
+		return selectedEmployeeInfo;
+	}
+	
 	/**
 	 * Get the List of all the employees
 	 */
