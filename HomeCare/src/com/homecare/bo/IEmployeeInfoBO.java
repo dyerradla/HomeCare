@@ -10,11 +10,13 @@ import com.homecare.domain.EmployeeInfo;
 @Transactional
 public interface IEmployeeInfoBO {
 	
-	public EmployeeInfo getEmployeeInfo(Long employeeId);
-	
+	public EmployeeInfo getEmployeeInfo(EmployeeInfo employeeInfo);
+
+	public EmployeeInfo getEmployeeInfoByEmployeeId(Long employeeId);
+
 	public List<EmployeeInfo> getAllEmployees();
 
 	public void updateEmployeeInfo(EmployeeInfo employeeInfo);
 	
-	public Map<String,List<String>> getAllReminders();
+	public Map<String,EmployeeInfo> getAllReminders();
 }

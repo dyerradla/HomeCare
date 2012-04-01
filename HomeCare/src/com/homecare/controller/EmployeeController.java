@@ -34,8 +34,9 @@ public class EmployeeController extends BaseFormController{
 	
 	@RequestMapping("/getSelectedEmployeeInfo")
 	public ModelAndView getSelectedEmployeeInfo(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
-		System.out.println("**********Inside Employee Controller******"+employeeInfoForm.getSelectedEmployeeId());
-		EmployeeInfo empInfo = employeeInfoBO.getEmployeeInfo(employeeInfoForm.getSelectedEmployeeId());
+		System.out.println("**********Inside Employee Controller******"+employeeInfoForm.getSelectedEmployeeLastName());
+		employeeInfoForm.getEmployeeInfo().setLastName(employeeInfoForm.getSelectedEmployeeLastName());
+		EmployeeInfo empInfo = employeeInfoBO.getEmployeeInfo(employeeInfoForm.getEmployeeInfo());
 		ModelAndView modelAndView = new ModelAndView("employeeInfo"); 
 		employeeInfoForm.setEmployeeInfo(empInfo);
 		return modelAndView;
@@ -74,7 +75,7 @@ public class EmployeeController extends BaseFormController{
 	
 	@RequestMapping("/getReminders")
 	public ModelAndView getReminders(){
-		Map<String,List<String>> employeeRemindersMap = employeeInfoBO.getAllReminders();
+		Map<String,EmployeeInfo> employeeRemindersMap = employeeInfoBO.getAllReminders();
 		ModelAndView modelAndView = new ModelAndView("employeeReminders"); 
 		modelAndView.addObject("employeeReminders", employeeRemindersMap);
 		return modelAndView;

@@ -1,5 +1,6 @@
 package com.homecare.utility;
 
+import java.io.IOException;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -9,28 +10,36 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 public class EmailUtility {
-	public static void sendEmail(String subject,String email,String body){
-		final String username = "dreddy.lnt@gmail.com";
-		final String password = "ultimatedp";
- 
+	private Log logger = LogFactory.getLog(EmailUtility.class);
+	public void sendEmail(String subject,String email,String body){
+		final Properties emailProperties = new Properties();
+		try {
+			emailProperties.load(this.getClass().getResourceAsStream("/application.properties"));
+		} catch (IOException e) {
+			logger.error("Properties File not found");
+		}
+		
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "587");
- 
+		props.put("mail.smtp.host", emailProperties.getProperty("EMAIl_STMP_SERVER_HOST"));
+		props.put("mail.smtp.port", emailProperties.getProperty("RESUME_REMINDER"));
+		
 		Session session = Session.getInstance(props,
 		  new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(username, password);
+				return new PasswordAuthentication(emailProperties.getProperty("EMAIL_USER_NAME"), emailProperties.getProperty("EMAIl_PASSWORD"));
 			}
 		  });
  
 		try {
  
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("dreddy.lnt@gmail.com"));
+			message.setFrom(new InternetAddress(emailProperties.getProperty("EMAIL_USER_NAME")));
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(email));
 			message.setSubject(subject);
