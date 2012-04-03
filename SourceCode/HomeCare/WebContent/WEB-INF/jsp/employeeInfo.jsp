@@ -21,205 +21,246 @@
 			<td><input type="button" value="Get Reminders" onclick="getReminders()"></td>
 		</tr>
 	</table>
+	<BR>
 	<table>
 		<tr>
 			<td>
+				
 				<table>
 					<tr>
 						<td>First Name:</td>
 						<td><form:input path="employeeInfo.firstName" /></td>
-					</tr>
-					<tr>
+					
 						<td>Middle Name:</td>
 						<td><form:input path="employeeInfo.middleName" /></td>
-					</tr>
-					<tr>
+					
 						<td>Last Name:</td>
 						<td><form:input path="employeeInfo.lastName" /></td>
 					</tr>
 					<tr>
-						<td>designation:</td>
+						<td>Designation:</td>
 						<td><form:input path="employeeInfo.designation" /></td>
 					</tr>
+				</table>
+				
+				<fieldset>
+				<legend>Basics</legend>
+				<table>
 					<tr>
-						<td>application:</td>
+						<td>Application:</td>
 						<td>
-							<form:radiobutton path="employeeInfo.application" value="Y" label="Y" />
-							<form:radiobutton path="employeeInfo.application" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>resume:</td>
+							<form:select path="employeeInfo.application">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+                        </td>
+					
+						<td>Resume:</td>
 						<td>
-							<form:radiobutton path="employeeInfo.resume" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.resume" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>referenceChecks:</td>
+							<form:select path="employeeInfo.resume">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+                        </td>
+					
+						<td>Reference Checks:</td>
 						<td>
-							<form:radiobutton path="employeeInfo.referenceChecks" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.referenceChecks" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>signedJobDescription:</td>
-						<td>
-							<form:radiobutton path="employeeInfo.signedJobDescription" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.signedJobDescription" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>orientationChecklist:</td>
-						<td>
-							<form:radiobutton path="employeeInfo.orientationChecklist" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.orientationChecklist" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>statementOfConfidentiality:</td>
-						<td>
-							<form:radiobutton path="employeeInfo.statementOfConfidentiality" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.statementOfConfidentiality" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>policy:</td>
-						<td>
-							<form:radiobutton path="employeeInfo.policy" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.policy" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>initialCompetencyEvaluation:</td>
-						<td><form:input path="employeeInfo.initialCompetencyEvaluation" cssClass="datepicker"/></td>
-					</tr>
-					<tr>
-						<td>ongoinCompetencyEvaluation:</td>
-						<td><form:input path="employeeInfo.ongoinCompetencyEvaluation" cssClass="datepicker"/></td>
-					</tr>
-					<tr>
-						<td>annualEvaluation:</td>
-						<td><form:input path="employeeInfo.annualEvaluation" cssClass="datepicker"/></td>
-					</tr>
-					<tr>
-						<td>hippaTraining:</td>
-						<td>
-							<form:radiobutton path="employeeInfo.hippaTraining" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.hippaTraining" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>oshaTraining:</td>
-						<td>
-							<form:radiobutton path="employeeInfo.oshaTraining" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.oshaTraining" value="N" label="N" />
+							<form:select path="employeeInfo.referenceChecks">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
 						</td>
 					</tr>
 					
-				</table>		
-			</td>
-			<td>
-				<table>
 					<tr>
-						<td>cprCard:</td>
-						<td><form:input path="employeeInfo.cprCard" cssClass="datepicker"/></td>
-					</tr>
-					<tr>
-						<td>profLicense:</td>
-						<td><form:input path="employeeInfo.profLicense" cssClass="datepicker"/></td>
-					</tr>
-					<tr>
-						<td>verificationProfLicense:</td>
+						<td>Signed Job Description:</td>
 						<td>
-							<form:radiobutton path="employeeInfo.verificationProfLicense" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.verificationProfLicense" value="N" label="N" />
+							<form:select path="employeeInfo.signedJobDescription">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+						</td>
+
+						<td>Policy:</td>
+						<td>
+							<form:select path="employeeInfo.policy">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+						</td>
+
+						<td>Orientation Checklist:</td>
+						<td>
+							<form:select path="employeeInfo.orientationChecklist">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
 						</td>
 					</tr>
+					
 					<tr>
-						<td>socialSecurityCard:</td>
+						<td>Statement Of Confidentiality:</td>
 						<td>
-							<form:radiobutton path="employeeInfo.socialSecurityCard" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.socialSecurityCard" value="N" label="N" />
+							<form:select path="employeeInfo.statementOfConfidentiality">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+						</td>
+					
+						<td>Social Security Card:</td>
+						<td>
+							<form:select path="employeeInfo.socialSecurityCard">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+						</td>
+						
+						<td>NonCompete:</td>
+						<td>
+							<form:select path="employeeInfo.nonCompete">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
 						</td>
 					</tr>
+					
 					<tr>
-						<td>nonCompete:</td>
-						<td>
-							<form:radiobutton path="employeeInfo.nonCompete" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.nonCompete" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>driversLicense:</td>
-						<td><form:input path="employeeInfo.driversLicense" cssClass="datepicker"/></td>
-					</tr>
-					<tr>
-						<td>proofValidCarInsurance:</td>
-						<td><form:input path="employeeInfo.proofValidCarInsurance" cssClass="datepicker"/></td>
-					</tr>
-					<tr>
-						<td>authorizationCriminalCheck:</td>
-						<td>
-							<form:radiobutton path="employeeInfo.authorizationCriminalCheck" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.authorizationCriminalCheck" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>criminalCheck:</td>
-						<td>
-							<form:radiobutton path="employeeInfo.criminalCheck" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.criminalCheck" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>fingerprintsResults:</td>
-						<td>
-							<form:radiobutton path="employeeInfo.fingerprintsResults" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.fingerprintsResults" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>federalW4:</td>
-						<td>
-							<form:radiobutton path="employeeInfo.federalW4" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.federalW4" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>michiganW4:</td>
-						<td>
-							<form:radiobutton path="employeeInfo.michiganW4" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.michiganW4" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>i9:</td>
-						<td>
-							<form:radiobutton path="employeeInfo.i9" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.i9" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>tbTest:</td>
-						<td><form:input path="employeeInfo.tbTest" cssClass="datepicker"/></td>
-					</tr>
-					<tr>
-						<td>hvbTest:</td>
-						<td>
-							<form:radiobutton path="employeeInfo.hvbTest" value="Y" label="Y" /> 
-							<form:radiobutton path="employeeInfo.hvbTest" value="N" label="N" />
-						</td>
-					</tr>
-					<tr>
-						<td>emailAddress:</td>
+						<td>Email Address:</td>
 						<td><form:input path="employeeInfo.emailAddress" /></td>
 					</tr>
 					<tr>
-						<td>phoneNumber:</td>
+						<td>Phone Number:</td>
 						<td><form:input path="employeeInfo.phoneNumber" /></td>
 					</tr>
-					</table>		
+				</table>
+				</fieldset>
+				
+				<fieldset>
+				<legend>Licenses</legend>
+				<table>
+					<tr>
+						<td>Initial Competency Evaluation:</td>
+						<td><form:input path="employeeInfo.initialCompetencyEvaluation" cssClass="datepicker"/></td>
+					
+						<td>Ongoing Competency Evaluation:</td>
+						<td><form:input path="employeeInfo.ongoinCompetencyEvaluation" cssClass="datepicker"/></td>
+					
+						<td>Annual Evaluation:</td>
+						<td><form:input path="employeeInfo.annualEvaluation" cssClass="datepicker"/></td>
+					</tr>
+					
+					<tr>
+						<td>Prof License:</td>
+						<td><form:input path="employeeInfo.profLicense" cssClass="datepicker"/></td>
+					
+						<td>Verification Prof License:</td>
+						<td>
+							<form:select path="employeeInfo.verificationProfLicense">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+						</td>
+					
+						<td>CPR Card:</td>
+						<td><form:input path="employeeInfo.cprCard" cssClass="datepicker"/></td>
+					</tr>
+					
+					<tr>
+						<td>TB Test:</td>
+						<td><form:input path="employeeInfo.tbTest" cssClass="datepicker"/></td>
+					
+						<td>Hippa Training:</td>
+						<td>
+							<form:select path="employeeInfo.hippaTraining">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+						</td>
+					
+						<td>osha Training:</td>
+						<td>
+							<form:select path="employeeInfo.oshaTraining">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>HVB Test:</td>
+						<td>
+							<form:select path="employeeInfo.hvbTest">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+						</td>
+					
+						<td>Drivers License:</td>
+						<td><form:input path="employeeInfo.driversLicense" cssClass="datepicker"/></td>
+					
+						<td>Proof Of Valid Car Insurance:</td>
+						<td><form:input path="employeeInfo.proofValidCarInsurance" cssClass="datepicker"/></td>
+					</tr>
+					
+				</table>
+				</fieldset>
+					
+				<fieldset>
+				<legend>Employment</legend>
+				<table>
+					<tr>
+						<td>I9:</td>
+						<td>
+							<form:select path="employeeInfo.i9">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+						</td>
+
+						<td>Federal W4:</td>
+						<td>
+							<form:select path="employeeInfo.federalW4">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+						</td>
+
+						<td>Michigan W4:</td>
+						<td>
+							<form:select path="employeeInfo.michiganW4">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>Criminal Check:</td>
+						<td>
+							<form:select path="employeeInfo.criminalCheck">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+						</td>
+						
+						<td>Authorization Criminal Check:</td>
+						<td>
+							<form:select path="employeeInfo.authorizationCriminalCheck">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+						</td>
+					
+						<td>Fingerprints Results:</td>
+						<td>
+							<form:select path="employeeInfo.fingerprintsResults">
+					  			<form:option value='X' label="--Select--" />
+					  			<form:options items="${yesNoList}" />
+				       		</form:select>
+						</td>
+					</tr>
+				</table>
+				</fieldset>
 			</td>
 		</tr>
 		<tr>
