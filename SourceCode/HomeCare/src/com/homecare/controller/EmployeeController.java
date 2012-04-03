@@ -2,6 +2,8 @@ package com.homecare.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,7 +59,8 @@ public class EmployeeController extends BaseFormController{
 	public ModelAndView getEmployeeInfo(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
 		System.out.println("*******Load Employee Info**************");
 		EmployeeInfo empInfo = new EmployeeInfo();
-		ModelAndView modelAndView = new ModelAndView("employeeInfo"); 
+		ModelAndView modelAndView = new ModelAndView("employeeInfo");
+		modelAndView.addObject("yesNoList", referenceData().get("yesNoList"));
 		employeeInfoForm.setEmployeeInfo(empInfo);
 		return modelAndView;
 	}
@@ -66,8 +69,7 @@ public class EmployeeController extends BaseFormController{
 	public ModelAndView saveData(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest) throws Exception{
 		System.out.println("*******************Inside Save Employee Info");
 		EmployeeInfo employeeInfo = employeeInfoForm.getEmployeeInfo();
-		employeeInfo.setCreateUserId("1");
-		employeeInfo.setEmployeeId(new Long(12));
+		employeeInfo.setCreateUserId("Dummy User");
 		employeeInfoBO.updateEmployeeInfo(employeeInfo);
 		ModelAndView modelAndView = new ModelAndView("home"); 
 		return modelAndView;
@@ -79,6 +81,19 @@ public class EmployeeController extends BaseFormController{
 		ModelAndView modelAndView = new ModelAndView("employeeReminders"); 
 		modelAndView.addObject("employeeReminders", employeeRemindersMap);
 		return modelAndView;
+	}
+	
+	private Map referenceData() {
+		 
+		Map referenceData = new HashMap();
+ 
+		Map<Character,String> yesNoMap = new LinkedHashMap<Character,String>();
+		yesNoMap.put('Y', "Yes");
+		yesNoMap.put('N', "No");
+		yesNoMap.put('U', "N/A");
+		referenceData.put("yesNoList", yesNoMap);
+ 
+		return referenceData;
 	}
 }
 
