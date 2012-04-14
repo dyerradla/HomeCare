@@ -13,10 +13,14 @@ public interface IEmployeeInfoBO {
 	public EmployeeInfo getEmployeeInfo(EmployeeInfo employeeInfo);
 
 	public EmployeeInfo getEmployeeInfoByEmployeeId(Long employeeId);
+	
+	public EmployeeInfo sendEmail(Long employeeId);
 
-	public List<EmployeeInfo> getAllEmployees();
+	public List<EmployeeInfo> getAllEmployees(EmployeeInfo employeeInfo);
 
 	public void updateEmployeeInfo(EmployeeInfo employeeInfo);
 	
 	public Map<String,EmployeeInfo> getAllReminders();
+	
+	public Map<String,EmployeeInfo> getRemindersByEmployee(Long employeeId);
 }

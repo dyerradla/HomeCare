@@ -28,6 +28,8 @@ public class EmployeeInfo implements java.io.Serializable {
 	private String firstName;
 	private String middleName;
 	private String lastName;
+	private Date employmentDate;
+	private String status;
 	private Date createDt;
 	private String createUserId;
 	private String designation;
@@ -63,82 +65,6 @@ public class EmployeeInfo implements java.io.Serializable {
 	private Set<EmployeeInfoAudit> employeeInfoAudits = new HashSet<EmployeeInfoAudit>(0);
 	private List<String> employeeReminderMessage;
 	public EmployeeInfo() {
-	}
-
-	public EmployeeInfo(Long employeeId, String firstName, String lastName,
-			Date createDt, String createUserId,
-			Date initialCompetencyEvaluation, Date ongoinCompetencyEvaluation,
-			Date annualEvaluation, Date cprCard, Date profLicense,
-			Date driversLicense, Date proofValidCarInsurance, Date tbTest) {
-		this.employeeId = employeeId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.createDt = createDt;
-		this.createUserId = createUserId;
-		this.initialCompetencyEvaluation = initialCompetencyEvaluation;
-		this.ongoinCompetencyEvaluation = ongoinCompetencyEvaluation;
-		this.annualEvaluation = annualEvaluation;
-		this.cprCard = cprCard;
-		this.profLicense = profLicense;
-		this.driversLicense = driversLicense;
-		this.proofValidCarInsurance = proofValidCarInsurance;
-		this.tbTest = tbTest;
-	}
-
-	public EmployeeInfo(Long employeeId, String firstName, String middleName,
-			String lastName, Date createDt, String createUserId,
-			String designation, Character application, Character resume,
-			Character referenceChecks, Character signedJobDescription,
-			Character orientationChecklist,
-			Character statementOfConfidentiality, Character policy,
-			Date initialCompetencyEvaluation, Date ongoinCompetencyEvaluation,
-			Date annualEvaluation, Character hippaTraining,
-			Character oshaTraining, Date cprCard, Date profLicense,
-			Character verificationProfLicense, Character socialSecurityCard,
-			Character nonCompete, Date driversLicense,
-			Date proofValidCarInsurance, Character authorizationCriminalCheck,
-			Character criminalCheck, Character fingerprintsResults,
-			Character federalW4, Character michiganW4, Character i9,
-			Date tbTest, Character hvbTest, String emailAddress,
-			String phoneNumber, Set employeeInfoAudits,List<String> employeeReminderMessage) {
-		this.employeeId = employeeId;
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-		this.createDt = createDt;
-		this.createUserId = createUserId;
-		this.designation = designation;
-		this.application = application;
-		this.resume = resume;
-		this.referenceChecks = referenceChecks;
-		this.signedJobDescription = signedJobDescription;
-		this.orientationChecklist = orientationChecklist;
-		this.statementOfConfidentiality = statementOfConfidentiality;
-		this.policy = policy;
-		this.initialCompetencyEvaluation = initialCompetencyEvaluation;
-		this.ongoinCompetencyEvaluation = ongoinCompetencyEvaluation;
-		this.annualEvaluation = annualEvaluation;
-		this.hippaTraining = hippaTraining;
-		this.oshaTraining = oshaTraining;
-		this.cprCard = cprCard;
-		this.profLicense = profLicense;
-		this.verificationProfLicense = verificationProfLicense;
-		this.socialSecurityCard = socialSecurityCard;
-		this.nonCompete = nonCompete;
-		this.driversLicense = driversLicense;
-		this.proofValidCarInsurance = proofValidCarInsurance;
-		this.authorizationCriminalCheck = authorizationCriminalCheck;
-		this.criminalCheck = criminalCheck;
-		this.fingerprintsResults = fingerprintsResults;
-		this.federalW4 = federalW4;
-		this.michiganW4 = michiganW4;
-		this.i9 = i9;
-		this.tbTest = tbTest;
-		this.hvbTest = hvbTest;
-		this.emailAddress = emailAddress;
-		this.phoneNumber = phoneNumber;
-		this.employeeInfoAudits = employeeInfoAudits;
-		this.employeeReminderMessage = employeeReminderMessage;
 	}
 
 	@Id
@@ -177,6 +103,25 @@ public class EmployeeInfo implements java.io.Serializable {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "EMPLOYMENT_DT")
+	public Date getEmploymentDate() {
+		return employmentDate;
+	}
+
+	public void setEmploymentDate(Date employmentDate) {
+		this.employmentDate = employmentDate;
+	}
+
+	@Column(name = "STATUS", nullable = false, length = 32)
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

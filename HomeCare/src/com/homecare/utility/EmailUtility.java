@@ -18,7 +18,7 @@ public class EmailUtility {
 	public void sendEmail(String subject,String email,String body){
 		final Properties emailProperties = new Properties();
 		try {
-			emailProperties.load(this.getClass().getResourceAsStream("/application.properties"));
+			emailProperties.load(this.getClass().getResourceAsStream("/email.properties"));
 		} catch (IOException e) {
 			logger.error("Properties File not found");
 		}
@@ -27,7 +27,7 @@ public class EmailUtility {
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", emailProperties.getProperty("EMAIl_STMP_SERVER_HOST"));
-		props.put("mail.smtp.port", emailProperties.getProperty("RESUME_REMINDER"));
+		props.put("mail.smtp.port", emailProperties.getProperty("EMAIL_STMP_PORT"));
 		
 		Session session = Session.getInstance(props,
 		  new javax.mail.Authenticator() {

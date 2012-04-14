@@ -3,6 +3,7 @@ package com.homecare.dao;
 import java.util.Calendar;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
@@ -31,7 +32,19 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 	public EmployeeInfo getEmployeeInfo(EmployeeInfo employeeInfo) {
 		logger.debug("Entering getAllEmployees of EmployeeDAOImpl");
 		Criteria criteria = getSession().createCriteria(EmployeeInfo.class);
-		criteria.add(Restrictions.like("lastName", employeeInfo.getLastName()));
+		if(StringUtils.isNotBlank(employeeInfo.getLastName())){
+			criteria.add(Restrictions.like("lastName", employeeInfo.getLastName()));
+		}
+		if(StringUtils.isNotBlank(employeeInfo.getFirstName())){
+			criteria.add(Restrictions.like("firstName", employeeInfo.getFirstName()));
+		}
+		if(StringUtils.isNotBlank(employeeInfo.getMiddleName())){
+			criteria.add(Restrictions.like("middleName", employeeInfo.getMiddleName()));
+		}
+		if(null != employeeInfo.getEmployeeId()){
+			criteria.add(Restrictions.eq("employeeId", employeeInfo.getEmployeeId()));
+		}
+		
 		List<EmployeeInfo> employeeList = criteria.list();
 		logger.debug("Exiting getAllEmployees of EmployeeDAOImpl");
 		EmployeeInfo selectedEmployeeInfo = null;
@@ -44,12 +57,25 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 	/**
 	 * Get the List of all the employees
 	 */
-	public List<EmployeeInfo> getAllEmployees() {
+	public List<EmployeeInfo> getAllEmployees(EmployeeInfo employeeInfo) {
 		logger.debug("Entering getAllEmployees of EmployeeDAOImpl");
 		Criteria criteria = getSession().createCriteria(EmployeeInfo.class);
+		if(null != employeeInfo.getFirstName() && !"".equalsIgnoreCase(employeeInfo.getFirstName())){
+			criteria.add(Restrictions.like("firstName", employeeInfo.getFirstName()));
+		}
+		
+		if(null != employeeInfo.getFirstName() && !"".equalsIgnoreCase(employeeInfo.getLastName())){
+			criteria.add(Restrictions.like("lastName", employeeInfo.getLastName()));
+		}
+		
 		List<EmployeeInfo> employeeList = criteria.list();
 		logger.debug("Exiting getAllEmployees of EmployeeDAOImpl");
 		return employeeList;
+	}
+	
+	public List<EmployeeInfo> getRemindersByEmployee(Long employeeId){
+     	Query selectQuery = getSession().createQuery(getRemindersQuery(employeeId).toString());
+		return selectQuery.list();
 	}
 
 
@@ -66,7 +92,16 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 	 */
 	public List<EmployeeInfo> getAllReminders(){
 		logger.debug("Entering getAllReminders of EmployeeDAOImpl");
-		 StringBuilder query = new StringBuilder("from EmployeeInfo ");
+		 		 
+		 Query selectQuery = getSession().createQuery(getRemindersQuery(null).toString());
+		
+		List<EmployeeInfo> employeeList = selectQuery.list();
+		logger.debug("Exiting getAllReminders of EmployeeDAOImpl"+employeeList.size());
+		return employeeList;
+	}
+	
+	private StringBuilder getRemindersQuery(Long employeeId){
+		StringBuilder query = new StringBuilder("from EmployeeInfo ");
 		 Calendar currentcal = Calendar.getInstance();
 		 currentcal.add(Calendar.MONTH, 1);
 		 
@@ -150,11 +185,12 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 		
 		 // Applying the Restrictions on CPR card
 		 query.append(" OR tbTest <= '"+currentcal.getTime()+"'");
-		 
-		 Query selectQuery = getSession().createQuery(query.toString());
-		
-		List<EmployeeInfo> employeeList = selectQuery.list();
-		logger.debug("Exiting getAllReminders of EmployeeDAOImpl"+employeeList.size());
-		return employeeList;
+
+		 if(null != employeeId){
+			//Applying the restrictions on Application
+			 query.append(" AND (employeeId = '"+employeeId+"')");
+		 }
+
+		 return query;
 	}
 }
