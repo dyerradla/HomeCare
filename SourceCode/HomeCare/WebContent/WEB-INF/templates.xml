@@ -18,13 +18,18 @@
         <put-attribute name="body" value="/WEB-INF/jsp/Home.jsp" />
     </definition>
     
-    <definition name="employeeInfo" extends=".mainTemplate">
+    <definition name="employeeReminders" extends=".mainTemplate">
         <put-attribute name="title" value="Employee Information" />
+        <put-attribute name="body" value="/WEB-INF/jsp/employeeReminders.jsp" />
+    </definition>
+    
+    <definition name="employeeInfo" extends=".mainTemplate">
+        <put-attribute name="title" value="Employee Reminders Information" />
         <put-attribute name="body" value="/WEB-INF/jsp/employeeInfo.jsp" />
     </definition>
     
-    <definition name="employeeReminders" extends=".mainTemplate">
-        <put-attribute name="title" value="Employee Reminders Information" />
-        <put-attribute name="body" value="/WEB-INF/jsp/employeeReminders.jsp" />
+     <definition name="employeeList" extends=".mainTemplate">
+        <put-attribute name="title" value="Employee List" />
+        <put-attribute name="body" value="/WEB-INF/jsp/employeeList.jsp" />
     </definition>
 </tiles-definitions>

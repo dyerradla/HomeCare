@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -39,16 +40,30 @@ public class EmployeeController extends BaseFormController{
 		System.out.println("**********Inside Employee Controller******"+employeeInfoForm.getSelectedEmployeeLastName());
 		employeeInfoForm.getEmployeeInfo().setLastName(employeeInfoForm.getSelectedEmployeeLastName());
 		EmployeeInfo empInfo = employeeInfoBO.getEmployeeInfo(employeeInfoForm.getEmployeeInfo());
-		ModelAndView modelAndView = new ModelAndView("employeeInfo"); 
+		ModelAndView modelAndView = new ModelAndView("employeeInfo");
+		modelAndView.addObject("yesNoList", referenceData().get("yesNoList"));
 		employeeInfoForm.setEmployeeInfo(empInfo);
 		return modelAndView;
 	}
 	
+	@RequestMapping("/sendEmail")
+	public ModelAndView sendEmail(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
+		System.out.println("*******Load Employee Info**************");
+		String employeeId = httpServletRequest.getParameter("employeeId");
+		if(null != employeeId && !StringUtils.isEmpty(employeeId)){
+			employeeInfoBO.sendEmail(new Long(employeeId));
+		}
+		return null;
+	}
 	
 	@RequestMapping("/getAllEmployees")
-	public ModelAndView getAllEmployees(){
+	public ModelAndView getAllEmployees(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
 		System.out.println("*******Get All Employees**************");
-		List<EmployeeInfo> employeeList = employeeInfoBO.getAllEmployees();
+		
+		EmployeeInfo employeeInfo = employeeInfoForm.getEmployeeInfo();
+		employeeInfo.setFirstName(employeeInfoForm.getSelectedEmployeeFirstName());
+		employeeInfo.setLastName(employeeInfoForm.getSelectedEmployeeLastName());
+		List<EmployeeInfo> employeeList = employeeInfoBO.getAllEmployees(employeeInfo);
 		System.out.println("************Employee List**********"+employeeList.size());
 		ModelAndView modelAndView = new ModelAndView("employeeList");
 		modelAndView.addObject("employeeList", employeeList);
@@ -58,10 +73,16 @@ public class EmployeeController extends BaseFormController{
 	@RequestMapping("/loadEmployeeInfo")
 	public ModelAndView getEmployeeInfo(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
 		System.out.println("*******Load Employee Info**************");
-		EmployeeInfo empInfo = new EmployeeInfo();
+		String employeeId = httpServletRequest.getParameter("employeeId");
+		EmployeeInfo employeeInfo = employeeInfoForm.getEmployeeInfo();
 		ModelAndView modelAndView = new ModelAndView("employeeInfo");
+		if(null != employeeId && !StringUtils.isEmpty(employeeId)){
+			employeeInfo.setEmployeeId(new Long(employeeId));
+			employeeInfo = employeeInfoBO.getEmployeeInfo(employeeInfoForm.getEmployeeInfo());
+			employeeInfoForm.setEmployeeInfo(employeeInfo);
+		}
 		modelAndView.addObject("yesNoList", referenceData().get("yesNoList"));
-		employeeInfoForm.setEmployeeInfo(empInfo);
+		
 		return modelAndView;
 	}
 	
@@ -71,12 +92,21 @@ public class EmployeeController extends BaseFormController{
 		EmployeeInfo employeeInfo = employeeInfoForm.getEmployeeInfo();
 		employeeInfo.setCreateUserId("Dummy User");
 		employeeInfoBO.updateEmployeeInfo(employeeInfo);
-		ModelAndView modelAndView = new ModelAndView("home"); 
+		ModelAndView modelAndView = new ModelAndView("employeeInfo"); 
+		modelAndView.addObject("yesNoList", referenceData().get("yesNoList"));
 		return modelAndView;
 	}
 	
 	@RequestMapping("/getReminders")
-	public ModelAndView getReminders(){
+	public ModelAndView getReminders(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
+		Map<String,EmployeeInfo> employeeRemindersMap = employeeInfoBO.getAllReminders();
+		ModelAndView modelAndView = new ModelAndView("employeeReminders"); 
+		modelAndView.addObject("employeeReminders", employeeRemindersMap);
+		return modelAndView;
+	}
+	
+	@RequestMapping("/getReminders")
+	public ModelAndView getRemindersByEmployee(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
 		Map<String,EmployeeInfo> employeeRemindersMap = employeeInfoBO.getAllReminders();
 		ModelAndView modelAndView = new ModelAndView("employeeReminders"); 
 		modelAndView.addObject("employeeReminders", employeeRemindersMap);

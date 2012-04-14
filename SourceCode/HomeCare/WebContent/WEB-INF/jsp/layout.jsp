@@ -9,14 +9,14 @@
 <body>
 	<table border="1" cellpadding="2" cellspacing="2" align="center">
 		<tr>
-			<td height="30" colspan="2"><tiles:insertAttribute name="header" /></td>
+			<td height="8%" colspan="2"><tiles:insertAttribute name="header" /></td>
 		</tr>
 		<tr>
-			<td height="250"><tiles:insertAttribute name="menu" /></td>
-			<td width="450"><tiles:insertAttribute name="body" /></td>
+			<td height="85%" width="15%"><tiles:insertAttribute name="menu" /></td>
+			<td height="85%" width="85%" valign="top" style="padding-top: 10px;"><tiles:insertAttribute name="body" /></td>
 		</tr>
 		<tr>
-			<td height="30" colspan="2"><tiles:insertAttribute name="footer" />
+			<td height="7%" colspan="2"><tiles:insertAttribute name="footer" />
 			</td>
 		</tr>
 	</table>

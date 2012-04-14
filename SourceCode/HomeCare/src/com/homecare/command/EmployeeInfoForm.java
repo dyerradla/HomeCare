@@ -7,6 +7,7 @@ public class EmployeeInfoForm {
 	private EmployeeInfo employeeInfo = new EmployeeInfo();
 	
 	public String selectedEmployeeLastName;
+	public String selectedEmployeeFirstName;
 	public EmployeeInfo getEmployeeInfo() {
 		return employeeInfo;
 	}
@@ -21,6 +22,14 @@ public class EmployeeInfoForm {
 
 	public void setSelectedEmployeeLastName(String selectedEmployeeLastName) {
 		this.selectedEmployeeLastName = selectedEmployeeLastName;
+	}
+
+	public String getSelectedEmployeeFirstName() {
+		return selectedEmployeeFirstName;
+	}
+
+	public void setSelectedEmployeeFirstName(String selectedEmployeeFirstName) {
+		this.selectedEmployeeFirstName = selectedEmployeeFirstName;
 	}
 	
 }
