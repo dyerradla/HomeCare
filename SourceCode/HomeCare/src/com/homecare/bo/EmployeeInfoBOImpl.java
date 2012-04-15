@@ -53,13 +53,20 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		return employeeInfo;
 	}
 	
+	public List<EmployeeInfo> deleteEmployeeInfo(Long employeeId){
+		employeeDAO.deleteEmployee(employeeId);
+		return getAllEmployees(new EmployeeInfo());
+	}
+	
 	public Map<String,EmployeeInfo> getAllReminders() {
-		List<EmployeeInfo> employeeList = employeeDAO.getAllReminders();
+		List<EmployeeInfo> employeeList = employeeDAO.getAllEmployees(new EmployeeInfo());
 		return getEmployeeReminderMap(employeeList);
 	}
 	
 	public Map<String,EmployeeInfo> getRemindersByEmployee(Long employeeId){
-		List<EmployeeInfo> employeeList = employeeDAO.getRemindersByEmployee(employeeId);
+		EmployeeInfo employeeInfo = employeeDAO.getEmployeeInfoByEmployeeId(employeeId);
+		List<EmployeeInfo> employeeList = new ArrayList<EmployeeInfo>();
+		employeeList.add(employeeInfo);
 		return getEmployeeReminderMap(employeeList);
 	}
 	

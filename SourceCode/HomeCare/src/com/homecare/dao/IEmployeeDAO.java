@@ -1,7 +1,6 @@
 package com.homecare.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import com.homecare.domain.EmployeeInfo;
 
@@ -15,7 +14,6 @@ public interface IEmployeeDAO {
 	
 	public void updateEmployeeInfo(EmployeeInfo employeeInfo);
 	
-	public List<EmployeeInfo> getAllReminders();
+	public void deleteEmployee(Long employeeId);
 	
-	public List<EmployeeInfo> getRemindersByEmployee(Long employeeId);
 }
