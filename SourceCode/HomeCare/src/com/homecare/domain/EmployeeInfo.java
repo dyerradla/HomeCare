@@ -33,6 +33,7 @@ public class EmployeeInfo implements java.io.Serializable {
 	private Date createDt;
 	private String createUserId;
 	private String designation;
+	private String department;
 	private Character application;
 	private Character resume;
 	private Character referenceChecks;
@@ -143,13 +144,22 @@ public class EmployeeInfo implements java.io.Serializable {
 		this.createUserId = createUserId;
 	}
 
-	@Column(name = "DESIGNATION", length = 10)
+	@Column(name = "DESIGNATION", length = 20)
 	public String getDesignation() {
 		return this.designation;
 	}
 
 	public void setDesignation(String designation) {
 		this.designation = designation;
+	}
+	
+	@Column(name = "DEPARTMENT", length = 10)
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 
 	@Column(name = "APPLICATION", length = 1)

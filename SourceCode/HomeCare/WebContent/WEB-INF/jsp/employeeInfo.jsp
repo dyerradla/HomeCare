@@ -49,6 +49,13 @@
 							  			<form:option value='IA' label="In Active"/>
 						       		</form:select>
 						       	</td>
+						       	<td class="column_label">Department:</td>
+								<td class="column_value">
+									<form:select path="employeeInfo.department">
+							  			<form:option value='100' label="100" />
+							  			<form:option value='200' label="200"/>
+						       		</form:select>
+						       	</td>
 							</tr>
 						</table>
 					</div>
@@ -61,7 +68,7 @@
 								<td class="column_label">Application:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.application">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 		                        </td>
@@ -69,7 +76,7 @@
 								<td class="column_label">Resume:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.resume">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 		                        </td>
@@ -77,7 +84,7 @@
 								<td class="column_label">Reference Checks:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.referenceChecks">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -87,7 +94,7 @@
 								<td class="column_label">Job Description:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.signedJobDescription">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -95,7 +102,7 @@
 								<td class="column_label">Policy:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.policy">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -103,7 +110,7 @@
 								<td class="column_label">Orientation:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.orientationChecklist">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -113,7 +120,7 @@
 								<td class="column_label">Statement Of Confidentiality:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.statementOfConfidentiality">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -121,7 +128,7 @@
 								<td class="column_label">Social Security Card:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.socialSecurityCard">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -129,7 +136,7 @@
 								<td class="column_label">NonCompete:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.nonCompete">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -170,7 +177,7 @@
 								<td class="column_label">Hippa Training:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.hippaTraining">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -178,7 +185,7 @@
 								<td class="column_label">Osha Training:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.oshaTraining">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -191,7 +198,7 @@
 								<td class="column_label">HVB Test:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.hvbTest">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -199,7 +206,7 @@
 								<td class="column_label">Verification Prof License:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.verificationProfLicense">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -216,7 +223,7 @@
 								<td class="column_label">I9:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.i9">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -224,7 +231,7 @@
 								<td class="column_label">Federal W4:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.federalW4">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -232,7 +239,7 @@
 								<td class="column_label">Michigan W4:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.michiganW4">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -242,7 +249,7 @@
 								<td class="column_label">Criminal Check:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.criminalCheck">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -250,7 +257,7 @@
 								<td class="column_label">Authorization Criminal Check:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.authorizationCriminalCheck">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
@@ -258,7 +265,7 @@
 								<td class="column_label">Fingerprints Results:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.fingerprintsResults">
-							  			<form:option value='X' label="--Select--" />
+							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
 								</td>
