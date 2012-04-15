@@ -172,18 +172,17 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 			employeeReminderList.add(properties.getProperty("I9_REMINDER"));
 		}
 		
-		
-		
-		if(null == employeeInfo.getInitialCompetencyEvaluation() || !employeeInfo.getInitialCompetencyEvaluation().after(currentcal.getTime())){
-			employeeReminderList.add(properties.getProperty("INITIAL_COMPETENCY_REMINDER"));
-		}
-		
 		Calendar employmentDate = Calendar.getInstance();
 		employmentDate.setTime(employeeInfo.getEmploymentDate());
 		employmentDate.add(Calendar.MONTH, 3);
 		if(null == employeeInfo.getOngoinCompetencyEvaluation() || employeeInfo.getOngoinCompetencyEvaluation().after(employmentDate.getTime())){
 			employeeReminderList.add(properties.getProperty("ONGOING_COMPETENCY_REMINDER"));
 		}
+		
+		if(null == employeeInfo.getInitialCompetencyEvaluation() || employeeInfo.getInitialCompetencyEvaluation().after(employmentDate.getTime())){
+			employeeReminderList.add(properties.getProperty("INITIAL_COMPETENCY_REMINDER"));
+		}
+
 		if(null != employeeInfo.getAnnualEvaluation()){
 			if(!employeeInfo.getAnnualEvaluation().after(annualEvaluation.getTime())){
 				employeeReminderList.add(properties.getProperty("ANNUAL_EVALUTION_REMINDER"));
