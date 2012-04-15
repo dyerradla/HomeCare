@@ -179,7 +179,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 			employeeReminderList.add(properties.getProperty("ONGOING_COMPETENCY_REMINDER"));
 		}
 		
-		if(null == employeeInfo.getInitialCompetencyEvaluation() || employeeInfo.getInitialCompetencyEvaluation().after(employmentDate.getTime())){
+		if(null == employeeInfo.getInitialCompetencyEvaluation()){
 			employeeReminderList.add(properties.getProperty("INITIAL_COMPETENCY_REMINDER"));
 		}
 
