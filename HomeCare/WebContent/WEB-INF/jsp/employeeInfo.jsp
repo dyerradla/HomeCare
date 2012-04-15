@@ -11,6 +11,8 @@
 	$(function() {
 		$( '.datepicker' ).datepicker();
 	});
+	
+	
 </script>
 <form:form id="employeeInfoForm" name="employeeInfoForm" action="saveEmployeeInfo.do">
 	<input type="hidden" name="employeeInfo.employeeId" value="${command.employeeInfo.employeeId}" />
@@ -23,15 +25,15 @@
 						<table style="width:100%;">
 							<tr>
 								<td class="column_label">First Name:</td>
-								<td class="column_value"><form:input path="employeeInfo.firstName" /></td>
+								<td class="column_value"><form:input id="firstName" path="employeeInfo.firstName" /></td>
 								<td class="column_label">Middle Name:</td>
 								<td class="column_value"><form:input path="employeeInfo.middleName" /></td>
 								<td class="column_label">Last Name:</td>
-								<td class="column_value"><form:input path="employeeInfo.lastName" /></td>
+								<td class="column_value"><form:input id="lastName" path="employeeInfo.lastName" /></td>
 							</tr>
 							<tr>
 								<td class="column_label">Email Address:</td>
-								<td class="column_value"><form:input path="employeeInfo.emailAddress" /></td>
+								<td class="column_value"><form:input id="emailAddress" path="employeeInfo.emailAddress" /></td>
 								<td class="column_label">Phone Number:</td>
 								<td class="column_value"><form:input path="employeeInfo.phoneNumber" /></td>
 								<td class="column_label">Designation:</td>
@@ -39,7 +41,7 @@
 							</tr>
 							<tr>
 								<td class="column_label">Employment Date:</td>
-								<td class="column_value"><form:input path="employeeInfo.employmentDate" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="employmentDate" path="employeeInfo.employmentDate" cssClass="datepicker"/></td>
 								<td class="column_label">Status:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.status">
@@ -268,7 +270,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="submit" value="Submit">
+				<input type="button" value="Submit" onclick="validateForm()">
 				<input type="button" value="New Employee" onclick="newEmployee()">	
 				<input type="button" value="Get All Employees" onclick="getAllEmployees()">
 				<input type="button" value="Get Reminders" onclick="getRemindersByEmployee(${command.employeeInfo.employeeId})">
@@ -278,6 +280,41 @@
 	</table>
 </form:form>
 <script>
+	function validateForm(){
+		var errorMessage = "";
+		var errorExists = false;
+		if($('#firstName').val() == ''){
+			errorExists = true;
+			errorMessage += "Please Enter First Name" + "\n";
+		}
+		if($('#lastName').val() == ''){
+			errorExists = true;
+			errorMessage += "Please Enter Last Name" + "\n";
+		}
+		
+		if($('#emailAddress').val() == ''){
+			errorExists = true;
+			errorMessage += "Please Enter Email Address" + "\n";
+		}else{
+			var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+			if(!emailPattern.test($('#emailAddress').val())){
+				errorExists = true;
+				errorMessage += "Please Enter valid Email Address" + "\n";
+			}
+		}
+		if($('#employmentDate').val() == ''){
+			errorExists = true;
+			errorMessage += "Please Enter Employment Date" + "\n";
+		}
+		if(errorExists){
+			alert(errorMessage);
+			return false;
+		}else{
+			$("#employeeInfoForm").submit();	
+		}
+	}
+	
+	
 	function newEmployee(){
 		$("#employeeInfoForm").attr("action","/HomeCare/loadEmployeeInfo.do?newEmployee=Y");
 		$("#employeeInfoForm").submit();
@@ -287,6 +324,7 @@
 		$("#employeeInfoForm").attr("action","/HomeCare/getRemindersByEmployee.do?employeeId="+employeeId);
 		$("#employeeInfoForm").submit();
 	}
+	
 	
 	function getAllEmployees(){
 		$("#employeeInfoForm").attr("action","/HomeCare/getAllEmployees.do");

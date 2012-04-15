@@ -106,6 +106,9 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		Calendar currentcal = Calendar.getInstance();
 		currentcal.add(Calendar.MONTH, 1);
 		
+		Calendar annualEvaluation = Calendar.getInstance();
+		annualEvaluation.add(Calendar.YEAR, -1);
+		
 		List<String> employeeReminderList = new ArrayList<String>();
 		if(null == employeeInfo.getApplication() || 'Y' != employeeInfo.getApplication()){
 			employeeReminderList.add(properties.getProperty("APPLICATION_REMINDER"));
@@ -190,9 +193,16 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		if(null == employeeInfo.getOngoinCompetencyEvaluation() || !employeeInfo.getOngoinCompetencyEvaluation().after(currentcal.getTime())){
 			employeeReminderList.add(properties.getProperty("ONGOING_COMPETENCY_REMINDER"));
 		}
-		if(null == employeeInfo.getAnnualEvaluation() || !employeeInfo.getAnnualEvaluation().after(currentcal.getTime())){
-			employeeReminderList.add(properties.getProperty("ANNUAL_EVALUTION_REMINDER"));
+		if(null != employeeInfo.getAnnualEvaluation()){
+			if(!employeeInfo.getAnnualEvaluation().after(annualEvaluation.getTime())){
+				employeeReminderList.add(properties.getProperty("ANNUAL_EVALUTION_REMINDER"));
+			}
+		}else{
+			if(!employeeInfo.getEmploymentDate().after(annualEvaluation.getTime())){
+				employeeReminderList.add(properties.getProperty("ANNUAL_EVALUTION_REMINDER"));
+			}
 		}
+		
 		if(null == employeeInfo.getCprCard() || !employeeInfo.getCprCard().after(currentcal.getTime())){
 			employeeReminderList.add(properties.getProperty("CPR_REMINDER"));
 		}
