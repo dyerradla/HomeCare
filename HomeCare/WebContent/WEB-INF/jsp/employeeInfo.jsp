@@ -271,7 +271,7 @@
 				<input type="submit" value="Submit">
 				<input type="button" value="New Employee" onclick="newEmployee()">	
 				<input type="button" value="Get All Employees" onclick="getAllEmployees()">
-				<input type="button" value="Get All Reminders" onclick="getReminders()">
+				<input type="button" value="Get Reminders" onclick="getRemindersByEmployee(${command.employeeInfo.employeeId})">
 				
 			</td>
 		</tr>
@@ -279,12 +279,12 @@
 </form:form>
 <script>
 	function newEmployee(){
-		$("#employeeInfoForm").attr("action","/HomeCare/loadEmployeeInfo.do?employeeId=''");
+		$("#employeeInfoForm").attr("action","/HomeCare/loadEmployeeInfo.do?newEmployee=Y");
 		$("#employeeInfoForm").submit();
 	}
 
-	function getReminders(){
-		$("#employeeInfoForm").attr("action","/HomeCare/getReminders.do");
+	function getRemindersByEmployee(employeeId){
+		$("#employeeInfoForm").attr("action","/HomeCare/getRemindersByEmployee.do?employeeId="+employeeId);
 		$("#employeeInfoForm").submit();
 	}
 	
