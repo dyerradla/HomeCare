@@ -220,7 +220,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 			}
 			
 			if(null == employeeInfo.getHvbTest() || employeeInfo.getHvbTest() =='N'){
-				employeeReminderList.add(properties.getProperty("TBTEST_REMINDER"));
+				employeeReminderList.add(properties.getProperty("HVBTEST_REMINDER"));
 			} 
 			
 		}
