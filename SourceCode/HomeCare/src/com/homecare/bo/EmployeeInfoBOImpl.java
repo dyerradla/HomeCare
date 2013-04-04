@@ -43,7 +43,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		return employeeDAO.getAllEmployees(employeeInfo);
 	}
 
-	@Scheduled(cron="0 0/5 * * * ?")
+	@Scheduled(cron="0 0 1 * * ?")
 	@Async
 	public void generateEmail(){
 		System.out.println("*****Generate Email");
@@ -68,14 +68,12 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	private String getConcatenatedEmailBody(String emailBody,EmployeeInfo employeeInfo){
 		List<String> employeeReminderList = getRemindersByEmployee(employeeInfo);
 		// Send an email
-		String concatenatedReminderString ="";
+		String concatenatedReminderString ="<table>";
 		for(String remiderString : employeeReminderList){
-			concatenatedReminderString += remiderString + "\n\n";
+			concatenatedReminderString += "<tr><td>"+remiderString + "</td></tr>";
 		}
-		
-		if(!StringUtils.isEmpty(concatenatedReminderString)){ 
-			emailBody += "<div style=\"color:red;\">" + employeeInfo.getLastName() +"  " + employeeInfo.getFirstName() +"</div>" + concatenatedReminderString;
-		}
+		concatenatedReminderString += "</table>";
+		emailBody += "<div style=\"color:red;\">" + employeeInfo.getLastName() +"  " + employeeInfo.getFirstName() +"</div>" + concatenatedReminderString;
 		
 		return emailBody;
 	}
