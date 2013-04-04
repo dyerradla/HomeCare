@@ -32,4 +32,9 @@
         <put-attribute name="title" value="Employee List" />
         <put-attribute name="body" value="/WEB-INF/jsp/employeeList.jsp" />
     </definition>
+    
+    <definition name="login" extends=".mainTemplate">
+        <put-attribute name="title" value="Login" />
+        <put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+    </definition>
 </tiles-definitions>

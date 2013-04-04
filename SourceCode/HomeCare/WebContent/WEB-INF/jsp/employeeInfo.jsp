@@ -41,7 +41,7 @@
 							</tr>
 							<tr>
 								<td class="column_label">Employment Date:</td>
-								<td class="column_value"><form:input id="employmentDate" path="employeeInfo.employmentDate" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="employmentDate" readonly="true" path="employeeInfo.employmentDate" cssClass="datepicker"/></td>
 								<td class="column_label">Status:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.status">
@@ -52,8 +52,9 @@
 						       	<td class="column_label">Department:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.department">
-							  			<form:option value='100' label="100" />
-							  			<form:option value='200' label="200"/>
+							  			<form:option value='100' label="100-Admin" />
+							  			<form:option value='200' label="200-Clinical"/>
+							  			<form:option value='300' label="300-Contract"/>
 						       		</form:select>
 						       	</td>
 							</tr>
@@ -150,29 +151,29 @@
 						<table>
 							<tr>
 								<td class="column_label">Initial Comp Eval:</td>
-								<td class="column_value"><form:input path="employeeInfo.initialCompetencyEvaluation" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input readonly="true" path="employeeInfo.initialCompetencyEvaluation" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Ongo Comp Eval:</td>
-								<td class="column_value"><form:input path="employeeInfo.ongoinCompetencyEvaluation" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input readonly="true" path="employeeInfo.ongoinCompetencyEvaluation" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Annual Evaluation:</td>
-								<td class="column_value"><form:input path="employeeInfo.annualEvaluation" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input readonly="true" path="employeeInfo.annualEvaluation" cssClass="datepicker"/></td>
 							</tr>
 							
 							<tr>
-								<td class="column_label">Prof License:</td>
-								<td class="column_value"><form:input path="employeeInfo.profLicense" cssClass="datepicker"/></td>
+								<td class="column_label">Proof License:</td>
+								<td class="column_value"><form:input readonly="true" path="employeeInfo.profLicense" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Auto Insurance:</td>
-								<td class="column_value"><form:input path="employeeInfo.proofValidCarInsurance" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input readonly="true" path="employeeInfo.proofValidCarInsurance" cssClass="datepicker"/></td>
 								
 								<td class="column_label">CPR Card:</td>
-								<td class="column_value"><form:input path="employeeInfo.cprCard" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input readonly="true" path="employeeInfo.cprCard" cssClass="datepicker"/></td>
 							</tr>
 							
 							<tr>
 								<td class="column_label">TB Test:</td>
-								<td class="column_value"><form:input path="employeeInfo.tbTest" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input readonly="true" path="employeeInfo.tbTest" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Hippa Training:</td>
 								<td class="column_value">
@@ -193,7 +194,7 @@
 							
 							<tr>
 								<td class="column_label">Drivers License:</td>
-								<td class="column_value"><form:input path="employeeInfo.driversLicense" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input readonly="true" path="employeeInfo.driversLicense" cssClass="datepicker"/></td>
 							
 								<td class="column_label">HVB Test:</td>
 								<td class="column_value">

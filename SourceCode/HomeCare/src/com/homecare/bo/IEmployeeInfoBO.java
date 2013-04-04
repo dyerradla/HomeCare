@@ -14,6 +14,8 @@ public interface IEmployeeInfoBO {
 
 	public EmployeeInfo getEmployeeInfoByEmployeeId(Long employeeId);
 	
+	public void generateEmail();
+	
 	public EmployeeInfo sendEmail(Long employeeId);
 
 	public List<EmployeeInfo> getAllEmployees(EmployeeInfo employeeInfo);

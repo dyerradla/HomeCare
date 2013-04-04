@@ -2,8 +2,6 @@ package com.homecare.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,10 +33,8 @@ public class EmployeeController extends BaseFormController{
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 	
-	
 	@RequestMapping("/getSelectedEmployeeInfo")
 	public ModelAndView getSelectedEmployeeInfo(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
-		System.out.println("**********Inside Employee Controller******"+employeeInfoForm.getSelectedEmployeeLastName());
 		employeeInfoForm.getEmployeeInfo().setLastName(employeeInfoForm.getSelectedEmployeeLastName());
 		EmployeeInfo empInfo = employeeInfoBO.getEmployeeInfo(employeeInfoForm.getEmployeeInfo());
 		ModelAndView modelAndView = new ModelAndView("employeeInfo");
@@ -49,7 +45,6 @@ public class EmployeeController extends BaseFormController{
 	
 	@RequestMapping("/sendEmail")
 	public ModelAndView sendEmail(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
-		System.out.println("*******Load Employee Info**************");
 		String employeeId = httpServletRequest.getParameter("employeeId");
 		if(null != employeeId && !StringUtils.isEmpty(employeeId)){
 			employeeInfoBO.sendEmail(new Long(employeeId));
@@ -59,7 +54,6 @@ public class EmployeeController extends BaseFormController{
 	
 	@RequestMapping("/deleteEmployeeInfo")
 	public ModelAndView deleteEmployeeInfo(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
-		System.out.println("*******Delete Employee Info**************");
 		String employeeId = httpServletRequest.getParameter("employeeId");
 		ModelAndView modelAndView = new ModelAndView("employeeList");
 		List<EmployeeInfo> employeeList = employeeInfoBO.deleteEmployeeInfo(new Long(employeeId));
@@ -69,13 +63,10 @@ public class EmployeeController extends BaseFormController{
 	
 	@RequestMapping("/getAllEmployees")
 	public ModelAndView getAllEmployees(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
-		System.out.println("*******Get All Employees**************");
-		
 		EmployeeInfo employeeInfo = employeeInfoForm.getEmployeeInfo();
 		employeeInfo.setFirstName(employeeInfoForm.getSelectedEmployeeFirstName());
 		employeeInfo.setLastName(employeeInfoForm.getSelectedEmployeeLastName());
 		List<EmployeeInfo> employeeList = employeeInfoBO.getAllEmployees(employeeInfo);
-		System.out.println("************Employee List**********"+employeeList.size());
 		ModelAndView modelAndView = new ModelAndView("employeeList");
 		modelAndView.addObject("employeeList", employeeList);
 		return modelAndView;
@@ -83,7 +74,6 @@ public class EmployeeController extends BaseFormController{
 	
 	@RequestMapping("/loadEmployeeInfo")
 	public ModelAndView getEmployeeInfo(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
-		System.out.println("*******Load Employee Info**************");
 		String employeeId = httpServletRequest.getParameter("employeeId");
 		String newEmployee = httpServletRequest.getParameter("newEmployee");
 		EmployeeInfo employeeInfo = employeeInfoForm.getEmployeeInfo();
@@ -102,7 +92,6 @@ public class EmployeeController extends BaseFormController{
 	
 	@RequestMapping("/saveEmployeeInfo")
 	public ModelAndView saveData(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest) throws Exception{
-		System.out.println("*******************Inside Save Employee Info");
 		EmployeeInfo employeeInfo = employeeInfoForm.getEmployeeInfo();
 		employeeInfo.setCreateUserId("Dummy User");
 		employeeInfoBO.updateEmployeeInfo(employeeInfo);
@@ -127,17 +116,6 @@ public class EmployeeController extends BaseFormController{
 		return modelAndView;
 	}
 	
-	private Map referenceData() {
-		 
-		Map referenceData = new HashMap();
- 
-		Map<Character,String> yesNoMap = new LinkedHashMap<Character,String>();
-		yesNoMap.put('Y', "Yes");
-		yesNoMap.put('N', "No");
-		yesNoMap.put('U', "N/A");
-		referenceData.put("yesNoList", yesNoMap);
- 
-		return referenceData;
-	}
+	
 }
 

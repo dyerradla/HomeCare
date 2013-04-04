@@ -8,9 +8,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import com.homecare.dao.IEmployeeDAO;
 import com.homecare.domain.EmployeeInfo;
@@ -40,6 +43,43 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		return employeeDAO.getAllEmployees(employeeInfo);
 	}
 
+	@Scheduled(cron="0 0/5 * * * ?")
+	@Async
+	public void generateEmail(){
+		System.out.println("*****Generate Email");
+		Map<EmployeeInfo,String> employeeRemindersMap = new HashMap<EmployeeInfo, String>();
+		EmployeeInfo employeeInfoRequest = new EmployeeInfo();
+		List<EmployeeInfo> employeeInfoList = employeeDAO.getAllEmployees(employeeInfoRequest);
+		if(null != employeeInfoList){
+			String emailBody = "";
+			for(EmployeeInfo employeeInfo : employeeInfoList){
+				sendEmail(employeeInfo.getEmployeeId());
+				emailBody = getConcatenatedEmailBody(emailBody, employeeInfo);
+			}
+			
+			// Concatenated Email of all the Employees to the Employer
+			if(!StringUtils.isEmpty(emailBody)){
+				EmailUtility emailUtility = new EmailUtility();
+				emailUtility.sendEmail("All Employee Reminders", "prasad14_gitam@yahoo.com", emailBody);
+			}
+		}
+	}
+	
+	private String getConcatenatedEmailBody(String emailBody,EmployeeInfo employeeInfo){
+		List<String> employeeReminderList = getRemindersByEmployee(employeeInfo);
+		// Send an email
+		String concatenatedReminderString ="";
+		for(String remiderString : employeeReminderList){
+			concatenatedReminderString += remiderString + "\n\n";
+		}
+		
+		if(!StringUtils.isEmpty(concatenatedReminderString)){ 
+			emailBody += "<div style=\"color:red;\">" + employeeInfo.getLastName() +"  " + employeeInfo.getFirstName() +"</div>" + concatenatedReminderString;
+		}
+		
+		return emailBody;
+	}
+	
 	public EmployeeInfo sendEmail(Long employeeId) {
 		EmployeeInfo employeeInfo = employeeDAO.getEmployeeInfoByEmployeeId(employeeId);
 		List<String> employeeReminderList = getRemindersByEmployee(employeeInfo);
@@ -48,8 +88,10 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		for(String remiderString : employeeReminderList){
 			concatenatedReminderString += remiderString + "\n\n";
 		}
-		EmailUtility emailUtility = new EmailUtility();
-		emailUtility.sendEmail("Reminders", employeeInfo.getEmailAddress(), concatenatedReminderString);
+		if(!StringUtils.isEmpty(concatenatedReminderString)){
+			EmailUtility emailUtility = new EmailUtility();
+			emailUtility.sendEmail("Reminders", employeeInfo.getEmailAddress(), concatenatedReminderString);
+		}
 		return employeeInfo;
 	}
 	
@@ -82,8 +124,6 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 					employeeRemindersMap.put(employeeInfo.getLastName()+" "+employeeInfo.getMiddleName() + " "+employeeInfo.getFirstName(),
 							employeeInfo);
 				}
-				
-				
 			}
 		}
 		return employeeRemindersMap;
