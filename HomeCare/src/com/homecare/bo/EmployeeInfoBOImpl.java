@@ -68,11 +68,10 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	private String getConcatenatedEmailBody(String emailBody,EmployeeInfo employeeInfo){
 		List<String> employeeReminderList = getRemindersByEmployee(employeeInfo);
 		// Send an email
-		String concatenatedReminderString ="<table>";
+		String concatenatedReminderString = "";
 		for(String remiderString : employeeReminderList){
-			concatenatedReminderString += "<tr><td>"+remiderString + "</td></tr>";
+			concatenatedReminderString += "<div>"+remiderString + "</div>";
 		}
-		concatenatedReminderString += "</table>";
 		emailBody += "<div style=\"color:red;\">" + employeeInfo.getLastName() +"  " + employeeInfo.getFirstName() +"</div>" + concatenatedReminderString;
 		
 		return emailBody;
