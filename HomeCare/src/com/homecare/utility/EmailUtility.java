@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import javax.mail.Message;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -44,14 +45,13 @@ public class EmailUtility {
 				InternetAddress.parse(email));
 			message.setSubject(subject);
 			message.setText(body);
- 
+			message.setContent(body, "text/html; charset=utf-8");
 			Transport.send(message);
  
 			System.out.println("Email Send");
  
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Exception Occured in Sending an email", e);
 		}
-
 	}
 }

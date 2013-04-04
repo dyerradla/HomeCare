@@ -6,6 +6,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.homecare.domain.EmployeeInfo;
@@ -42,7 +43,7 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 		if(null != employeeInfo.getEmployeeId()){
 			criteria.add(Restrictions.eq("employeeId", employeeInfo.getEmployeeId()));
 		}
-		
+		criteria.addOrder(Order.asc("firstName"));
 		List<EmployeeInfo> employeeList = criteria.list();
 		logger.debug("Exiting getAllEmployees of EmployeeDAOImpl");
 		EmployeeInfo selectedEmployeeInfo = null;
