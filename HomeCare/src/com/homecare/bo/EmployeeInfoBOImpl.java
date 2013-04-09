@@ -47,7 +47,6 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	@Async
 	public void generateEmail(){
 		System.out.println("*****Generate Email");
-		Map<EmployeeInfo,String> employeeRemindersMap = new HashMap<EmployeeInfo, String>();
 		EmployeeInfo employeeInfoRequest = new EmployeeInfo();
 		List<EmployeeInfo> employeeInfoList = employeeDAO.getAllEmployees(employeeInfoRequest);
 		if(null != employeeInfoList){
@@ -109,6 +108,12 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		return getEmployeeReminderMap(employeeList);
 	}
 	
+	
+	public void printAllReminders(){
+		System.out.println("************************************Print All the Reminders");
+		
+	}
+	
 	private Map<String,EmployeeInfo> getEmployeeReminderMap(List<EmployeeInfo> employeeList){
 		Map<String,EmployeeInfo> employeeRemindersMap = new HashMap<String, EmployeeInfo>();
 		if(null != employeeList && !employeeList.isEmpty()){
@@ -145,6 +150,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		
 		Calendar annualEvaluation = Calendar.getInstance();
 		annualEvaluation.add(Calendar.YEAR, -1);
+		annualEvaluation.add(Calendar.MONTH, 1);
 		
 		List<String> employeeReminderList = new ArrayList<String>();
 		if(null == employeeInfo.getApplication() || employeeInfo.getApplication() == 'N'){
