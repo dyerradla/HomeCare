@@ -115,7 +115,12 @@ public class EmployeeController extends BaseFormController{
 		modelAndView.addObject("employeeReminders", employeeRemindersMap);
 		return modelAndView;
 	}
-	
+
+	@RequestMapping("/printAllReminders")
+	public ModelAndView printAllReminders(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
+		employeeInfoBO.printAllReminders();
+		return getReminders(employeeInfoForm, httpServletRequest);
+	}
 	
 }
 
