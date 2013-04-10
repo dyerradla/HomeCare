@@ -1,6 +1,8 @@
 package com.homecare.bo;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -18,6 +20,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 import com.homecare.dao.IEmployeeDAO;
 import com.homecare.domain.EmployeeInfo;
 import com.homecare.utility.EmailUtility;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.ListItem;
+import com.itextpdf.text.pdf.PdfWriter;
 
 public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	
@@ -111,8 +117,36 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	
 	public void printAllReminders(){
 		System.out.println("************************************Print All the Reminders");
-		
+		List<EmployeeInfo> employeeList = employeeDAO.getAllEmployees(new EmployeeInfo());
+	
+		Document document = new Document(); 
+		try {
+			OutputStream out = new FileOutputStream("C:/Softwares/test.pdf",false);
+			PdfWriter.getInstance(document, out);        
+			document.open();     
+			if(null != employeeList){
+				for(EmployeeInfo employeeInfo : employeeList){
+					List<String> reminders = getRemindersByEmployee(employeeInfo);
+					com.itextpdf.text.List list = new com.itextpdf.text.List();
+					if(reminders != null && !reminders.isEmpty()){
+						document.add(new Chunk(employeeInfo.getLastName() + " " + employeeInfo.getFirstName()));
+						for(String reminder : reminders){
+							// Add the list items to list        l
+							list.add(new ListItem(reminder));      
+						}
+						document.add(list);
+						document.newPage();
+					}
+				} 
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			document.close();
+		}
 	}
+	
 	
 	private Map<String,EmployeeInfo> getEmployeeReminderMap(List<EmployeeInfo> employeeList){
 		Map<String,EmployeeInfo> employeeRemindersMap = new HashMap<String, EmployeeInfo>();
