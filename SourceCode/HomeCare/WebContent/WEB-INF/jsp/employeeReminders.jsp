@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 </li>
 			 </ul>
 			</c:forEach>
-			<input type="button" value="Print All" onclick="printAllReminders()" />
+			<input type="button" value="Email All Employee Remiders" onclick="emailAllReminders()" />
 	</div>
 </form:form>
 <script type="text/javascript">
@@ -67,8 +67,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}); // END DOCUMENT READY
 
 	
-	function printAllReminders(){
-		$("#employeeInfoForm").attr("action","/HomeCare/printAllReminders.do");
+	function emailAllReminders(){
+		$("#employeeInfoForm").attr("action","/HomeCare/emailAllReminders.do");
 		$("#employeeInfoForm").submit();
 	}
 	

@@ -22,11 +22,12 @@ public interface IEmployeeInfoBO {
 
 	public void updateEmployeeInfo(EmployeeInfo employeeInfo);
 	
+	public void generatePDFAndEmailForAllEmployees();
+	
 	public Map<String,EmployeeInfo> getAllReminders();
 	
 	public Map<String,EmployeeInfo> getRemindersByEmployee(Long employeeId);
 	
 	public List<EmployeeInfo> deleteEmployeeInfo(Long employeeId);
 	
-	public void printAllReminders();
 }
