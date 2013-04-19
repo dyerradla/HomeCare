@@ -116,11 +116,10 @@ public class EmployeeController extends BaseFormController{
 		return modelAndView;
 	}
 
-	@RequestMapping("/printAllReminders")
-	public ModelAndView printAllReminders(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
-		employeeInfoBO.printAllReminders();
+	@RequestMapping("/emailAllReminders")
+	public ModelAndView emailAllReminders(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
+		employeeInfoBO.generatePDFAndEmailForAllEmployees();
 		return getReminders(employeeInfoForm, httpServletRequest);
 	}
-	
 }
 

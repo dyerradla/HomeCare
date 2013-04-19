@@ -1,8 +1,7 @@
 package com.homecare.bo;
 
-import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -49,23 +48,60 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		return employeeDAO.getAllEmployees(employeeInfo);
 	}
 
-	@Scheduled(cron="0 0 1 * * ?")
+	@Scheduled(cron="* * 1 * * ?")
 	@Async
 	public void generateEmail(){
 		System.out.println("*****Generate Email");
 		EmployeeInfo employeeInfoRequest = new EmployeeInfo();
 		List<EmployeeInfo> employeeInfoList = employeeDAO.getAllEmployees(employeeInfoRequest);
 		if(null != employeeInfoList){
-			String emailBody = "";
 			for(EmployeeInfo employeeInfo : employeeInfoList){
 				sendEmail(employeeInfo.getEmployeeId());
-				emailBody = getConcatenatedEmailBody(emailBody, employeeInfo);
 			}
+		}
+	}
+	
+	@Scheduled(cron="* * 1 * * ?")
+	@Async
+	public void generatePDFAndEmailForAllEmployees(){
+		System.out.println("************************************Print All the Reminders");
+		List<EmployeeInfo> employeeList = employeeDAO.getAllEmployees(new EmployeeInfo());
+	
+		Document document = new Document(); 
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		try {
+			PdfWriter.getInstance(document, out);        
+			document.open();     
+			if(null != employeeList){
+				for(EmployeeInfo employeeInfo : employeeList){
+					List<String> reminders = getRemindersByEmployee(employeeInfo);
+					com.itextpdf.text.List list = new com.itextpdf.text.List();
+					if(reminders != null && !reminders.isEmpty()){
+						document.add(new Chunk(employeeInfo.getLastName() + " " + employeeInfo.getFirstName()));
+						for(String reminder : reminders){
+							// Add the list items to list        l
+							list.add(new ListItem(reminder));      
+						}
+						document.add(list);
+						document.newPage();
+					}
+				} 
+			}
+			document.close();
+			EmailUtility emailUtility = new EmailUtility();
+			emailUtility.sendEmailWithAttachment("Reminders of all the employees", "prasad14_gitam@yahoo.com", out.toByteArray());
 			
-			// Concatenated Email of all the Employees to the Employer
-			if(!StringUtils.isEmpty(emailBody)){
-				EmailUtility emailUtility = new EmailUtility();
-				emailUtility.sendEmail("All Employee Reminders", "prasad14_gitam@yahoo.com", emailBody);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			//clean off           
+			if(null != out) {            
+				try { 
+					out.close();
+					out = null; 
+				}               
+				catch(Exception ex) { }       
 			}
 		}
 	}
@@ -113,40 +149,6 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		employeeList.add(employeeInfo);
 		return getEmployeeReminderMap(employeeList);
 	}
-	
-	
-	public void printAllReminders(){
-		System.out.println("************************************Print All the Reminders");
-		List<EmployeeInfo> employeeList = employeeDAO.getAllEmployees(new EmployeeInfo());
-	
-		Document document = new Document(); 
-		try {
-			OutputStream out = new FileOutputStream("C:/Softwares/test.pdf",false);
-			PdfWriter.getInstance(document, out);        
-			document.open();     
-			if(null != employeeList){
-				for(EmployeeInfo employeeInfo : employeeList){
-					List<String> reminders = getRemindersByEmployee(employeeInfo);
-					com.itextpdf.text.List list = new com.itextpdf.text.List();
-					if(reminders != null && !reminders.isEmpty()){
-						document.add(new Chunk(employeeInfo.getLastName() + " " + employeeInfo.getFirstName()));
-						for(String reminder : reminders){
-							// Add the list items to list        l
-							list.add(new ListItem(reminder));      
-						}
-						document.add(list);
-						document.newPage();
-					}
-				} 
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			document.close();
-		}
-	}
-	
 	
 	private Map<String,EmployeeInfo> getEmployeeReminderMap(List<EmployeeInfo> employeeList){
 		Map<String,EmployeeInfo> employeeRemindersMap = new HashMap<String, EmployeeInfo>();
