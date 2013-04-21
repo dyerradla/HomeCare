@@ -27,9 +27,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				  	<input type="button" value="Send Email" onclick="sendEmail(${employeeReminder.value.employeeId})"/>
 				  	<input type="button" value="Load Employee" onclick="loadEmployee(${employeeReminder.value.employeeId})"/>
 				  	<ul style="display: none;">
+				  		<c:if test="${empty employeeReminder.value.employeeReminderMessage}">No Reminders Found</c:if>
 				  	 	<c:forEach var="employeeReminderMessage" items="${employeeReminder.value.employeeReminderMessage}">
 					  		<li>
-							
 							 	<c:out value="${employeeReminderMessage}"/>
 						 	</li>
 				 		 </c:forEach>

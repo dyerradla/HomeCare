@@ -63,7 +63,7 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 			criteria.add(Restrictions.like("firstName", employeeInfo.getFirstName()));
 		}
 		
-		if(null != employeeInfo.getFirstName() && !"".equalsIgnoreCase(employeeInfo.getLastName())){
+		if(null != employeeInfo.getLastName() && !"".equalsIgnoreCase(employeeInfo.getLastName())){
 			criteria.add(Restrictions.like("lastName", employeeInfo.getLastName()));
 		}
 		

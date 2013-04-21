@@ -92,7 +92,6 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 			emailUtility.sendEmailWithAttachment("Reminders of all the employees", "prasad14_gitam@yahoo.com", out.toByteArray());
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			//clean off           
@@ -155,13 +154,9 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		if(null != employeeList && !employeeList.isEmpty()){
 			for(EmployeeInfo employeeInfo : employeeList){
 				List<String> employeeReminderList = getRemindersByEmployee(employeeInfo);
-
-				// If any of the reminders there then Put it in the Map with Last Name and First Name
-				if(!employeeReminderList.isEmpty()){
-					employeeInfo.setEmployeeReminderMessage(employeeReminderList);
-					employeeRemindersMap.put(employeeInfo.getLastName()+" "+employeeInfo.getMiddleName() + " "+employeeInfo.getFirstName(),
-							employeeInfo);
-				}
+				employeeInfo.setEmployeeReminderMessage(employeeReminderList);
+				employeeRemindersMap.put(employeeInfo.getLastName()+" "+employeeInfo.getMiddleName() + " "+employeeInfo.getFirstName(),
+						employeeInfo);
 			}
 		}
 		return employeeRemindersMap;
