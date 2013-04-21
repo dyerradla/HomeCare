@@ -35,9 +35,9 @@
 								<td class="column_label">Email Address:</td>
 								<td class="column_value"><form:input id="emailAddress" path="employeeInfo.emailAddress" /></td>
 								<td class="column_label">Phone Number:</td>
-								<td class="column_value"><form:input path="employeeInfo.phoneNumber" /></td>
+								<td class="column_value"><form:input id="phoneNumber" path="employeeInfo.phoneNumber" /></td>
 								<td class="column_label">Designation:</td>
-								<td class="column_value"><form:input path="employeeInfo.designation" /></td>
+								<td class="column_value"><form:input id="designation" path="employeeInfo.designation" /></td>
 							</tr>
 							<tr>
 								<td class="column_label">Employment Date:</td>
@@ -51,7 +51,7 @@
 						       	</td>
 						       	<td class="column_label">Department:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.department">
+									<form:select id="department" onchange="enableDisableFieldsOnDeptChange()" path="employeeInfo.department">
 							  			<form:option value='100' label="100-Admin" />
 							  			<form:option value='200' label="200-Clinical"/>
 							  			<form:option value='300' label="300-Contract"/>
@@ -68,7 +68,7 @@
 							<tr>
 								<td class="column_label">Application:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.application">
+									<form:select id="application" path="employeeInfo.application">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -76,7 +76,7 @@
 							
 								<td class="column_label">Resume:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.resume">
+									<form:select id="resume" path="employeeInfo.resume">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -84,7 +84,7 @@
 							
 								<td class="column_label">Reference Checks:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.referenceChecks">
+									<form:select id="referenceChecks" path="employeeInfo.referenceChecks">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -94,7 +94,7 @@
 							<tr>
 								<td class="column_label">Job Description:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.signedJobDescription">
+									<form:select id="signedJobDescription" path="employeeInfo.signedJobDescription">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -102,7 +102,7 @@
 		
 								<td class="column_label">Policy:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.policy">
+									<form:select id="policy" path="employeeInfo.policy">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -110,7 +110,7 @@
 		
 								<td class="column_label">Orientation:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.orientationChecklist">
+									<form:select id="orientationCheckList" path="employeeInfo.orientationChecklist">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -120,7 +120,7 @@
 							<tr>
 								<td class="column_label">Statement Of Confidentiality:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.statementOfConfidentiality">
+									<form:select id="statementOfConfidentiality" path="employeeInfo.statementOfConfidentiality">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -128,7 +128,7 @@
 							
 								<td class="column_label">Social Security Card:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.socialSecurityCard">
+									<form:select id="socialSecurityCard" path="employeeInfo.socialSecurityCard">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -136,7 +136,7 @@
 								
 								<td class="column_label">NonCompete:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.nonCompete">
+									<form:select id="nonCompete" path="employeeInfo.nonCompete">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -151,33 +151,33 @@
 						<table>
 							<tr>
 								<td class="column_label">Initial Comp Eval:</td>
-								<td class="column_value"><form:input readonly="true" path="employeeInfo.initialCompetencyEvaluation" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="initialCompetenceEvaluation" path="employeeInfo.initialCompetencyEvaluation" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Ongo Comp Eval:</td>
-								<td class="column_value"><form:input readonly="true" path="employeeInfo.ongoinCompetencyEvaluation" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="ongoinCompetenceEvaluation" path="employeeInfo.ongoinCompetencyEvaluation" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Annual Evaluation:</td>
-								<td class="column_value"><form:input readonly="true" path="employeeInfo.annualEvaluation" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="annualEvaluation" path="employeeInfo.annualEvaluation" cssClass="datepicker"/></td>
 							</tr>
 							
 							<tr>
 								<td class="column_label">Proof License:</td>
-								<td class="column_value"><form:input readonly="true" path="employeeInfo.profLicense" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="profLicense" path="employeeInfo.profLicense" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Auto Insurance:</td>
-								<td class="column_value"><form:input readonly="true" path="employeeInfo.proofValidCarInsurance" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="proofValidCarInsurance" path="employeeInfo.proofValidCarInsurance" cssClass="datepicker"/></td>
 								
 								<td class="column_label">CPR Card:</td>
-								<td class="column_value"><form:input readonly="true" path="employeeInfo.cprCard" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="cprCard" path="employeeInfo.cprCard" cssClass="datepicker"/></td>
 							</tr>
 							
 							<tr>
 								<td class="column_label">TB Test:</td>
-								<td class="column_value"><form:input readonly="true" path="employeeInfo.tbTest" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="tdTest" path="employeeInfo.tbTest" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Hippa Training:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.hippaTraining">
+									<form:select id="hippaTraining" path="employeeInfo.hippaTraining">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -185,7 +185,7 @@
 							
 								<td class="column_label">Osha Training:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.oshaTraining">
+									<form:select id="oshaTraining" path="employeeInfo.oshaTraining">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -194,11 +194,11 @@
 							
 							<tr>
 								<td class="column_label">Drivers License:</td>
-								<td class="column_value"><form:input readonly="true" path="employeeInfo.driversLicense" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="driversLicense" path="employeeInfo.driversLicense" cssClass="datepicker"/></td>
 							
 								<td class="column_label">HVB Test:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.hvbTest">
+									<form:select id="hvbTest" path="employeeInfo.hvbTest">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -206,7 +206,7 @@
 							
 								<td class="column_label">Verification Prof License:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.verificationProfLicense">
+									<form:select id="verificationProfLicense" path="employeeInfo.verificationProfLicense">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -223,7 +223,7 @@
 							<tr>
 								<td class="column_label">I9:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.i9">
+									<form:select id="i9" path="employeeInfo.i9">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -231,7 +231,7 @@
 		
 								<td class="column_label">Federal W4:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.federalW4">
+									<form:select id="federalW4" path="employeeInfo.federalW4">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -239,7 +239,7 @@
 		
 								<td class="column_label">Michigan W4:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.michiganW4">
+									<form:select id="michiganW4" path="employeeInfo.michiganW4">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -249,7 +249,7 @@
 							<tr>
 								<td class="column_label">Criminal Check:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.criminalCheck">
+									<form:select id="crimialCheck" path="employeeInfo.criminalCheck">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -257,7 +257,7 @@
 								
 								<td class="column_label">Authorization Criminal Check:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.authorizationCriminalCheck">
+									<form:select id="authorizationCriminalCheck" path="employeeInfo.authorizationCriminalCheck">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -265,7 +265,7 @@
 							
 								<td class="column_label">Fingerprints Results:</td>
 								<td class="column_value">
-									<form:select path="employeeInfo.fingerprintsResults">
+									<form:select id="fingerprintsResults" path="employeeInfo.fingerprintsResults">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -288,6 +288,7 @@
 	</table>
 </form:form>
 <script>
+	enableDisableFieldsOnDeptChange();
 	function validateForm(){
 		var errorMessage = "";
 		var errorExists = false;
@@ -322,6 +323,44 @@
 		}
 	}
 	
+	function enableDisableFieldsOnDeptChange(){
+		$("#employeeInfoForm :input").removeAttr("disabled");
+		$("#employeeInfoForm :input").removeAttr("disabled");
+		if("100" == $('#department').val()){
+			$('#profLicense').attr("disabled","disabled");
+			$('#cprCard').attr("disabled","disabled");
+			$('#tbTest').attr("disabled","disabled");
+			$('#osha').attr("disabled","disabled");
+			$('#hvbTest').attr("disabled","disabled");
+			$('#verificationProfLicense').attr("disabled","disabled");
+		}
+		if("300" == $('#department').val()){
+			$('#application').attr("disabled","disabled");
+			$('#resume').attr("disabled","disabled");
+			$('#referenceChecks').attr("disabled","disabled");
+			$('#policy').attr("disabled","disabled");
+			$('#stateOfConfidentiality').attr("disabled","disabled");
+			$('#socialSecurityCard').attr("disabled","disabled");
+			$('#nonCompete').attr("disabled","disabled");
+			
+			// Licenses Section
+			$('#initialCompetency').attr("disabled","disabled");
+			$('#ongoinCompetency').attr("disabled","disabled");
+			$('#annualEvalutaion').attr("disabled","disabled");
+			$('#autoInsurance').attr("disabled","disabled");
+			$('#hippa').attr("disabled","disabled");
+			$('#osha').attr("disabled","disabled");
+			$('#hvbTest').attr("disabled","disabled");
+			
+			// Employment Section
+			$('#i9').attr("disabled","disabled");
+			$('#federalW4').attr("disabled","disabled");
+			$('#michiganW4').attr("disabled","disabled");
+			$('#criminalCheck').attr("disabled","disabled");
+			$('#authorizationCriminalCheck').attr("disabled","disabled");
+			$('#fingerPrintResults').attr("disabled","disabled");
+		}
+	}
 	
 	function newEmployee(){
 		$("#employeeInfoForm").attr("action","/HomeCare/loadEmployeeInfo.do?newEmployee=Y");
