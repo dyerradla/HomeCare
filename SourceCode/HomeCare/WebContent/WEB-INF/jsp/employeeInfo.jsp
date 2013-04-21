@@ -10,27 +10,30 @@
 <script>
 	$(function() {
 		$( '.datepicker' ).datepicker();
-		$( '.datepicker' ).change(function(){
+		$( '.datepicker' ).blur(function(){
 			var valid = true;
 			var date = this.value;
-			date = date.replace('/-/g', '');
-	        var month = date.substring(0, 2);
-	        var day   = date.substring(3, 5);
-	        var year  = date.substring(6, 10);
+			if(date != '' && date.length != 0){
+				date = date.replace('/-/g', '');
+		        var month = date.substring(0, 2);
+		        var day   = date.substring(3, 5);
+		        var year  = date.substring(6, 10);
 
-	        if(date.length != 10 || month.length != 2 || day.length != 2 || year.length != 4){
-	        	valid = false;
-	        }
-	        if(valid){
-	        	if((month < 1) || (month > 12)) valid = false;
-		        else if((day < 1) || (day > 31)) valid = false;
-		        else if(((month == 4) || (month == 6) || (month == 9) || (month == 11)) && (day > 30)) valid = false;
-		        else if((month == 2) && (((year % 400) == 0) || ((year % 4) == 0)) && ((year % 100) != 0) && (day > 29)) valid = false;
-		        else if((month == 2) && ((year % 100) == 0) && (day > 29)) valid = false;	
-	        }
+		        if(date.length != 10 || month.length != 2 || day.length != 2 || year.length != 4){
+		        	valid = false;
+		        }
+		        if(valid){
+		        	if((month < 1) || (month > 12)) valid = false;
+			        else if((day < 1) || (day > 31)) valid = false;
+			        else if(((month == 4) || (month == 6) || (month == 9) || (month == 11)) && (day > 30)) valid = false;
+			        else if((month == 2) && (((year % 400) == 0) || ((year % 4) == 0)) && ((year % 100) != 0) && (day > 29)) valid = false;
+			        else if((month == 2) && ((year % 100) == 0) && (day > 29)) valid = false;	
+		        }	
+			}
+			
 			if(!valid){
 				alert("Please enter the date in MM/DD/YYYY format or select it from calendar");
-				this.focus();
+				$(this).focus();
 			}
 		});
 	});
