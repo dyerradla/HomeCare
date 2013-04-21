@@ -151,10 +151,10 @@
 						<table>
 							<tr>
 								<td class="column_label">Initial Comp Eval:</td>
-								<td class="column_value"><form:input id="initialCompetenceEvaluation" path="employeeInfo.initialCompetencyEvaluation" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="initialCompetencyEvaluation" path="employeeInfo.initialCompetencyEvaluation" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Ongo Comp Eval:</td>
-								<td class="column_value"><form:input id="ongoinCompetenceEvaluation" path="employeeInfo.ongoinCompetencyEvaluation" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="ongoinCompetencyEvaluation" path="employeeInfo.ongoinCompetencyEvaluation" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Annual Evaluation:</td>
 								<td class="column_value"><form:input id="annualEvaluation" path="employeeInfo.annualEvaluation" cssClass="datepicker"/></td>
@@ -346,7 +346,7 @@
 			// Licenses Section
 			$('#initialCompetencyEvaluation').attr("disabled","disabled");
 			$('#ongoinCompetencyEvaluation').attr("disabled","disabled");
-			$('#annualEvalutaion').attr("disabled","disabled");
+			$('#annualEvaluation').attr("disabled","disabled");
 			$('#hippaTraining').attr("disabled","disabled");
 			$('#oshaTraining').attr("disabled","disabled");
 			$('#hvbTest').attr("disabled","disabled");
