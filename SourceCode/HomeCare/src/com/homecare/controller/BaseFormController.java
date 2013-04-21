@@ -25,7 +25,6 @@ public class BaseFormController implements ApplicationContextAware{
 		Map<Character,String> yesNoMap = new LinkedHashMap<Character,String>();
 		yesNoMap.put('Y', "Yes");
 		yesNoMap.put('N', "No");
-		yesNoMap.put('U', "N/A");
 		referenceData.put("yesNoList", yesNoMap);
  
 		return referenceData;
