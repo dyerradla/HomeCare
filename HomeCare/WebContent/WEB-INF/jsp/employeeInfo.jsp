@@ -173,7 +173,7 @@
 							
 							<tr>
 								<td class="column_label">TB Test:</td>
-								<td class="column_value"><form:input id="tdTest" path="employeeInfo.tbTest" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="tbTest" path="employeeInfo.tbTest" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Hippa Training:</td>
 								<td class="column_value">
@@ -249,7 +249,7 @@
 							<tr>
 								<td class="column_label">Criminal Check:</td>
 								<td class="column_value">
-									<form:select id="crimialCheck" path="employeeInfo.criminalCheck">
+									<form:select id="criminalCheck" path="employeeInfo.criminalCheck">
 							  			<form:option value='' label="--Select--" />
 							  			<form:options items="${yesNoList}" />
 						       		</form:select>
@@ -330,7 +330,7 @@
 			$('#profLicense').attr("disabled","disabled");
 			$('#cprCard').attr("disabled","disabled");
 			$('#tbTest').attr("disabled","disabled");
-			$('#osha').attr("disabled","disabled");
+			$('#oshaTraining').attr("disabled","disabled");
 			$('#hvbTest').attr("disabled","disabled");
 			$('#verificationProfLicense').attr("disabled","disabled");
 		}
@@ -339,17 +339,16 @@
 			$('#resume').attr("disabled","disabled");
 			$('#referenceChecks').attr("disabled","disabled");
 			$('#policy').attr("disabled","disabled");
-			$('#stateOfConfidentiality').attr("disabled","disabled");
+			$('#statementOfConfidentiality').attr("disabled","disabled");
 			$('#socialSecurityCard').attr("disabled","disabled");
 			$('#nonCompete').attr("disabled","disabled");
 			
 			// Licenses Section
-			$('#initialCompetency').attr("disabled","disabled");
-			$('#ongoinCompetency').attr("disabled","disabled");
+			$('#initialCompetencyEvaluation').attr("disabled","disabled");
+			$('#ongoinCompetencyEvaluation').attr("disabled","disabled");
 			$('#annualEvalutaion').attr("disabled","disabled");
-			$('#autoInsurance').attr("disabled","disabled");
-			$('#hippa').attr("disabled","disabled");
-			$('#osha').attr("disabled","disabled");
+			$('#hippaTraining').attr("disabled","disabled");
+			$('#oshaTraining').attr("disabled","disabled");
 			$('#hvbTest').attr("disabled","disabled");
 			
 			// Employment Section
@@ -358,7 +357,7 @@
 			$('#michiganW4').attr("disabled","disabled");
 			$('#criminalCheck').attr("disabled","disabled");
 			$('#authorizationCriminalCheck').attr("disabled","disabled");
-			$('#fingerPrintResults').attr("disabled","disabled");
+			$('#fingerprintsResults').attr("disabled","disabled");
 		}
 	}
 	
