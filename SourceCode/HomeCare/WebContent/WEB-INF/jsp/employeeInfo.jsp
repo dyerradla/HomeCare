@@ -7,39 +7,6 @@
 <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<script>
-	$(function() {
-		$( '.datepicker' ).datepicker();
-		$( '.datepicker' ).blur(function(){
-			var valid = true;
-			var date = this.value;
-			if(date != '' && date.length != 0){
-				date = date.replace('/-/g', '');
-		        var month = date.substring(0, 2);
-		        var day   = date.substring(3, 5);
-		        var year  = date.substring(6, 10);
-
-		        if(date.length != 10 || month.length != 2 || day.length != 2 || year.length != 4){
-		        	valid = false;
-		        }
-		        if(valid){
-		        	if((month < 1) || (month > 12)) valid = false;
-			        else if((day < 1) || (day > 31)) valid = false;
-			        else if(((month == 4) || (month == 6) || (month == 9) || (month == 11)) && (day > 30)) valid = false;
-			        else if((month == 2) && (((year % 400) == 0) || ((year % 4) == 0)) && ((year % 100) != 0) && (day > 29)) valid = false;
-			        else if((month == 2) && ((year % 100) == 0) && (day > 29)) valid = false;	
-		        }	
-			}
-			
-			if(!valid){
-				alert("Please enter the date in MM/DD/YYYY format or select it from calendar");
-				$(this).focus();
-			}
-		});
-	});
-	
-	
-</script>
 <form:form id="employeeInfoForm" name="employeeInfoForm" action="saveEmployeeInfo.do">
 	<input type="hidden" name="employeeInfo.employeeId" value="${command.employeeInfo.employeeId}" />
 	<table>
@@ -51,23 +18,23 @@
 						<table style="width:100%;">
 							<tr>
 								<td class="column_label">First Name:</td>
-								<td class="column_value"><form:input id="firstName" path="employeeInfo.firstName" /></td>
+								<td class="column_value"><form:input maxlength="32" id="firstName" path="employeeInfo.firstName" /></td>
 								<td class="column_label">Middle Name:</td>
-								<td class="column_value"><form:input path="employeeInfo.middleName" /></td>
+								<td class="column_value"><form:input maxlength="1" path="employeeInfo.middleName" /></td>
 								<td class="column_label">Last Name:</td>
-								<td class="column_value"><form:input id="lastName" path="employeeInfo.lastName" /></td>
+								<td class="column_value"><form:input maxlength="32" id="lastName" path="employeeInfo.lastName" /></td>
 							</tr>
 							<tr>
 								<td class="column_label">Email Address:</td>
-								<td class="column_value"><form:input id="emailAddress" path="employeeInfo.emailAddress" /></td>
+								<td class="column_value"><form:input id="emailAddress" maxlength="50" path="employeeInfo.emailAddress" /></td>
 								<td class="column_label">Phone Number:</td>
-								<td class="column_value"><form:input id="phoneNumber" path="employeeInfo.phoneNumber" /></td>
+								<td class="column_value"><form:input id="phoneNumber" maxlength="10" path="employeeInfo.phoneNumber" /></td>
 								<td class="column_label">Designation:</td>
-								<td class="column_value"><form:input id="designation" path="employeeInfo.designation" /></td>
+								<td class="column_value"><form:input id="designation" maxlength="20" path="employeeInfo.designation" /></td>
 							</tr>
 							<tr>
 								<td class="column_label">Employment Date:</td>
-								<td class="column_value"><form:input id="employmentDate" path="employeeInfo.employmentDate" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="employmentDate" maxlength="10" path="employeeInfo.employmentDate" cssClass="datepicker"/></td>
 								<td class="column_label">Status:</td>
 								<td class="column_value">
 									<form:select path="employeeInfo.status">
@@ -177,29 +144,29 @@
 						<table>
 							<tr>
 								<td class="column_label">Initial Comp Eval:</td>
-								<td class="column_value"><form:input id="initialCompetencyEvaluation" path="employeeInfo.initialCompetencyEvaluation" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="initialCompetencyEvaluation" maxlength="10" path="employeeInfo.initialCompetencyEvaluation" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Ongo Comp Eval:</td>
-								<td class="column_value"><form:input id="ongoinCompetencyEvaluation" path="employeeInfo.ongoinCompetencyEvaluation" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="ongoinCompetencyEvaluation" maxlength="10" path="employeeInfo.ongoinCompetencyEvaluation" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Annual Evaluation:</td>
-								<td class="column_value"><form:input id="annualEvaluation" path="employeeInfo.annualEvaluation" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="annualEvaluation" maxlength="10" path="employeeInfo.annualEvaluation" cssClass="datepicker"/></td>
 							</tr>
 							
 							<tr>
 								<td class="column_label">Proof License:</td>
-								<td class="column_value"><form:input id="profLicense" path="employeeInfo.profLicense" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="profLicense" maxlength="10" path="employeeInfo.profLicense" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Auto Insurance:</td>
-								<td class="column_value"><form:input id="proofValidCarInsurance" path="employeeInfo.proofValidCarInsurance" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="proofValidCarInsurance" maxlength="10" path="employeeInfo.proofValidCarInsurance" cssClass="datepicker"/></td>
 								
 								<td class="column_label">CPR Card:</td>
-								<td class="column_value"><form:input id="cprCard" path="employeeInfo.cprCard" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="cprCard" maxlength="10" path="employeeInfo.cprCard" cssClass="datepicker"/></td>
 							</tr>
 							
 							<tr>
 								<td class="column_label">TB Test:</td>
-								<td class="column_value"><form:input id="tbTest" path="employeeInfo.tbTest" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="tbTest" maxlength="10" path="employeeInfo.tbTest" cssClass="datepicker"/></td>
 							
 								<td class="column_label">Hippa Training:</td>
 								<td class="column_value">
@@ -220,7 +187,7 @@
 							
 							<tr>
 								<td class="column_label">Drivers License:</td>
-								<td class="column_value"><form:input id="driversLicense" path="employeeInfo.driversLicense" cssClass="datepicker"/></td>
+								<td class="column_value"><form:input id="driversLicense" maxlength="10" path="employeeInfo.driversLicense" cssClass="datepicker"/></td>
 							
 								<td class="column_label">HVB Test:</td>
 								<td class="column_value">
@@ -308,13 +275,43 @@
 				<input type="button" value="New Employee" onclick="newEmployee()">	
 				<input type="button" value="Get All Employees" onclick="getAllEmployees()">
 				<input type="button" value="Get Reminders" onclick="getRemindersByEmployee(${command.employeeInfo.employeeId})">
-				
 			</td>
 		</tr>
 	</table>
 </form:form>
 <script>
 	enableDisableFieldsOnDeptChange();
+	
+	$(function() {
+		$( '.datepicker' ).datepicker();
+		$( '.datepicker' ).blur(function(){
+			var valid = true;
+			var date = this.value;
+			if(date != '' && date.length != 0){
+				date = date.replace('/-/g', '');
+		        var month = date.substring(0, 2);
+		        var day   = date.substring(3, 5);
+		        var year  = date.substring(6, 10);
+
+		        if(date.length != 10 || month.length != 2 || day.length != 2 || year.length != 4){
+		        	valid = false;
+		        }
+		        if(valid){
+		        	if((month < 1) || (month > 12)) valid = false;
+			        else if((day < 1) || (day > 31)) valid = false;
+			        else if(((month == 4) || (month == 6) || (month == 9) || (month == 11)) && (day > 30)) valid = false;
+			        else if((month == 2) && (((year % 400) == 0) || ((year % 4) == 0)) && ((year % 100) != 0) && (day > 29)) valid = false;
+			        else if((month == 2) && ((year % 100) == 0) && (day > 29)) valid = false;	
+		        }	
+			}
+			
+			if(!valid){
+				alert("Please enter the date in MM/DD/YYYY format or select it from calendar");
+				$(this).focus();
+			}
+		});
+	});
+	
 	function validateForm(){
 		var errorMessage = "";
 		var errorExists = false;
