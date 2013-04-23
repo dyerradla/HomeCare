@@ -49,7 +49,8 @@ public class EmployeeController extends BaseFormController{
 		if(null != employeeId && !StringUtils.isEmpty(employeeId)){
 			employeeInfoBO.sendEmail(new Long(employeeId));
 		}
-		return null;
+		ModelAndView modelAndView = new ModelAndView("employeeReminders");
+		return modelAndView;
 	}
 	
 	@RequestMapping("/deleteEmployeeInfo")
