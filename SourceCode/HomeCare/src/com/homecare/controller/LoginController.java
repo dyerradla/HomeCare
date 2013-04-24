@@ -32,6 +32,15 @@ public class LoginController extends BaseFormController{
 		return modelAndView;
 	}
 	
+	@RequestMapping("/logout")
+	public ModelAndView logout(@ModelAttribute("command") UserForm userForm, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws ServletException, IOException{
+		if(null != httpServletRequest.getSession()){
+			httpServletRequest.getSession().removeAttribute("user");
+		}
+		ModelAndView modelAndView = new ModelAndView("login");
+		return modelAndView;
+	}
+	
 	@RequestMapping("/validateUser")
 	public ModelAndView validateUser(@ModelAttribute("command") UserForm userForm, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws ServletException, IOException{
 		boolean validUser = false;

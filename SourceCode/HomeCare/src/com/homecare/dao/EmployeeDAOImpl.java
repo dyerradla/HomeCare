@@ -18,7 +18,7 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 	 * Get the Employee information for the given employeeId
 	 */
 	public EmployeeInfo getEmployeeInfoByEmployeeId(Long employeeId) {
-		logger.debug("Entering getEmployeeInfo of EmployeeDAOImpl with employeeId:"+employeeId);
+		logger.debug("Entering getEmployeeInfoByEmployeeId of EmployeeDAOImpl with employeeId:"+employeeId);
 		EmployeeInfo employeeInfo = (EmployeeInfo)loadObjectByPrimaryKey(EmployeeInfo.class, employeeId);
 		logger.debug("Exiting getEmployeeInfo of EmployeeDAOImpl with employeeId:"+employeeId);
 		return employeeInfo;
@@ -29,7 +29,7 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 	 * Get the List of all the employees by given Search Criteria
 	 */
 	public EmployeeInfo getEmployeeInfo(EmployeeInfo employeeInfo) {
-		logger.debug("Entering getAllEmployees of EmployeeDAOImpl");
+		logger.debug("Entering getEmployeeInfo of EmployeeDAOImpl");
 		Criteria criteria = getSession().createCriteria(EmployeeInfo.class);
 		if(StringUtils.isNotBlank(employeeInfo.getLastName())){
 			criteria.add(Restrictions.like("lastName", employeeInfo.getLastName()));
@@ -62,9 +62,11 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 		if(null != employeeInfo.getFirstName() && !"".equalsIgnoreCase(employeeInfo.getFirstName())){
 			criteria.add(Restrictions.like("firstName", employeeInfo.getFirstName()));
 		}
-		
 		if(null != employeeInfo.getLastName() && !"".equalsIgnoreCase(employeeInfo.getLastName())){
 			criteria.add(Restrictions.like("lastName", employeeInfo.getLastName()));
+		}
+		if(null != employeeInfo.getStatus() && !"".equalsIgnoreCase(employeeInfo.getStatus())){
+			criteria.add(Restrictions.like("status", employeeInfo.getStatus()));
 		}
 		
 		List<EmployeeInfo> employeeList = criteria.list();
@@ -86,114 +88,4 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 		EmployeeInfo employeeInfo  = getEmployeeInfoByEmployeeId(employeeId);
 		deleteObject(employeeInfo);
 	}
-	
-	
-	
-//	/**
-//	 * Get all the Reminders
-//	 * @return
-//	 */
-//	public List<EmployeeInfo> getAllReminders(){
-//		logger.debug("Entering getAllReminders of EmployeeDAOImpl");
-//		 		 
-//		 Query selectQuery = getSession().createQuery(getRemindersQuery(null).toString());
-//		
-//		List<EmployeeInfo> employeeList = selectQuery.list();
-//		logger.debug("Exiting getAllReminders of EmployeeDAOImpl"+employeeList.size());
-//		return employeeList;
-//	}
-//	
-//	private StringBuilder getRemindersQuery(Long employeeId){
-//		StringBuilder query = new StringBuilder("from EmployeeInfo ");
-//		 Calendar currentcal = Calendar.getInstance();
-//		 currentcal.add(Calendar.MONTH, 1);
-//		 
-//		 //Applying the restrictions on Application
-//		 query.append(" where application != 'Y'");
-//		 
-//		//Applying the restrictions on Resume
-//		 query.append(" OR resume != 'Y'");
-//		 
-//		//Applying the restrictions on Reference Checks
-//		 query.append(" OR referenceChecks != 'Y'");
-//		 
-//		//Applying the restrictions on SignedJobDescription
-//		 query.append(" OR signedJobDescription != 'Y'");
-//		 
-//		//Applying the restrictions on OrientationChecklist
-//		 query.append(" OR orientationChecklist != 'Y'");
-//		 
-//		//Applying the restrictions on StatementOfConfidentiality
-//		 query.append(" OR statementOfConfidentiality != 'Y'");
-//		 
-//		//Applying the restrictions on Policy
-//		 query.append(" OR policy != 'Y'"); 
-//
-//		//Applying the restrictions on HippaTraining
-//		 query.append(" OR hippaTraining != 'Y'");  
-//		
-//		//Applying the restrictions on OshaTraining
-//		 query.append(" OR oshaTraining != 'Y'");  
-//		
-//		//Applying the restrictions on VerificationProfLicense
-//		 query.append(" OR verificationProfLicense != 'Y'");
-//		 
-//		//Applying the restrictions on SocialSecurityCard
-//		 query.append(" OR socialSecurityCard != 'Y'");
-//		 
-//		//Applying the restrictions on NonCompete
-//		 query.append(" OR nonCompete != 'Y'"); 
-//		
-//		//Applying the restrictions on AuthorizationCriminalCheck
-//		 query.append(" OR authorizationCriminalCheck != 'Y'");
-//		 
-//		//Applying the restrictions on CriminalCheck
-//		 query.append(" OR criminalCheck != 'Y'");
-//		 
-//		//Applying the restrictions on FingerprintsResults
-//		 query.append(" OR fingerprintsResults != 'Y'");
-//		 
-//		//Applying the restrictions on FederalW4
-//		 query.append(" OR federalW4 != 'Y'");
-//		 
-//		//Applying the restrictions on MichiganW4
-//		 query.append(" OR michiganW4 != 'Y'"); 
-//		
-//		//Applying the restrictions on I9
-//		 query.append(" OR i9 != 'Y'");
-//		 
-//		//Applying the restrictions on HvbTest
-//		 query.append(" OR hvbTest != 'Y'");
-//		 
-//		 // Applying the Restrictions on CPR card
-//		 query.append(" OR initialCompetencyEvaluation <= '"+currentcal.getTime()+"'");
-//		
-//		 // Applying the Restrictions on CPR card
-//		 query.append(" OR ongoinCompetencyEvaluation <= '"+currentcal.getTime()+"'");
-//		
-//		 // Applying the Restrictions on CPR card
-//		 query.append(" OR annualEvaluation <= '"+currentcal.getTime()+"'");
-//		
-//		 // Applying the Restrictions on CPR card
-//		 query.append(" OR cprCard <= '"+currentcal.getTime()+"'");
-//		
-//		 // Applying the Restrictions on CPR card
-//		 query.append(" OR profLicense <= '"+currentcal.getTime()+"'");
-//		
-//		 // Applying the Restrictions on CPR card
-//		 query.append(" OR driversLicense <= '"+currentcal.getTime()+"'");
-//		
-//		 // Applying the Restrictions on CPR card
-//		 query.append(" OR proofValidCarInsurance <= '"+currentcal.getTime()+"'");
-//		
-//		 // Applying the Restrictions on CPR card
-//		 query.append(" OR tbTest <= '"+currentcal.getTime()+"'");
-
-//		 if(null != employeeId){
-//			//Applying the restrictions on Application
-//			 query.append(" WHERE employeeId = '"+employeeId+"'");
-//		 }
-//
-//		 return query;
-//	}
 }

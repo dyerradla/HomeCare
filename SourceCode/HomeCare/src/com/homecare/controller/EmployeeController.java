@@ -67,6 +67,7 @@ public class EmployeeController extends BaseFormController{
 		EmployeeInfo employeeInfo = employeeInfoForm.getEmployeeInfo();
 		employeeInfo.setFirstName(employeeInfoForm.getSelectedEmployeeFirstName());
 		employeeInfo.setLastName(employeeInfoForm.getSelectedEmployeeLastName());
+		employeeInfo.setStatus(employeeInfoForm.getSelectedStatus());
 		List<EmployeeInfo> employeeList = employeeInfoBO.getAllEmployees(employeeInfo);
 		ModelAndView modelAndView = new ModelAndView("employeeList");
 		modelAndView.addObject("employeeList", employeeList);
@@ -119,7 +120,7 @@ public class EmployeeController extends BaseFormController{
 
 	@RequestMapping("/emailAllReminders")
 	public ModelAndView emailAllReminders(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
-		employeeInfoBO.generatePDFAndEmailForAllEmployees();
+		employeeInfoBO.generatePDFAndEmailForAllActiveEmployees();
 		return getReminders(employeeInfoForm, httpServletRequest);
 	}
 }

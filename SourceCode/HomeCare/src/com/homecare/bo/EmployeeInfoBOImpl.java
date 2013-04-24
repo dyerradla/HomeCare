@@ -53,6 +53,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	public void generateEmail(){
 		System.out.println("*****Generate Email");
 		EmployeeInfo employeeInfoRequest = new EmployeeInfo();
+		employeeInfoRequest.setStatus("A");
 		List<EmployeeInfo> employeeInfoList = employeeDAO.getAllEmployees(employeeInfoRequest);
 		if(null != employeeInfoList){
 			for(EmployeeInfo employeeInfo : employeeInfoList){
@@ -63,9 +64,11 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	
 	@Scheduled(cron="* * 1 * * ?")
 	@Async
-	public void generatePDFAndEmailForAllEmployees(){
+	public void generatePDFAndEmailForAllActiveEmployees(){
 		System.out.println("************************************Print All the Reminders");
-		List<EmployeeInfo> employeeList = employeeDAO.getAllEmployees(new EmployeeInfo());
+		EmployeeInfo employeeInfoRequest = new EmployeeInfo();
+		employeeInfoRequest.setStatus("A");
+		List<EmployeeInfo> employeeList = employeeDAO.getAllEmployees(employeeInfoRequest);
 	
 		Document document = new Document(); 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -138,7 +141,9 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	}
 	
 	public Map<String,EmployeeInfo> getAllReminders() {
-		List<EmployeeInfo> employeeList = employeeDAO.getAllEmployees(new EmployeeInfo());
+		EmployeeInfo employeeInfo = new EmployeeInfo();
+		employeeInfo.setStatus("A");
+		List<EmployeeInfo> employeeList = employeeDAO.getAllEmployees(employeeInfo);
 		return getEmployeeReminderMap(employeeList);
 	}
 	
@@ -211,8 +216,6 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		if(null == employeeInfo.getPolicy() || employeeInfo.getPolicy() =='N'){
 			employeeReminderList.add(properties.getProperty("POLICY_REMINDER"));
 		}
-		
-	
 		
 		if(null == employeeInfo.getSocialSecurityCard() || employeeInfo.getSocialSecurityCard() =='N'){
 			employeeReminderList.add(properties.getProperty("SSN_REMINDER"));
