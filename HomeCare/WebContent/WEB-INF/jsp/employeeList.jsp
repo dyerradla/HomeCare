@@ -12,6 +12,13 @@
 		<tr>
 			<td>First Name:<form:input type="text" path="selectedEmployeeFirstName"></form:input></td>
 			<td>Last Name:<form:input type="text" path="selectedEmployeeLastName"></form:input></td>
+			<td>Status:
+				<form:select id="selectedStatus" path="selectedStatus" >
+					<form:option value="">All</form:option>
+					<form:option value="A">Active</form:option>
+					<form:option value="IA">In Active</form:option>
+				</form:select>
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2">

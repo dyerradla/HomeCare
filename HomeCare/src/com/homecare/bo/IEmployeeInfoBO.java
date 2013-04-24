@@ -22,7 +22,7 @@ public interface IEmployeeInfoBO {
 
 	public void updateEmployeeInfo(EmployeeInfo employeeInfo);
 	
-	public void generatePDFAndEmailForAllEmployees();
+	public void generatePDFAndEmailForAllActiveEmployees();
 	
 	public Map<String,EmployeeInfo> getAllReminders();
 	
