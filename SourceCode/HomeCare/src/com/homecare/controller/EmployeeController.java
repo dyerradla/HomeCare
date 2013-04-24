@@ -97,6 +97,7 @@ public class EmployeeController extends BaseFormController{
 		EmployeeInfo employeeInfo = employeeInfoForm.getEmployeeInfo();
 		employeeInfo.setCreateUserId("Dummy User");
 		employeeInfoBO.updateEmployeeInfo(employeeInfo);
+		employeeInfoForm.setEmployeeSaved("Y");
 		ModelAndView modelAndView = new ModelAndView("employeeInfo"); 
 		modelAndView.addObject("yesNoList", referenceData().get("yesNoList"));
 		return modelAndView;
