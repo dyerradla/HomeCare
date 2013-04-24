@@ -9,6 +9,7 @@
 
 <form:form id="employeeInfoForm" name="employeeInfoForm" action="saveEmployeeInfo.do">
 	<input type="hidden" name="employeeInfo.employeeId" value="${command.employeeInfo.employeeId}" />
+	<form:hidden path="employeeSaved"/>
 	<table>
 		<tr>
 			<td>
@@ -271,7 +272,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="button" value="Submit" onclick="validateForm()">
+				<input type="button" value="Submit" onclick="submitEmployee()">
 				<input type="button" value="New Employee" onclick="newEmployee()">	
 				<input type="button" value="Get All Employees" onclick="getAllEmployees()">
 				<input type="button" value="Get Reminders" onclick="getRemindersByEmployee(${command.employeeInfo.employeeId})">
@@ -310,7 +311,20 @@
 				$(this).focus();
 			}
 		});
+		
+		// If Employee is saved then we are showing this alert
+		if($('#employeeSaved').val()){
+			$('#employeeSaved').val('N');
+			alert('Employee Information Saved Sucessfully');
+		}
 	});
+	
+	function submitEmployee(){
+		$("#employeeInfoForm").attr("action","/HomeCare/saveEmployeeInfo.do");
+		if(!validateForm()){
+			$("#employeeInfoForm").submit();		
+		}
+	}
 	
 	function validateForm(){
 		var errorMessage = "";
@@ -340,10 +354,9 @@
 		}
 		if(errorExists){
 			alert(errorMessage);
-			return false;
-		}else{
-			$("#employeeInfoForm").submit();	
 		}
+		
+		return errorExists;
 	}
 	
 	function enableDisableFieldsOnDeptChange(){

@@ -9,6 +9,7 @@ public class EmployeeInfoForm {
 	public String selectedEmployeeLastName;
 	public String selectedEmployeeFirstName;
 	public String selectedStatus;
+	public String employeeSaved;
 	public EmployeeInfo getEmployeeInfo() {
 		return employeeInfo;
 	}
@@ -39,5 +40,13 @@ public class EmployeeInfoForm {
 
 	public void setSelectedStatus(String selectedStatus) {
 		this.selectedStatus = selectedStatus;
+	}
+
+	public String getEmployeeSaved() {
+		return employeeSaved;
+	}
+
+	public void setEmployeeSaved(String employeeSaved) {
+		this.employeeSaved = employeeSaved;
 	}
 }
