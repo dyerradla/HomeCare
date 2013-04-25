@@ -255,7 +255,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		// The Reminder should come from 2 months
 		employmentDate.add(Calendar.MONTH, 2);
 		if(null == employeeInfo.getOngoinCompetencyEvaluation() 
-				&& currentDate.after(employmentDate.getTime())){
+				&& currentDate.before(employmentDate.getTime())){
 			employeeReminderList.add(properties.getProperty("ONGOING_COMPETENCY_REMINDER"));
 		}
 		
