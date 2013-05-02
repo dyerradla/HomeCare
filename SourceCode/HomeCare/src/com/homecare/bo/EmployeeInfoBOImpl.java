@@ -124,11 +124,12 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		EmployeeInfo employeeInfo = employeeDAO.getEmployeeInfoByEmployeeId(employeeId);
 		List<String> employeeReminderList = getRemindersByEmployee(employeeInfo);
 		// Send an email
-		String concatenatedReminderString ="";
+		String concatenatedReminderString ="<table>";
 		for(String remiderString : employeeReminderList){
-			concatenatedReminderString += remiderString + "\n\n";
+			concatenatedReminderString += "<tr><td>"+remiderString + "\n\n</td></tr>";
 		}
-		if(!StringUtils.isEmpty(concatenatedReminderString)){
+		concatenatedReminderString += "</table>";
+		if(!employeeReminderList.isEmpty()){
 			EmailUtility emailUtility = new EmailUtility();
 			emailUtility.sendEmail("Reminders", employeeInfo.getEmailAddress(), concatenatedReminderString);
 		}
@@ -255,7 +256,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		// The Reminder should come from 2 months
 		employmentDate.add(Calendar.MONTH, 2);
 		if(null == employeeInfo.getOngoinCompetencyEvaluation() 
-				&& currentDate.after(employmentDate.getTime())){
+				&& currentDate.getTime().after(employmentDate.getTime())){
 			employeeReminderList.add(properties.getProperty("ONGOING_COMPETENCY_REMINDER"));
 		}
 		
