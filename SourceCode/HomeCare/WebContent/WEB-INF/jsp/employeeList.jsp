@@ -71,7 +71,11 @@ table.alternateColor tr.selectRow
 
 $("#employeeListTable tr").click(function(){
 	$(this).addClass("selectRow").siblings().removeClass("selectRow");
-	//alert($(this).find(".hidden").text());
+});
+
+$("#employeeListTable tr").dblclick(function(){
+	$(this).addClass("selectRow").siblings().removeClass("selectRow");
+	loadEmployee();
 });
 
 function loadEmployee(){
