@@ -358,7 +358,7 @@ select
 {
     color: #5e77af;
 }
-tr.selectRow
+.selectRow
 {
 	background-color: blue;
 }
