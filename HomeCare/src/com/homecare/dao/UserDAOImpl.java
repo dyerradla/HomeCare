@@ -9,17 +9,18 @@ import com.homecare.domain.User;
 
 public class UserDAOImpl extends BaseDAO implements IUserDAO {
 
-	public boolean validateUser(String userName, String password) {
+	public User validateUser(String userName, String password) {
 		logger.debug("Entering getAllEmployees of EmployeeDAOImpl");
-		boolean validUser = false;
 		Criteria criteria = getSession().createCriteria(User.class);
 		criteria.add(Restrictions.eq("userName", userName));
 		criteria.add(Restrictions.eq("password", password));
 		List<User> userList = criteria.list();
+		User selectedUser = new User();
 		if(null != userList && !userList.isEmpty()){
-			validUser = true;
+			selectedUser = userList.get(0);
+			selectedUser.setValidUser(true);  
 		}
-		return validUser;
+		return selectedUser;
 	}
 
 }

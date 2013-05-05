@@ -1,1 +1,3 @@
-<p align="center">Copyright &copy; ParagonHHC</p>
+<div class="bottom_bg">
+	Copyrights Reserved @ 2013,Paragon Homes.
+</div>

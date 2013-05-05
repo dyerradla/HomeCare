@@ -1,6 +1,8 @@
 package com.homecare.dao;
 
+import com.homecare.domain.User;
+
 public interface IUserDAO {
 
-	public boolean validateUser(String userName, String password);
+	public User validateUser(String userName, String password);
 }
