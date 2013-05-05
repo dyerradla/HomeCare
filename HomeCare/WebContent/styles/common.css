@@ -29,7 +29,53 @@ table.alternateColor tr:nth-child(2n) { /* even rows */
 }     
 table.alternateColor tr:nth-child(2n+1) { /* odd rows */
   background-color:#ccc;
+}
+
+.displayTableFrame { 
+	background-color: white; overflow-x: scroll; height: 320px; width: 100%; 
+}
+
+.dataTable { 
+	text-decoration: none; border: 1px solid #CCC; width: 100%; 
+}
+
+.dataTable th { 
+	padding: 1px 2px 1px 2px !important; text-align: center; border-spacing: 0px; 
+}
+
+.dataTable td { 
+	padding: 1px 2px 1px 2px !important; 
+}
+
+.dataTable thead tr { 
+	position: relative; height: 10px; background-color: #D7E5F3; 
+}
+
+.dataTable tbody { 
+	height: 230px; overflow-x: hidden; 
+}
+
+.dataTable tbody tr { 
+	width: inherit; height: auto; white-space: nowrap; height: auto; 
+}
+
+.dataTable tbody tr.odd { 
+	background-color: #eee 
+}
+
+.dataTable tbody tr.tableRowEven,tr.even { 
+	background-color: #ddd 
+}
+
+.dataTable tbody tr td:last-child { 
+	padding-right: 1px; 
+}
+
+.dataTable tbody td { 
+	padding: 1px 2px 1px 2px !important; 
 } 
+
+
 
 .tr {
 	height:100px;

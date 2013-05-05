@@ -35,20 +35,22 @@
 					</tr>
 				</table>
 				<br /><br />
-				<table>
+				<table style="width: 100%;">
 					<tr>
-						<td colspan="2">
-							<display:table  class="alternateColor" uid="employeeListTable" name="${employeeList}">
-								<display:column headerClass="columnHeader" class="hidden" headerClass="hidden" title="Employee Id" property="employeeId" />
-								<display:column headerClass="columnHeader" title="First Name" property="firstName" />
-								<display:column headerClass="columnHeader" title="Middle Name" property="middleName" />
-								<display:column headerClass="columnHeader" title="Last Name" property="lastName" />
-								<display:column headerClass="columnHeader" title="Status" property="status" />
-							</display:table>
+						<td>
+							<div class="displayTableFrame"> 
+								<display:table class="dataTable" uid="employeeListTable" name="${employeeList}">
+									<display:column headerClass="columnHeader" class="hidden" headerClass="hidden" title="Employee Id" property="employeeId" />
+									<display:column headerClass="columnHeader" title="First Name" property="firstName" />
+									<display:column headerClass="columnHeader" title="Middle Name" property="middleName" />
+									<display:column headerClass="columnHeader" title="Last Name" property="lastName" />
+									<display:column headerClass="columnHeader" title="Status" property="status" />
+								</display:table>
+							</div>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2">
+						<td>
 							<input type="button" value="Load Employee" onclick="loadEmployee()"/>
 							<input type="button" value="Delete Employee" onclick="deleteEmployee(${employeeListTable.employeeId})"/>
 						</td>
@@ -69,19 +71,27 @@ table.alternateColor tr.selectRow
 
 $("#employeeListTable tr").click(function(){
 	$(this).addClass("selectRow").siblings().removeClass("selectRow");
+	//alert($(this).find(".hidden").text());
 });
 
 function loadEmployee(){
-	var employeeId = $("#employeeListTable tr selected").employeeId;
-	alert(employeeId);
-	
-	$("#employeeInfoForm").attr("action","/HomeCare/loadEmployeeInfo.do?employeeId="+employeeId);
-	$("#employeeInfoForm").submit();
+	if($("#employeeListTable .selectRow").find(".hidden").text()){
+		var employeeId = $("#employeeListTable .selectRow").find(".hidden").text();
+		$("#employeeInfoForm").attr("action","/HomeCare/loadEmployeeInfo.do?employeeId="+employeeId);
+		$("#employeeInfoForm").submit();	
+	}else{
+		alert('Plese select an Employee');
+	}
 };
 
 function deleteEmployee(employeeId){
-	$("#employeeInfoForm").attr("action","/HomeCare/deleteEmployeeInfo.do?employeeId="+employeeId);
-	$("#employeeInfoForm").submit();
+	if($("#employeeListTable .selectRow").find(".hidden").text()){
+		var employeeId = $("#employeeListTable .selectRow").find(".hidden").text();
+		$("#employeeInfoForm").attr("action","/HomeCare/deleteEmployeeInfo.do?employeeId="+employeeId);
+		$("#employeeInfoForm").submit();	
+	}else{
+		alert('Plese select an Employee');
+	}
 };
 
 function getReminders(){
