@@ -16,6 +16,7 @@ import com.homecare.bo.IUserBO;
 import com.homecare.command.EmployeeInfoForm;
 import com.homecare.command.UserForm;
 import com.homecare.domain.EmployeeInfo;
+import com.homecare.domain.User;
 
 @Controller
 public class LoginController extends BaseFormController{
@@ -43,14 +44,14 @@ public class LoginController extends BaseFormController{
 	
 	@RequestMapping("/validateUser")
 	public ModelAndView validateUser(@ModelAttribute("command") UserForm userForm, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws ServletException, IOException{
-		boolean validUser = false;
+		User validUser = new User();
 		if(null != userForm.getUser()){
 			validUser = userBO.validateUser(userForm.getUser().getUserName(), userForm.getUser().getPassword());
 		}
 		
 		ModelAndView modelAndView = null; 
-		if(validUser){
-			httpServletRequest.getSession().setAttribute("user", userForm.getUser());
+		if(validUser.isValidUser()){
+			httpServletRequest.getSession().setAttribute("user", validUser);
 			EmployeeInfoForm employeeInfoForm = new EmployeeInfoForm();
 			employeeInfoForm.setEmployeeInfo(new EmployeeInfo());
 			httpServletRequest.getRequestDispatcher("getAllEmployees.do").forward(httpServletRequest, httpServletResponse);

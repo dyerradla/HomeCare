@@ -1,291 +1,449 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<link rel="stylesheet" href="styles/common.css" type="text/css">
-<link rel="stylesheet" href="styles/jquery-ui-1.8.18.custom.css" type="text/css">
-<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <form:form id="employeeInfoForm" name="employeeInfoForm" action="saveEmployeeInfo.do">
 	<input type="hidden" name="employeeInfo.employeeId" value="${command.employeeInfo.employeeId}" />
 	<form:hidden path="employeeSaved"/>
-	<table>
-		<tr>
-			<td>
-				<div class="layer">
-					<p class="heading">Personal </p>
-					<div class="content">
-						<table style="width:100%;">
-							<tr>
-								<td class="column_label">First Name:</td>
-								<td class="column_value"><form:input maxlength="32" id="firstName" path="employeeInfo.firstName" /></td>
-								<td class="column_label">Middle Name:</td>
-								<td class="column_value"><form:input maxlength="1" path="employeeInfo.middleName" /></td>
-								<td class="column_label">Last Name:</td>
-								<td class="column_value"><form:input maxlength="32" id="lastName" path="employeeInfo.lastName" /></td>
-							</tr>
-							<tr>
-								<td class="column_label">Email Address:</td>
-								<td class="column_value"><form:input id="emailAddress" maxlength="50" path="employeeInfo.emailAddress" /></td>
-								<td class="column_label">Phone Number:</td>
-								<td class="column_value"><form:input id="phoneNumber" maxlength="10" path="employeeInfo.phoneNumber" /></td>
-								<td class="column_label">Designation:</td>
-								<td class="column_value"><form:input id="designation" maxlength="20" path="employeeInfo.designation" /></td>
-							</tr>
-							<tr>
-								<td class="column_label">Employment Date:</td>
-								<td class="column_value"><form:input id="employmentDate" maxlength="10" path="employeeInfo.employmentDate" cssClass="datepicker"/></td>
-								<td class="column_label">Status:</td>
-								<td class="column_value">
-									<form:select path="employeeInfo.status">
-							  			<form:option value='A' label="Active" />
-							  			<form:option value='IA' label="In Active"/>
-						       		</form:select>
-						       	</td>
-						       	<td class="column_label">Department:</td>
-								<td class="column_value">
-									<form:select id="department" onchange="enableDisableFieldsOnDeptChange()" path="employeeInfo.department">
-							  			<form:option value='100' label="100-Admin" />
-							  			<form:option value='200' label="200-Clinical"/>
-							  			<form:option value='300' label="300-Contract"/>
-						       		</form:select>
-						       	</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-				<div class="layer">
-					<p class="heading">Basics </p>
-					<div class="content">
-						<table>
-							<tr>
-								<td class="column_label">Application:</td>
-								<td class="column_value">
-									<form:select id="application" path="employeeInfo.application">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-		                        </td>
-							
-								<td class="column_label">Resume:</td>
-								<td class="column_value">
-									<form:select id="resume" path="employeeInfo.resume">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-		                        </td>
-							
-								<td class="column_label">Reference Checks:</td>
-								<td class="column_value">
-									<form:select id="referenceChecks" path="employeeInfo.referenceChecks">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-							</tr>
-							
-							<tr>
-								<td class="column_label">Job Description:</td>
-								<td class="column_value">
-									<form:select id="signedJobDescription" path="employeeInfo.signedJobDescription">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-		
-								<td class="column_label">Policy:</td>
-								<td class="column_value">
-									<form:select id="policy" path="employeeInfo.policy">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-		
-								<td class="column_label">Orientation:</td>
-								<td class="column_value">
-									<form:select id="orientationCheckList" path="employeeInfo.orientationChecklist">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-							</tr>
-							
-							<tr>
-								<td class="column_label">Statement Of Confidentiality:</td>
-								<td class="column_value">
-									<form:select id="statementOfConfidentiality" path="employeeInfo.statementOfConfidentiality">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-							
-								<td class="column_label">Social Security Card:</td>
-								<td class="column_value">
-									<form:select id="socialSecurityCard" path="employeeInfo.socialSecurityCard">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-								
-								<td class="column_label">NonCompete:</td>
-								<td class="column_value">
-									<form:select id="nonCompete" path="employeeInfo.nonCompete">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</div>				
-				<div class="layer">
-					<p class="heading">Licenses </p>
-					<div class="content">
-						<table>
-							<tr>
-								<td class="column_label">Initial Comp Eval:</td>
-								<td class="column_value"><form:input id="initialCompetencyEvaluation" maxlength="10" path="employeeInfo.initialCompetencyEvaluation" cssClass="datepicker"/></td>
-							
-								<td class="column_label">Ongo Comp Eval:</td>
-								<td class="column_value"><form:input id="ongoinCompetencyEvaluation" maxlength="10" path="employeeInfo.ongoinCompetencyEvaluation" cssClass="datepicker"/></td>
-							
-								<td class="column_label">Annual Evaluation:</td>
-								<td class="column_value"><form:input id="annualEvaluation" maxlength="10" path="employeeInfo.annualEvaluation" cssClass="datepicker"/></td>
-							</tr>
-							
-							<tr>
-								<td class="column_label">Proof License:</td>
-								<td class="column_value"><form:input id="profLicense" maxlength="10" path="employeeInfo.profLicense" cssClass="datepicker"/></td>
-							
-								<td class="column_label">Auto Insurance:</td>
-								<td class="column_value"><form:input id="proofValidCarInsurance" maxlength="10" path="employeeInfo.proofValidCarInsurance" cssClass="datepicker"/></td>
-								
-								<td class="column_label">CPR Card:</td>
-								<td class="column_value"><form:input id="cprCard" maxlength="10" path="employeeInfo.cprCard" cssClass="datepicker"/></td>
-							</tr>
-							
-							<tr>
-								<td class="column_label">TB Test:</td>
-								<td class="column_value"><form:input id="tbTest" maxlength="10" path="employeeInfo.tbTest" cssClass="datepicker"/></td>
-							
-								<td class="column_label">Hippa Training:</td>
-								<td class="column_value">
-									<form:select id="hippaTraining" path="employeeInfo.hippaTraining">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-							
-								<td class="column_label">Osha Training:</td>
-								<td class="column_value">
-									<form:select id="oshaTraining" path="employeeInfo.oshaTraining">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-							</tr>
-							
-							<tr>
-								<td class="column_label">Drivers License:</td>
-								<td class="column_value"><form:input id="driversLicense" maxlength="10" path="employeeInfo.driversLicense" cssClass="datepicker"/></td>
-							
-								<td class="column_label">HVB Test:</td>
-								<td class="column_value">
-									<form:select id="hvbTest" path="employeeInfo.hvbTest">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-							
-								<td class="column_label">Verification Prof License:</td>
-								<td class="column_value">
-									<form:select id="verificationProfLicense" path="employeeInfo.verificationProfLicense">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-					
-				<div class="layer">
-					<p class="heading">Employment </p>
-					<div class="content">
-						<table>
-							<tr>
-								<td class="column_label">I9:</td>
-								<td class="column_value">
-									<form:select id="i9" path="employeeInfo.i9">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-		
-								<td class="column_label">Federal W4:</td>
-								<td class="column_value">
-									<form:select id="federalW4" path="employeeInfo.federalW4">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-		
-								<td class="column_label">Michigan W4:</td>
-								<td class="column_value">
-									<form:select id="michiganW4" path="employeeInfo.michiganW4">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-							</tr>
-							
-							<tr>
-								<td class="column_label">Criminal Check:</td>
-								<td class="column_value">
-									<form:select id="criminalCheck" path="employeeInfo.criminalCheck">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-								
-								<td class="column_label">Authorization Criminal Check:</td>
-								<td class="column_value">
-									<form:select id="authorizationCriminalCheck" path="employeeInfo.authorizationCriminalCheck">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-							
-								<td class="column_label">Fingerprints Results:</td>
-								<td class="column_value">
-									<form:select id="fingerprintsResults" path="employeeInfo.fingerprintsResults">
-							  			<form:option value='' label="--Select--" />
-							  			<form:options items="${yesNoList}" />
-						       		</form:select>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<input type="button" value="Submit" onclick="submitEmployee()">
-				<input type="button" value="New Employee" onclick="newEmployee()">	
-				<input type="button" value="Get All Employees" onclick="getAllEmployees()">
-				<input type="button" value="Get Reminders" onclick="getRemindersByEmployee(${command.employeeInfo.employeeId})">
-			</td>
-		</tr>
-	</table>
-</form:form>
+	
+                    <table border="0" cellpadding="5" cellspacing="5" style="width: 100%;">
+                        <tr>
+                            <td style="text-align: left; padding: 0px 0px 0px 10px;font-size: 14px;">
+                                <a href="/HomeCare/getAllEmployees.do">
+                                    <img src="/HomeCare/styles/images/Icon_Home.png" alt="" align="middle" style="margin: -5px 0px 0px 0px;"></a>
+                                > Employee Management
+                            </td>
+                            <td style="text-align: right;font-size: 14px;">
+                                <a href="#">
+                                    <img src="/HomeCare/styles/images/Img_User.png" alt="" align="middle" /></a>&nbsp; Welcome,
+                                		<c:if test="${sessionScope.user} != null">
+                                			${sessionScope.user.lastName}
+                                		</c:if>
+                                 | <a href="/HomeCare/logout.do" >Logout</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menu_td" align="right">
+                               <%@ include file="leftMenu.jsp" %>
+                            </td>
+                            <td class="data_td" align="left">
+                                <div class="container">
+                                    <ul class="tabs">
+                                        <li><a href="#personal">Personal</a></li>
+                                        <li><a href="#basics">Basics</a></li>
+                                        <li><a href="#licenses">Licenses</a></li>
+                                        <li><a href="#employment">Employment</a></li>
+                                    </ul>
+                                    <div style="height: 10px;">
+                                    </div>
+                                    <div class="tab_container">
+                                        <div id="personal" class="tab_content">
+                                            <table border="0" cellpadding="0" cellspacing="0" class="bg_data">
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        First Name
+                                                    </td>
+                                                    <td>
+                                                        <form:input maxlength="32" id="firstName" path="employeeInfo.firstName" />
+                                                    </td>
+                                                    <td>
+                                                        Middle Name
+                                                    </td>
+                                                    <td>
+                                                        <form:input maxlength="1" path="employeeInfo.middleName" />
+                                                    </td>
+                                                    <td>
+                                                        Last Name
+                                                    </td>
+                                                    <td>
+                                                        <form:input maxlength="32" id="lastName" path="employeeInfo.lastName" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Email Address
+                                                    </td>
+                                                    <td>
+                                                        <form:input id="emailAddress" maxlength="50" path="employeeInfo.emailAddress" />
+                                                    </td>
+                                                    <td>
+                                                        Phone Number
+                                                    </td>
+                                                    <td>
+                                                        <form:input id="phoneNumber" maxlength="10" path="employeeInfo.phoneNumber" />
+                                                    </td>
+                                                    <td>
+                                                        Designation
+                                                    </td>
+                                                    <td>
+                                                        <form:input id="designation" maxlength="20" path="employeeInfo.designation" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Employment Date
+                                                    </td>
+                                                    <td>
+                                                        <form:input id="employmentDate" maxlength="10" path="employeeInfo.employmentDate" cssClass="datepicker-example1"/>
+                                                    </td>
+                                                    <td>
+                                                        Status
+                                                    </td>
+                                                    <td>
+                                                       <form:select path="employeeInfo.status">
+												  			<form:option value='A' label="Active" />
+												  			<form:option value='IA' label="In Active"/>
+											       		</form:select>
+                                                    </td>
+                                                    <td>
+                                                        Department
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="department" onchange="enableDisableFieldsOnDeptChange()" path="employeeInfo.department">
+												  			<form:option value='100' label="100-Admin" />
+												  			<form:option value='200' label="200-Clinical"/>
+												  			<form:option value='300' label="300-Contract"/>
+											       		</form:select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div id="basics" class="tab_content" align="center">
+                                            <table border="0" cellpadding="0" cellspacing="0" class="bg_data">
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Application
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="application" path="employeeInfo.application">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                    <td>
+                                                        Resume
+                                                    </td>
+                                                    <td>
+														<form:select id="resume" path="employeeInfo.resume">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>                                                    </td>
+                                                    <td>
+                                                        Reference Check
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="referenceChecks" path="employeeInfo.referenceChecks">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Job Description
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="signedJobDescription" path="employeeInfo.signedJobDescription">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+												  		</form:select>
+                                                    </td>
+                                                    <td>
+                                                        Policy
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="policy" path="employeeInfo.policy">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                    <td>
+                                                        Orientation
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="orientationCheckList" path="employeeInfo.orientationChecklist">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Statement Of Confidentiality
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="statementOfConfidentiality" path="employeeInfo.statementOfConfidentiality">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                    <td>
+                                                        Social Security Card
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="socialSecurityCard" path="employeeInfo.socialSecurityCard">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                    <td>
+                                                        NonCompete
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="nonCompete" path="employeeInfo.nonCompete">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div id="licenses" class="tab_content" align="center">
+                                            <table border="0" cellpadding="0" cellspacing="0" class="bg_data">
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Initial Comp EVal
+                                                    </td>
+                                                    <td>
+                                                        <form:input id="initialCompetencyEvaluation" maxlength="10" path="employeeInfo.initialCompetencyEvaluation" cssClass="datepicker-example1"/>
+                                                    </td>
+                                                    <td>
+                                                        Ongo Comp Value
+                                                    </td>
+                                                    <td>
+                                                        <form:input id="ongoinCompetencyEvaluation" maxlength="10" path="employeeInfo.ongoinCompetencyEvaluation" cssClass="datepicker-example1"/>
+                                                    </td>
+                                                    <td>
+                                                        Annual Evaluation
+                                                    </td>
+                                                    <td>
+                                                        <form:input id="annualEvaluation" maxlength="10" path="employeeInfo.annualEvaluation" cssClass="datepicker-example1"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Prof License
+                                                    </td>
+                                                    <td>
+                                                        <form:input id="profLicense" maxlength="10" path="employeeInfo.profLicense" cssClass="datepicker-example1"/>
+                                                    </td>
+                                                    <td>
+                                                        Auto Insurance
+                                                    </td>
+                                                    <td>
+                                                        <form:input id="proofValidCarInsurance" maxlength="10" path="employeeInfo.proofValidCarInsurance" cssClass="datepicker-example1"/>
+                                                    </td>
+                                                    <td>
+                                                        CPR Card
+                                                    </td>
+                                                    <td>
+                                                        <form:input id="cprCard" maxlength="10" path="employeeInfo.cprCard" cssClass="datepicker-example1"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        TB Test
+                                                    </td>
+                                                    <td>
+                                                        <form:input id="tbTest" maxlength="10" path="employeeInfo.tbTest" cssClass="datepicker-example1"/>
+                                                    </td>
+                                                    <td>
+                                                        Hippa Training
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="hippaTraining" path="employeeInfo.hippaTraining">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                    <td>
+                                                        Osha Training
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="oshaTraining" path="employeeInfo.oshaTraining">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Drivers License
+                                                    </td>
+                                                    <td>
+                                                        <form:input id="driversLicense" maxlength="10" path="employeeInfo.driversLicense" cssClass="datepicker-example1"/>
+                                                    </td>
+                                                    <td>
+                                                        HVB Test
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="hvbTest" path="employeeInfo.hvbTest">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                    <td>
+                                                        Verification Prof License
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="verificationProfLicense" path="employeeInfo.verificationProfLicense">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div id="employment" class="tab_content" align="center">
+                                            <table border="0" cellpadding="0" cellspacing="0" class="bg_data">
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        I9
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="i9" path="employeeInfo.i9">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                    <td>
+                                                        Federal W4
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="federalW4" path="employeeInfo.federalW4">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                    <td>
+                                                        Michigan W4
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="michiganW4" path="employeeInfo.michiganW4">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Criminal Check
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="criminalCheck" path="employeeInfo.criminalCheck">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                    <td>
+                                                        Authorization Criminal Check
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="authorizationCriminalCheck" path="employeeInfo.authorizationCriminalCheck">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                    <td>
+                                                        Fingerprints Results
+                                                    </td>
+                                                    <td>
+                                                        <form:select id="fingerprintsResults" path="employeeInfo.fingerprintsResults">
+												  			<form:option value='' label="--Select--" />
+												  			<form:options items="${yesNoList}" />
+											       		</form:select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" class="emptyspace">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="clear: both; height: 10px;">
+                                </div>
+                                <div align="center" style="margin: 0px 0px 0px 0px;">
+                                	<input type="button" value="Submit" class="btn_css" onclick="submitEmployee()">
+                                	&nbsp;
+                                	<input type="button" value="New Employee" class="btn_css" onclick="newEmployee()">
+                                	&nbsp;	
+									<input type="button" value="Get All Employees" class="btn_css" onclick="getAllEmployees()">
+									&nbsp;
+									<input type="button" value="Get Reminders" class="btn_css" onclick="getRemindersByEmployee(${command.employeeInfo.employeeId})">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+	</form:form>
 <script>
 	enableDisableFieldsOnDeptChange();
 	
 	$(function() {
-		$( '.datepicker' ).datepicker();
-		$( '.datepicker' ).blur(function(){
+		$( '.datepicker-example1' ).datepicker();
+		$( '.datepicker-example1' ).blur(function(){
 			var valid = true;
 			var date = this.value;
 			if(date != '' && date.length != 0){
@@ -317,6 +475,22 @@
 			$('#employeeSaved').val('N');
 			alert('Employee Information Saved Sucessfully');
 		}
+		
+		
+           //Default Action
+           $(".tab_content").hide(); //Hide all content
+           $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+           $(".tab_content:first").show(); //Show first tab content
+
+           //On Click Event
+           $("ul.tabs li").click(function () {
+               $("ul.tabs li").removeClass("active"); //Remove any "active" class
+               $(this).addClass("active"); //Add "active" class to selected tab
+               $(".tab_content").hide(); //Hide all tab content
+               var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+               $(activeTab).fadeIn(0); //Fade in the active content                
+               return false;
+           });
 	});
 	
 	function submitEmployee(){
@@ -407,7 +581,6 @@
 		$("#employeeInfoForm").submit();
 	}
 	
-	
 	function getAllEmployees(){
 		$("#employeeInfoForm").attr("action","/HomeCare/getAllEmployees.do");
 		$("#employeeInfoForm").submit();
@@ -417,5 +590,4 @@
 		$("#employeeInfoForm").attr("action","/HomeCare/getSelectedEmployeeInfo.do");
 		$("#employeeInfoForm").submit();
 	}
-
 </script>

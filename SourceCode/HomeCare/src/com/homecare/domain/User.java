@@ -14,7 +14,10 @@ public class User {
 
 	private String userName;
 	private String password;
-	private boolean validUser;
+	private String firstName;
+	private String lastName;
+	private String middleName;
+	private boolean validUser = false;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "USER_NAME", unique = true, nullable = false)
@@ -31,6 +34,30 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	@Column(name = "FIRST_NAME", nullable = false)
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	@Column(name = "LAST_NAME", nullable = false)
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	@Column(name = "MIDDLE_NAME", nullable = false)
+	public String getMiddleName() {
+		return middleName;
+	}
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
 	}
 	
 	@Transient
