@@ -17,9 +17,6 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String middleName;
-	private String primaryEmail;
-	private String alternateEmail1;
-	private String alternateEmail2;
 	private boolean validUser = false;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,30 +60,6 @@ public class User {
 		this.middleName = middleName;
 	}
 	
-
-	@Column(name="PRIMARY_EMAIL",nullable = false)
-	public String getPrimaryEmail() {
-		return primaryEmail;
-	}
-	public void setPrimaryEmail(String primaryEmail) {
-		this.primaryEmail = primaryEmail;
-	}
-	
-	@Column(name="ALTER_EMAIL_1")
-	public String getAlternateEmail1() {
-		return alternateEmail1;
-	}
-	public void setAlternateEmail1(String alternateEmail1) {
-		this.alternateEmail1 = alternateEmail1;
-	}
-	
-	@Column(name="ALTER_EMAIL_2")
-	public String getAlternateEmail2() {
-		return alternateEmail2;
-	}
-	public void setAlternateEmail2(String alternateEmail2) {
-		this.alternateEmail2 = alternateEmail2;
-	}
 	@Transient
 	public boolean isValidUser() {
 		return validUser;
