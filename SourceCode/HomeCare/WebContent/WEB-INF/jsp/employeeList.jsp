@@ -9,6 +9,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <form:form id="employeeInfoForm" name="employeeInfoForm" action="loadEmployeeInfo.do">
 	<table>
+		<%@ include file="loggedInUserInfo.jsp" %>
 		<tr>
 			<td class="menu_td" align="right">
             	<%@ include file="leftMenu.jsp" %>

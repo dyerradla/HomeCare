@@ -13,32 +13,40 @@
 <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
+
 <form:form id="employeeInfoForm" name="employeeInfoForm" action="">
-	<div>
-		<c:forEach var="employeeReminder" items="${employeeReminders}">
-			<ul id="treeMenu">
-				  <li class="contentContainer" id="employee${employeeReminder.key}">
-				  	<c:set var="employeeReminderMessageList" value="${employeeReminder.value.employeeReminderMessage}"/>
-				  	<c:out value="${employeeReminder.key}"/>(${fn:length(employeeReminderMessageList)} Reminders Found) 
-				  	<input type="button" value="Send Email" onclick="sendEmail(${employeeReminder.value.employeeId})"/>
-				  	<input type="button" value="Load Employee" onclick="loadEmployee(${employeeReminder.value.employeeId})"/>
-				  	<ul style="display: none;">
-				  		<c:if test="${empty employeeReminder.value.employeeReminderMessage}">No Reminders Found</c:if>
-				  	 	<c:forEach var="employeeReminderMessage" items="${employeeReminder.value.employeeReminderMessage}">
-					  		<li>
-							 	<c:out value="${employeeReminderMessage}"/>
-						 	</li>
-				 		 </c:forEach>
-					 </ul>
-				 </li>
-			 </ul>
-			</c:forEach>
-			<input type="button" value="Email All Employee Remiders" onclick="emailAllReminders()" />
-	</div>
+	<table>
+		<%@ include file="loggedInUserInfo.jsp" %>	
+		<tr>
+			<td class="menu_td" align="right">
+            	<%@ include file="leftMenu.jsp" %>
+            </td>
+			<td class="data_td" align="left">
+				<div>
+					<c:forEach var="employeeReminder" items="${employeeReminders}">
+						<ul id="treeMenu">
+							  <li class="contentContainer" id="employee${employeeReminder.key}">
+							  	<c:set var="employeeReminderMessageList" value="${employeeReminder.value.employeeReminderMessage}"/>
+							  	<c:out value="${employeeReminder.key}"/>(${fn:length(employeeReminderMessageList)} Reminders Found) 
+							  	<input type="button" value="Send Email" onclick="sendEmail(${employeeReminder.value.employeeId})"/>
+							  	<input type="button" value="Load Employee" onclick="loadEmployee(${employeeReminder.value.employeeId})"/>
+							  	<ul style="display: none;">
+							  		<c:if test="${empty employeeReminder.value.employeeReminderMessage}">No Reminders Found</c:if>
+							  	 	<c:forEach var="employeeReminderMessage" items="${employeeReminder.value.employeeReminderMessage}">
+								  		<li>
+										 	<c:out value="${employeeReminderMessage}"/>
+									 	</li>
+							 		 </c:forEach>
+								 </ul>
+							 </li>
+						 </ul>
+						</c:forEach>
+						<input type="button" value="Email All Employee Remiders" onclick="emailAllReminders()" />
+				</div>
+			</td>
+		</tr>
+	</table>
+	
 </form:form>
 <script type="text/javascript">
 	$(document).ready(function() {
