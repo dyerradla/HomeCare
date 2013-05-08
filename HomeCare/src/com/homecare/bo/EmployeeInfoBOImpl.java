@@ -48,7 +48,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		return employeeDAO.getAllEmployees(employeeInfo);
 	}
 
-	@Scheduled(cron="* * 1 * * ?")
+	@Scheduled(cron="0 0 1 * * ?")
 	@Async
 	public void generateEmail(){
 		System.out.println("*****Generate Email");
@@ -62,10 +62,11 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		}
 	}
 	
-	@Scheduled(cron="* * 1 * * ?")
+	@Scheduled(cron="0 0 1 * * ?")
 	@Async
 	public void generatePDFAndEmailForAllActiveEmployees(){
 		System.out.println("************************************Print All the Reminders");
+		
 		EmployeeInfo employeeInfoRequest = new EmployeeInfo();
 		employeeInfoRequest.setStatus("A");
 		List<EmployeeInfo> employeeList = employeeDAO.getAllEmployees(employeeInfoRequest);
@@ -82,7 +83,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 					if(reminders != null && !reminders.isEmpty()){
 						document.add(new Chunk(employeeInfo.getLastName() + " " + employeeInfo.getFirstName()));
 						for(String reminder : reminders){
-							// Add the list items to list        l
+							// Add the list items to list        
 							list.add(new ListItem(reminder));      
 						}
 						document.add(list);

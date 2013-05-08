@@ -64,7 +64,7 @@ table.alternateColor tr:nth-child(2n+1) { /* odd rows */
 }
 
 .dataTable tbody tr.tableRowEven,tr.even { 
-	background-color: #ddd 
+	background-color: #ccc 
 }
 
 .dataTable tbody tr td:last-child { 
