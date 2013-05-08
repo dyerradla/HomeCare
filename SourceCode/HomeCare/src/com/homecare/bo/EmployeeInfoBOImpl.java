@@ -15,6 +15,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.homecare.dao.IEmployeeDAO;
 import com.homecare.domain.EmployeeInfo;
@@ -66,8 +68,8 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	@Async
 	public void generatePDFAndEmailForAllActiveEmployees(){
 		System.out.println("************************************Print All the Reminders");
-		
-		EmployeeInfo employeeInfoRequest = new EmployeeInfo();
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+	    EmployeeInfo employeeInfoRequest = new EmployeeInfo();
 		employeeInfoRequest.setStatus("A");
 		List<EmployeeInfo> employeeList = employeeDAO.getAllEmployees(employeeInfoRequest);
 	
