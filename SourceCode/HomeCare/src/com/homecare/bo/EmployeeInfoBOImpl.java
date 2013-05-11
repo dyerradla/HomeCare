@@ -9,17 +9,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.homecare.dao.IEmployeeDAO;
+import com.homecare.dao.IEmployerDAO;
 import com.homecare.domain.EmployeeInfo;
+import com.homecare.domain.EmployerInfo;
 import com.homecare.utility.EmailUtility;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -32,6 +31,10 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	@Autowired
 	private IEmployeeDAO employeeDAO;
 
+	@Autowired
+	private IEmployerDAO employerDAO;
+
+	
 	public EmployeeInfo getEmployeeInfoByEmployeeId(Long employeeId) {
 		return employeeDAO.getEmployeeInfoByEmployeeId(employeeId);
 	}
@@ -68,11 +71,9 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	@Async
 	public void generatePDFAndEmailForAllActiveEmployees(){
 		System.out.println("************************************Print All the Reminders");
-		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 	    EmployeeInfo employeeInfoRequest = new EmployeeInfo();
 		employeeInfoRequest.setStatus("A");
 		List<EmployeeInfo> employeeList = employeeDAO.getAllEmployees(employeeInfoRequest);
-	
 		Document document = new Document(); 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		try {
@@ -94,8 +95,10 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 				} 
 			}
 			document.close();
+			
+			List<EmployerInfo> employerEmailList = employerDAO.getAllEmployerEmails();
 			EmailUtility emailUtility = new EmailUtility();
-			emailUtility.sendEmailWithAttachment("Reminders of all the employees", "prasad14_gitam@yahoo.com", out.toByteArray());
+			emailUtility.sendEmailWithAttachment("Reminders of all the employees", employerEmailList, out.toByteArray());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
