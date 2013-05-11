@@ -1,6 +1,7 @@
 package com.homecare.utility;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -17,6 +18,8 @@ import javax.mail.util.ByteArrayDataSource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.homecare.domain.EmployerInfo;
 
 public class EmailUtility {
 	private Log logger = LogFactory.getLog(EmailUtility.class);
@@ -60,7 +63,7 @@ public class EmailUtility {
 		}
 	}
 
-	public void sendEmailWithAttachment(String subject,String email,byte[] data){
+	public void sendEmailWithAttachment(String subject,List<EmployerInfo> employerEmailList,byte[] data){
 		final Properties emailProperties = new Properties();
 		try {
 			emailProperties.load(this.getClass().getResourceAsStream("/email.properties"));
@@ -85,12 +88,17 @@ public class EmailUtility {
  
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(emailProperties.getProperty("EMAIL_USER_NAME")));
-			message.setRecipients(Message.RecipientType.TO,
-				InternetAddress.parse(email));
-			message.setRecipients(Message.RecipientType.CC,
-					InternetAddress.parse("balashekarreddy@gmail.com"));
+			for(EmployerInfo employerInfo : employerEmailList){
+				if("Y".equalsIgnoreCase(employerInfo.getPrimary())){
+					message.setRecipients(Message.RecipientType.TO,
+							InternetAddress.parse(employerInfo.getJoinedEmailEmployerId().getEmail()));
+				}else{
+					message.setRecipients(Message.RecipientType.CC,
+							InternetAddress.parse(employerInfo.getJoinedEmailEmployerId().getEmail()));
+				}
+			}
+			
 			message.setSubject(subject);
-//			message.setText(body);
 			
 			 //construct the text body part        
 			MimeBodyPart textBodyPart = new MimeBodyPart();          

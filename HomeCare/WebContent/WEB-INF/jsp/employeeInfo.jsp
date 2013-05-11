@@ -508,6 +508,14 @@
 				errorMessage += "Please Enter valid Email Address" + "\n";
 			}
 		}
+		
+		var phone = $('#phoneNumber').val();
+		var reg=/^\d{3}\-?\d{3}\-?\d{4}$/; 
+		if(!reg.test(phone)){
+			errorExists = true;
+			errorMessage += "Please Enter valid Phone Number" + "\n";
+		}
+		
 		if($('#employmentDate').val() == ''){
 			errorExists = true;
 			errorMessage += "Please Enter Employment Date" + "\n";
