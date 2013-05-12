@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -14,6 +15,14 @@
                                <%@ include file="leftMenu.jsp" %>
                             </td>
                             <td class="data_td" align="left">
+                            	<span style="color: red;visibility: visible;">
+                            		<ui>
+	                            		<c:forEach var="error" items="${errorList}">
+										   <li>${error}</li>
+										</c:forEach>
+									</ui>
+									                            		
+                            	</span>
                                 <div class="container">
                                     <ul class="tabs">
                                         <li><a href="#personal">Personal</a></li>
