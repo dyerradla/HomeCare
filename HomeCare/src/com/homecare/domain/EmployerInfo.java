@@ -41,7 +41,9 @@ public class EmployerInfo {
 	// required because JoinedUserRole contains composite id
     @Embeddable
     public static class JoinedEmailEmployerId implements Serializable {
-    	private String employerId;
+    	
+		private static final long serialVersionUID = 1L;
+		private String employerId;
     	private String email;
     	
     	@Column(name="employer_id",nullable = false)
