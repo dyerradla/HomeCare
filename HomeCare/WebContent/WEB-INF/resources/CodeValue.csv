@@ -1,0 +1,35 @@
+APPLICATION_REMINDER ,Your Application is incomplete please contact office to complete the application. Thanks,R
+RESUME_REMINDER,Please submit the resume. Thanks,R
+REFERENCES_CHECK_REMINDER,Please submit your references. Thanks,R
+SIGNED_JOB_REMINDER,Your job description is not signed. Please contact office immediately. Thanks,R
+ORIENTATION_CHECKLIST_REMINDER,Your orientation check list is not signed. Please contact office immediately. Thanks,R
+STATEMENT_OF_CONFIDENTIALITY_REMINDER,Your statement of confidentiality is not signed. Please contact office immediately. Thanks,R
+POLICY_REMINDER,Your policy was not signed. Please contact office immediately. Thanks,R
+INITIAL_COMPETENCY_REMINDER,Your initial competency evaluation is not complete. Please contact office immediately. Thanks,R
+ONGOING_COMPETENCY_REMINDER,Your ongoing competency evaluation is not complete. Please contact office immediately. Thanks,R
+ANNUAL_EVALUTION_REMINDER,Your annual competency evaluation is not complete. Please contact office immediately. Thanks,R
+HIPPA_REMINDER,Your HIPPA Test is not complete. Please contact office immediately. Thanks,R
+OSHA_REMINDER,Your OSHA Test is not complete. Please contact office immediately. Thanks,R
+CPR_REMINDER,Your CPR card is not on file/expired. Please submit your valid CPR card immediately. Thanks,R
+PROF_LICENSE_REMINDER,Your ProfessinalLicence is not on file/expired. Please submit your valid professional license immediately. Thanks,R
+VERIFICATION_OF_PROF_LICENSE_REMINDER,Your Verification of ProfessinalLicence is not completed. Please verify your valid professional license immediately. Thanks,R
+SSN_REMINDER,Your SSN Card is not on file. Please submit is ASAP. Thanks,R
+NON_COMPETE_REMINDER,Your Signed NON-Compete is not on file. Please contact office ASAP. Thanks,R
+DRIVERS_LICENSE_REMINDER,Your Drivers License is not on file/expired. Please submit your valid drivers license immediately. Thanks,R
+PROOF_OF_CAR_INSURANCE_REMINDER,Your Auto Insurance is not on file/expired. Please submit your valid auto insurance immediately. Thanks,R
+AUTHORIZATION_CRIMINAL_CHECK_REMINDER,Your concent for Back Ground check is not on file. Please contact office immediately. Thanks,R
+CRIMINAL_CHECK_REMINDER,Just to remind office to do back ground check,R
+FINGER_PRINT_RESULTS_REMINDER,Your finger print results is not on file. Please contact office immediately. Thanks,R
+FEDERAL_W4_REMINDER,Your federal w-4 is not on file. Please contact office immediately. Thanks,R
+MICHIGAN_W4_REMINDER,Your state w-4 is not on file. Please contact office immediately. Thanks,R
+I9_REMINDER,Your I-9 form is not on file. Please contact office immediately. Thanks,R
+TBTEST_REMINDER,Your TB test results is not on file/expired. Please submit your valid TB test results immediately. Thanks,R
+HVBTEST_REMINDER,Your HVB test results is not on file/expired. Please submit your valid HVB test results immediately. Thanks,R
+EMPLOYEMENT_DATE_AFTER_CURRENTDATE_ERROR,Employment Date should be before Current Date,E
+INITIAL_COMPETENCY_AFTER_CURRENTDATE_ERROR,Initial Competency should be before Current Date,E
+ONGOING_COMPETENCY_AFTER_CURRENTDATE_ERROR,Ongoing Competency should be before Current Date,E
+ANNUAL_EVALUATION_AFTER_CURRENTDATE_ERROR,Annual Evaluation should be before Current Date,E
+INITIAL_COMPETENCY_AFTER_EMPLOYMENT_DATE_ERROR,Initial Competency should be after Employment Date,E
+INITIAL_COMPETENCY_NOT_IN_RANGE_OF_EMPLOYMENT_DATE_ERROR,Initial Competency should be done with in 15 days from Employment Date,E
+ONGOING_COMPETENCY_NOT_IN_RANGE_OF_EMPLOYMENT_DATE_ERROR,Ongoing Competency should be done with in 90 days from Employment Date,E
+ANNUAL_EVALUATION_NOT_IN_RANGE_OF_EMPLOYMENT_DATE_ERROR,Annual Evaluation should be done with in 1 Year from Employment Date,E
