@@ -118,25 +118,20 @@ public class EmployeeController extends BaseFormController{
 	
 	private List<String> validateEmployeeData(EmployeeInfo employeeInfo){
 		List<String> errorList = new ArrayList<String>();
-		Properties properties = new Properties();
-		try {
-		    properties.load(this.getClass().getResourceAsStream("/application.properties"));
-		} catch (IOException e) {
-			logger.error("Properties File not found");
-		}
+		Map<String,String> messagesMap = employeeInfoBO.getMessageMapByType("E");
 		
 		if(!DateUtility.isDateNullOrBeforeCurrentDate(employeeInfo.getEmploymentDate())){
-			errorList.add(properties.getProperty("EMPLOYEMENT_DATE_AFTER_CURRENTDATE_ERROR"));
+			errorList.add(messagesMap.get("EMPLOYEMENT_DATE_AFTER_CURRENTDATE_ERROR"));
 		}
 		
 		Date initialCompetencyEvaluation = employeeInfo.getInitialCompetencyEvaluation();
 		Date employmentDate = employeeInfo.getEmploymentDate();
 		if(!DateUtility.isDateNullOrBeforeCurrentDate(initialCompetencyEvaluation)){
-			errorList.add(properties.getProperty("INITIAL_COMPETENCY_AFTER_CURRENTDATE_ERROR"));
+			errorList.add(messagesMap.get("INITIAL_COMPETENCY_AFTER_CURRENTDATE_ERROR"));
 		}
 		
 		if(!DateUtility.compareDates(employmentDate, initialCompetencyEvaluation)){
-			errorList.add(properties.getProperty("INITIAL_COMPETENCY_AFTER_EMPLOYMENT_DATE_ERROR"));
+			errorList.add(messagesMap.get("INITIAL_COMPETENCY_AFTER_EMPLOYMENT_DATE_ERROR"));
 		}
 		
 		Calendar employmentDateToCompareWithDates = Calendar.getInstance();
@@ -145,32 +140,32 @@ public class EmployeeController extends BaseFormController{
 			employmentDateToCompareWithDates.setTime(employmentDate);
 			employmentDateToCompareWithDates.add(Calendar.DATE, 15);
 			if(initialCompetencyEvaluation.after(employmentDateToCompareWithDates.getTime())){
-				errorList.add(properties.getProperty("INITIAL_COMPETENCY_NOT_IN_RANGE_OF_EMPLOYMENT_DATE_ERROR"));
+				errorList.add(messagesMap.get("INITIAL_COMPETENCY_NOT_IN_RANGE_OF_EMPLOYMENT_DATE_ERROR"));
 			}
 		}
 		// Initial Competency Should be with in 15 days from Employment Date
 		
 		if(!DateUtility.isDateNullOrBeforeCurrentDate(employeeInfo.getOngoinCompetencyEvaluation())){
-			errorList.add(properties.getProperty("ONGOING_COMPETENCY_AFTER_CURRENTDATE_ERROR"));
+			errorList.add(messagesMap.get("ONGOING_COMPETENCY_AFTER_CURRENTDATE_ERROR"));
 		}
 		
 		if(null != employeeInfo.getOngoinCompetencyEvaluation() && null != employmentDate){
 			employmentDateToCompareWithDates.setTime(employmentDate);
 			employmentDateToCompareWithDates.add(Calendar.MONTH, 3);
 			if(employeeInfo.getOngoinCompetencyEvaluation().after(employmentDateToCompareWithDates.getTime())){
-				errorList.add(properties.getProperty("ONGOING_COMPETENCY_NOT_IN_RANGE_OF_EMPLOYMENT_DATE_ERROR"));
+				errorList.add(messagesMap.get("ONGOING_COMPETENCY_NOT_IN_RANGE_OF_EMPLOYMENT_DATE_ERROR"));
 			}
 		}
 		
 		if(!DateUtility.isDateNullOrBeforeCurrentDate(employeeInfo.getAnnualEvaluation())){
-			errorList.add(properties.getProperty("ANNUAL_EVALUATION_AFTER_CURRENTDATE_ERROR"));
+			errorList.add(messagesMap.get("ANNUAL_EVALUATION_AFTER_CURRENTDATE_ERROR"));
 		}
 		
 		if(null != employeeInfo.getAnnualEvaluation() && null != employmentDate){
 			employmentDateToCompareWithDates.setTime(employmentDate);
 			employmentDateToCompareWithDates.add(Calendar.YEAR, 1);
 			if(employeeInfo.getAnnualEvaluation().after(employmentDateToCompareWithDates.getTime())){
-				errorList.add(properties.getProperty("ANNUAL_EVALUATION_NOT_IN_RANGE_OF_EMPLOYMENT_DATE_ERROR"));
+				errorList.add(messagesMap.get("ANNUAL_EVALUATION_NOT_IN_RANGE_OF_EMPLOYMENT_DATE_ERROR"));
 			}
 		}
 		return errorList;

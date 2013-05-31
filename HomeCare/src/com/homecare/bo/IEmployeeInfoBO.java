@@ -30,4 +30,6 @@ public interface IEmployeeInfoBO {
 	
 	public List<EmployeeInfo> deleteEmployeeInfo(Long employeeId);
 	
+	public Map<String,String> getMessageMapByType(String type);
+	
 }
