@@ -17,6 +17,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import com.homecare.dao.IEmployeeDAO;
 import com.homecare.dao.IEmployerDAO;
+import com.homecare.domain.CodeValue;
 import com.homecare.domain.EmployeeInfo;
 import com.homecare.domain.EmployerInfo;
 import com.homecare.utility.EmailUtility;
@@ -181,12 +182,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	 * @return
 	 */
 	public List<String> getRemindersByEmployee(EmployeeInfo employeeInfo){
-		Properties properties = new Properties();
-		try {
-		    properties.load(this.getClass().getResourceAsStream("/application.properties"));
-		} catch (IOException e) {
-			logger.error("Properties File not found");
-		}
+		Map<String,String> messagesMap = getMessageMapByType("R");
 		
 		Calendar currentcal = Calendar.getInstance();
 		currentcal.add(Calendar.MONTH, 1);
@@ -197,63 +193,63 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		
 		List<String> employeeReminderList = new ArrayList<String>();
 		if(null == employeeInfo.getApplication() || employeeInfo.getApplication() == 'N'){
-			employeeReminderList.add(properties.getProperty("APPLICATION_REMINDER"));
+			employeeReminderList.add(messagesMap.get("APPLICATION_REMINDER"));
 		}
 		
 		if(null == employeeInfo.getResume() || employeeInfo.getResume() =='N'){
-			employeeReminderList.add(properties.getProperty("RESUME_REMINDER"));
+			employeeReminderList.add(messagesMap.get("RESUME_REMINDER"));
 		}
 		
 		if(null == employeeInfo.getReferenceChecks() || employeeInfo.getReferenceChecks() == 'N'){
-			employeeReminderList.add(properties.getProperty("REFERENCES_CHECK_REMINDER"));
+			employeeReminderList.add(messagesMap.get("REFERENCES_CHECK_REMINDER"));
 		}
 		
 		if(null == employeeInfo.getSignedJobDescription() || employeeInfo.getSignedJobDescription() =='N'){
-			employeeReminderList.add(properties.getProperty("SIGNED_JOB_REMINDER"));
+			employeeReminderList.add(messagesMap.get("SIGNED_JOB_REMINDER"));
 		}
 		
 		if(null == employeeInfo.getOrientationChecklist() || employeeInfo.getOrientationChecklist() =='N'){
-			employeeReminderList.add(properties.getProperty("ORIENTATION_CHECKLIST_REMINDER"));
+			employeeReminderList.add(messagesMap.get("ORIENTATION_CHECKLIST_REMINDER"));
 		}
 		
 		if(null == employeeInfo.getStatementOfConfidentiality() || employeeInfo.getStatementOfConfidentiality() =='N'){
-			employeeReminderList.add(properties.getProperty("STATEMENT_OF_CONFIDENTIALITY_REMINDER"));
+			employeeReminderList.add(messagesMap.get("STATEMENT_OF_CONFIDENTIALITY_REMINDER"));
 		}
 		
 		if(null == employeeInfo.getPolicy() || employeeInfo.getPolicy() =='N'){
-			employeeReminderList.add(properties.getProperty("POLICY_REMINDER"));
+			employeeReminderList.add(messagesMap.get("POLICY_REMINDER"));
 		}
 		
 		if(null == employeeInfo.getSocialSecurityCard() || employeeInfo.getSocialSecurityCard() =='N'){
-			employeeReminderList.add(properties.getProperty("SSN_REMINDER"));
+			employeeReminderList.add(messagesMap.get("SSN_REMINDER"));
 		}
 		
 		if(null == employeeInfo.getNonCompete() || employeeInfo.getNonCompete() =='N'){
-			employeeReminderList.add(properties.getProperty("NON_COMPETE_REMINDER"));
+			employeeReminderList.add(messagesMap.get("NON_COMPETE_REMINDER"));
 		}
 		 
 		if(null == employeeInfo.getAuthorizationCriminalCheck() || employeeInfo.getAuthorizationCriminalCheck() =='N'){
-			employeeReminderList.add(properties.getProperty("AUTHORIZATION_CRIMINAL_CHECK_REMINDER"));
+			employeeReminderList.add(messagesMap.get("AUTHORIZATION_CRIMINAL_CHECK_REMINDER"));
 		}
 		
 		if(null == employeeInfo.getCriminalCheck() || employeeInfo.getCriminalCheck() =='N'){
-			employeeReminderList.add(properties.getProperty("CRIMINAL_CHECK_REMINDER"));
+			employeeReminderList.add(messagesMap.get("CRIMINAL_CHECK_REMINDER"));
 		}
 		
 		if(null == employeeInfo.getFingerprintsResults() || employeeInfo.getFingerprintsResults() =='N'){
-			employeeReminderList.add(properties.getProperty("FINGER_PRINT_RESULTS_REMINDER"));
+			employeeReminderList.add(messagesMap.get("FINGER_PRINT_RESULTS_REMINDER"));
 		}
 		
 		if(null == employeeInfo.getFederalW4() || employeeInfo.getFederalW4() =='N'){
-			employeeReminderList.add(properties.getProperty("FEDERAL_W4_REMINDER"));
+			employeeReminderList.add(messagesMap.get("FEDERAL_W4_REMINDER"));
 		} 
 		 
 		if(null == employeeInfo.getMichiganW4() || employeeInfo.getMichiganW4() =='N'){
-			employeeReminderList.add(properties.getProperty("MICHIGAN_W4_REMINDER"));
+			employeeReminderList.add(messagesMap.get("MICHIGAN_W4_REMINDER"));
 		}
 		
 		if(null == employeeInfo.getI9() || employeeInfo.getI9() =='N'){
-			employeeReminderList.add(properties.getProperty("I9_REMINDER"));
+			employeeReminderList.add(messagesMap.get("I9_REMINDER"));
 		}
 		
 		Calendar employmentDate = Calendar.getInstance();
@@ -263,65 +259,74 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		employmentDate.add(Calendar.MONTH, 2);
 		if(null == employeeInfo.getOngoinCompetencyEvaluation() 
 				&& currentDate.getTime().after(employmentDate.getTime())){
-			employeeReminderList.add(properties.getProperty("ONGOING_COMPETENCY_REMINDER"));
+			employeeReminderList.add(messagesMap.get("ONGOING_COMPETENCY_REMINDER"));
 		}
 		
 		if(null == employeeInfo.getInitialCompetencyEvaluation()){
-			employeeReminderList.add(properties.getProperty("INITIAL_COMPETENCY_REMINDER"));
+			employeeReminderList.add(messagesMap.get("INITIAL_COMPETENCY_REMINDER"));
 		}
 
 		if(null != employeeInfo.getAnnualEvaluation()){
 			if(!employeeInfo.getAnnualEvaluation().after(annualEvaluation.getTime())){
-				employeeReminderList.add(properties.getProperty("ANNUAL_EVALUTION_REMINDER"));
+				employeeReminderList.add(messagesMap.get("ANNUAL_EVALUTION_REMINDER"));
 			}
 		}else{
 			if(!employeeInfo.getEmploymentDate().after(annualEvaluation.getTime())){
-				employeeReminderList.add(properties.getProperty("ANNUAL_EVALUTION_REMINDER"));
+				employeeReminderList.add(messagesMap.get("ANNUAL_EVALUTION_REMINDER"));
 			}
 		}
 		
 		// Check the reminders for some fields only if Department code is 200
 		if(null != employeeInfo.getDepartment() && "200".equalsIgnoreCase(employeeInfo.getDepartment())){
 			if(null == employeeInfo.getProfLicense() || !employeeInfo.getProfLicense().after(currentcal.getTime())){
-				employeeReminderList.add(properties.getProperty("PROF_LICENSE_REMINDER"));
+				employeeReminderList.add(messagesMap.get("PROF_LICENSE_REMINDER"));
 			}
 			
 			if(null == employeeInfo.getCprCard() || !employeeInfo.getCprCard().after(currentcal.getTime())){
-				employeeReminderList.add(properties.getProperty("CPR_REMINDER"));
+				employeeReminderList.add(messagesMap.get("CPR_REMINDER"));
 			}
 			
 			if(null == employeeInfo.getTbTest() || !employeeInfo.getTbTest().after(currentcal.getTime())){
-				employeeReminderList.add(properties.getProperty("TBTEST_REMINDER"));
+				employeeReminderList.add(messagesMap.get("TBTEST_REMINDER"));
 			}
 
 			if(null == employeeInfo.getHippaTraining() || employeeInfo.getHippaTraining() =='N'){
-				employeeReminderList.add(properties.getProperty("HIPPA_REMINDER"));
+				employeeReminderList.add(messagesMap.get("HIPPA_REMINDER"));
 			}
 			 
 			if(null == employeeInfo.getOshaTraining() || employeeInfo.getOshaTraining() =='N'){
-				employeeReminderList.add(properties.getProperty("OSHA_REMINDER"));
+				employeeReminderList.add(messagesMap.get("OSHA_REMINDER"));
 			}
 			
 			if(null == employeeInfo.getVerificationProfLicense() || employeeInfo.getVerificationProfLicense() =='N'){
-				employeeReminderList.add(properties.getProperty("VERIFICATION_OF_PROF_LICENSE_REMINDER"));
+				employeeReminderList.add(messagesMap.get("VERIFICATION_OF_PROF_LICENSE_REMINDER"));
 			}
 			
 			if(null == employeeInfo.getHvbTest() || employeeInfo.getHvbTest() =='N'){
-				employeeReminderList.add(properties.getProperty("HVBTEST_REMINDER"));
+				employeeReminderList.add(messagesMap.get("HVBTEST_REMINDER"));
 			} 
 			
 		}
 		
 		if(null == employeeInfo.getProofValidCarInsurance() || !employeeInfo.getProofValidCarInsurance().after(currentcal.getTime())){
-			employeeReminderList.add(properties.getProperty("PROOF_OF_CAR_INSURANCE_REMINDER"));
+			employeeReminderList.add(messagesMap.get("PROOF_OF_CAR_INSURANCE_REMINDER"));
 		}
 		
 		if(null == employeeInfo.getDriversLicense() || !employeeInfo.getDriversLicense().after(currentcal.getTime())){
-			employeeReminderList.add(properties.getProperty("DRIVERS_LICENSE_REMINDER"));
+			employeeReminderList.add(messagesMap.get("DRIVERS_LICENSE_REMINDER"));
 		}
-		
-		
 				
 		return employeeReminderList;
+	}
+
+	public Map<String, String> getMessageMapByType(String type) {
+		Map<String,String> messageMap = new HashMap<String,String>();
+		List<CodeValue> codeValues = employeeDAO.getMessageMapByType(type);
+		if(null != codeValues){
+			for(CodeValue codeValue : codeValues){
+				messageMap.put(codeValue.getCode(), codeValue.getValue());
+			}
+		}
+		return messageMap;
 	}
 }

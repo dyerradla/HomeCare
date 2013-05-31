@@ -17,6 +17,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.homecare.domain.User</value>
+				<value>com.homecare.domain.CodeValue</value>
 				<value>com.homecare.domain.Patient</value>
 				<value>com.homecare.domain.Patient_Audit</value>
 				<value>com.homecare.domain.EmployeeInfo</value>

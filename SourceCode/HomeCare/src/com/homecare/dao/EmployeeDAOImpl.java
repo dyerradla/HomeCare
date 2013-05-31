@@ -9,6 +9,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import com.homecare.domain.CodeValue;
 import com.homecare.domain.EmployeeInfo;
 
 public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
@@ -87,5 +88,14 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 	public void deleteEmployee(Long employeeId) {
 		EmployeeInfo employeeInfo  = getEmployeeInfoByEmployeeId(employeeId);
 		deleteObject(employeeInfo);
+	}
+
+
+	public List<CodeValue> getMessageMapByType(String type) {
+		logger.debug("Entering getMessageMapByType of EmployeeDAOImpl with type:"+type);
+		Criteria criteria = getSession().createCriteria(CodeValue.class);
+		criteria.add(Restrictions.like("type", type));
+		logger.debug("Exiting getMessageMapByType of EmployeeDAOImpl with type:"+type);
+		return criteria.list();
 	}
 }
