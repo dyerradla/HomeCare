@@ -6,6 +6,7 @@
 
 <form:form id="employeeInfoForm" name="employeeInfoForm" action="saveEmployeeInfo.do">
 	<input type="hidden" name="employeeInfo.employeeId" value="${command.employeeInfo.employeeId}" />
+	<input type="hidden" name="employeeInfo.employerId" value="${command.employeeInfo.employerId}" />
 	<form:hidden path="employeeSaved"/>
 	
                     <table border="0" cellpadding="5" cellspacing="5" style="width: 100%;">

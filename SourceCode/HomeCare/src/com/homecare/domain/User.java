@@ -17,6 +17,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String middleName;
+	private Long employerId;
 	private boolean validUser = false;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,6 +61,13 @@ public class User {
 		this.middleName = middleName;
 	}
 	
+	@Column(name = "EMPLOYER_ID")
+	public Long getEmployerId() {
+		return employerId;
+	}
+	public void setEmployerId(Long employerId) {
+		this.employerId = employerId;
+	}
 	@Transient
 	public boolean isValidUser() {
 		return validUser;

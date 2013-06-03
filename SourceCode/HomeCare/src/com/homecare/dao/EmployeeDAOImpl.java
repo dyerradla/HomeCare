@@ -44,6 +44,9 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 		if(null != employeeInfo.getEmployeeId()){
 			criteria.add(Restrictions.eq("employeeId", employeeInfo.getEmployeeId()));
 		}
+		if(null != employeeInfo.getEmployerId()){
+			criteria.add(Restrictions.eq("employerId", employeeInfo.getEmployerId()));
+		}
 		criteria.addOrder(Order.asc("firstName"));
 		List<EmployeeInfo> employeeList = criteria.list();
 		logger.debug("Exiting getAllEmployees of EmployeeDAOImpl");
@@ -68,6 +71,9 @@ public class EmployeeDAOImpl extends BaseDAO implements IEmployeeDAO {
 		}
 		if(null != employeeInfo.getStatus() && !"".equalsIgnoreCase(employeeInfo.getStatus())){
 			criteria.add(Restrictions.like("status", employeeInfo.getStatus()));
+		}
+		if(null != employeeInfo.getEmployerId()){
+			criteria.add(Restrictions.like("employerId", employeeInfo.getEmployerId()));
 		}
 		
 		List<EmployeeInfo> employeeList = criteria.list();
