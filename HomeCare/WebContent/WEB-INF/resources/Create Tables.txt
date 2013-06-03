@@ -1,16 +1,14 @@
-CREATE TABLE `employee_documents` (
-  `documentId` int(11) NOT NULL,
-  `employeeId` int(11) NOT NULL,
-  `description` varchar(45) DEFAULT NULL,
-  `document` blob,
-  `document_name` varchar(45) NOT NULL,
-  PRIMARY KEY (`documentId`)
+CREATE TABLE `code_value` (
+  `code` varchar(75) NOT NULL,
+  `value` varchar(250) NOT NULL,
+  `type` char(1) NOT NULL,
+  PRIMARY KEY (`code`)
 )
-
 
 
 CREATE TABLE `employee_info` (
   `EMPLOYEE_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `EMPLOYER_ID` int(11) NOT NULL,
   `FIRST_NAME` varchar(32) NOT NULL,
   `MIDDLE_NAME` varchar(1) DEFAULT NULL,
   `LAST_NAME` varchar(32) NOT NULL,
@@ -52,9 +50,6 @@ CREATE TABLE `employee_info` (
   PRIMARY KEY (`EMPLOYEE_ID`)
 )
 
-
-
-
 CREATE TABLE `employer` (
   `EMAIL` varchar(45) NOT NULL,
   `EMPLOYER_NAME` varchar(45) DEFAULT NULL,
@@ -63,23 +58,12 @@ CREATE TABLE `employer` (
   PRIMARY KEY (`EMPLOYER_ID`,`EMAIL`)
 )
 
-
-
-
 CREATE TABLE `user` (
   `USER_NAME` varchar(25) NOT NULL,
   `PASSWORD` varchar(25) NOT NULL,
   `FIRST_NAME` varchar(45) DEFAULT NULL,
   `LAST_NAME` varchar(45) DEFAULT NULL,
   `MIDDLE_NAME` varchar(45) DEFAULT NULL,
+  `EMPLOYER_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`USER_NAME`)
-) 
-
-
-
-CREATE TABLE `code_value` (
-  `code` varchar(75) NOT NULL,
-  `value` varchar(250) NOT NULL,
-  `type` char(1) NOT NULL,
-  PRIMARY KEY (`code`)
-) 
+)

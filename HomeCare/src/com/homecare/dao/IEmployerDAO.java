@@ -6,6 +6,6 @@ import com.homecare.domain.EmployerInfo;
 
 public interface IEmployerDAO {
 
-	public List<EmployerInfo> getAllEmployerEmails();
+	public List<EmployerInfo> getAllEmployerEmails(Long employerId);
 	
 }

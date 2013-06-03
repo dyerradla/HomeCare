@@ -1,13 +1,11 @@
 package com.homecare.controller;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.homecare.bo.IEmployeeInfoBO;
 import com.homecare.command.EmployeeInfoForm;
 import com.homecare.domain.EmployeeInfo;
+import com.homecare.domain.User;
 import com.homecare.utility.DateUtility;
 
 @Controller
@@ -71,10 +70,16 @@ public class EmployeeController extends BaseFormController{
 	
 	@RequestMapping("/getAllEmployees")
 	public ModelAndView getAllEmployees(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
+		User user = (User)httpServletRequest.getSession().getAttribute("user");
 		EmployeeInfo employeeInfo = employeeInfoForm.getEmployeeInfo();
+		if(null != user){
+			employeeInfo.setEmployerId(user.getEmployerId());
+		}
+		
 		employeeInfo.setFirstName(employeeInfoForm.getSelectedEmployeeFirstName());
 		employeeInfo.setLastName(employeeInfoForm.getSelectedEmployeeLastName());
 		employeeInfo.setStatus(employeeInfoForm.getSelectedStatus());
+		
 		List<EmployeeInfo> employeeList = employeeInfoBO.getAllEmployees(employeeInfo);
 		ModelAndView modelAndView = new ModelAndView("employeeList");
 		modelAndView.addObject("employeeList", employeeList);
@@ -102,6 +107,12 @@ public class EmployeeController extends BaseFormController{
 	@RequestMapping("/saveEmployeeInfo")
 	public ModelAndView saveData(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest) throws Exception{
 		EmployeeInfo employeeInfo = employeeInfoForm.getEmployeeInfo();
+		if(null == employeeInfo.getEmployerId()){
+			User user = (User)httpServletRequest.getSession().getAttribute("user");
+			if(null != user){
+				employeeInfo.setEmployerId(user.getEmployerId());
+			}
+		}
 		List<String> errorList = validateEmployeeData(employeeInfo);
 		ModelAndView modelAndView = new ModelAndView("employeeInfo"); 
 		modelAndView.addObject("yesNoList", referenceData().get("yesNoList"));
@@ -174,7 +185,9 @@ public class EmployeeController extends BaseFormController{
 	
 	@RequestMapping("/getReminders")
 	public ModelAndView getReminders(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
-		Map<String,EmployeeInfo> employeeRemindersMap = employeeInfoBO.getAllReminders();
+		User user = (User)httpServletRequest.getSession().getAttribute("user");
+		Long employerId = user.getEmployerId();
+		Map<String,EmployeeInfo> employeeRemindersMap = employeeInfoBO.getAllReminders(employerId);
 		ModelAndView modelAndView = new ModelAndView("employeeReminders"); 
 		modelAndView.addObject("employeeReminders", employeeRemindersMap);
 		return modelAndView;

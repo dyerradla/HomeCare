@@ -25,6 +25,7 @@ import javax.persistence.Transient;
 public class EmployeeInfo implements java.io.Serializable {
 
 	private Long employeeId;
+	private Long employerId;
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -77,6 +78,15 @@ public class EmployeeInfo implements java.io.Serializable {
 
 	public void setEmployeeId(Long employeeId) {
 		this.employeeId = employeeId;
+	}
+	
+	@Column(name = "EMPLOYER_ID", nullable = false)
+	public Long getEmployerId() {
+		return employerId;
+	}
+
+	public void setEmployerId(Long employerId) {
+		this.employerId = employerId;
 	}
 
 	@Column(name = "FIRST_NAME", nullable = false, length = 32)

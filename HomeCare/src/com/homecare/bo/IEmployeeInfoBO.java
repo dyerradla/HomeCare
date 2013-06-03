@@ -24,7 +24,7 @@ public interface IEmployeeInfoBO {
 	
 	public void generatePDFAndEmailForAllActiveEmployees();
 	
-	public Map<String,EmployeeInfo> getAllReminders();
+	public Map<String,EmployeeInfo> getAllReminders(Long employerId);
 	
 	public Map<String,EmployeeInfo> getRemindersByEmployee(Long employeeId);
 	
