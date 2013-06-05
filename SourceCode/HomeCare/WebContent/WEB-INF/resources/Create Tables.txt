@@ -50,13 +50,23 @@ CREATE TABLE `employee_info` (
   PRIMARY KEY (`EMPLOYEE_ID`)
 )
 
-CREATE TABLE `employer` (
+CREATE TABLE `employer_email_info` (
   `EMAIL` varchar(45) NOT NULL,
   `EMPLOYER_NAME` varchar(45) DEFAULT NULL,
   `EMPLOYER_ID` int(11) NOT NULL,
   `PRIMARY` varchar(1) NOT NULL,
   PRIMARY KEY (`EMPLOYER_ID`,`EMAIL`)
 )
+
+CREATE TABLE `employer_send_email` (
+  `id` int(11) NOT NULL,
+  `employer_id` int(11) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `smtphost` varchar(45) DEFAULT NULL,
+  `port` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) 
 
 CREATE TABLE `user` (
   `USER_NAME` varchar(25) NOT NULL,
