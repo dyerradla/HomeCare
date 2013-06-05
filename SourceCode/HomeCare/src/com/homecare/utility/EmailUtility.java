@@ -1,6 +1,5 @@
 package com.homecare.utility;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
@@ -19,35 +18,41 @@ import javax.mail.util.ByteArrayDataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.homecare.domain.EmployerInfo;
+import com.homecare.domain.EmployerEmailInfo;
+import com.homecare.domain.EmployerSendEmail;
 
 public class EmailUtility {
 	private Log logger = LogFactory.getLog(EmailUtility.class);
-	public void sendEmail(String subject,String email,String body){
-		final Properties emailProperties = new Properties();
-		try {
-			emailProperties.load(this.getClass().getResourceAsStream("/email.properties"));
-		} catch (IOException e) {
-			logger.error("Properties File not found");
+	String emailUserName = "peddyb@paragonhhc.com";
+	String password = "madhup";
+	String smtphost = "smtpout.secureserver.net";
+	String port = "80";
+	public void sendEmail(String subject,String email,String body,EmployerSendEmail employerSendEmail){
+		if(isDataExists(employerSendEmail)){
+			emailUserName = employerSendEmail.getEmail();
+			password = employerSendEmail.getPassword();
+			smtphost = employerSendEmail.getSmtphost();
+			port = employerSendEmail.getPort();
 		}
-		
+		final String authenticationUserName = emailUserName;
+		final String authenticationPassword = password;
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", emailProperties.getProperty("EMAIl_STMP_SERVER_HOST"));
-		props.put("mail.smtp.port", emailProperties.getProperty("EMAIL_STMP_PORT"));
+		props.put("mail.smtp.host", smtphost);
+		props.put("mail.smtp.port", port);
 		
 		Session session = Session.getInstance(props,
 		  new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(emailProperties.getProperty("EMAIL_USER_NAME"), emailProperties.getProperty("EMAIl_PASSWORD"));
+				return new PasswordAuthentication(authenticationUserName,authenticationPassword);
 			}
 		  });
  
 		try {
  
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(emailProperties.getProperty("EMAIL_USER_NAME")));
+			message.setFrom(new InternetAddress(emailUserName));
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(email));
 			message.setSubject(subject);
@@ -63,66 +68,83 @@ public class EmailUtility {
 		}
 	}
 
-	public void sendEmailWithAttachment(String subject,List<EmployerInfo> employerEmailList,byte[] data){
-		final Properties emailProperties = new Properties();
-		try {
-			emailProperties.load(this.getClass().getResourceAsStream("/email.properties"));
-		} catch (IOException e) {
-			logger.error("Properties File not found");
-		}
-		
-		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", emailProperties.getProperty("EMAIl_STMP_SERVER_HOST"));
-		props.put("mail.smtp.port", emailProperties.getProperty("EMAIL_STMP_PORT"));
-		
-		Session session = Session.getInstance(props,
-		  new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(emailProperties.getProperty("EMAIL_USER_NAME"), emailProperties.getProperty("EMAIl_PASSWORD"));
+	public void sendEmailWithAttachment(String subject,List<EmployerEmailInfo> employerEmailList,byte[] data){
+		if(null != employerEmailList && !employerEmailList.isEmpty()){
+			EmployerSendEmail employerSendEmail = employerEmailList.get(0).getEmployerSendEmail();
+			if(isDataExists(employerSendEmail)){
+				emailUserName = employerSendEmail.getEmail();
+				password = employerSendEmail.getPassword();
+				smtphost = employerSendEmail.getSmtphost();
+				port = employerSendEmail.getPort();
 			}
-		  });
- 
-		try {
- 
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(emailProperties.getProperty("EMAIL_USER_NAME")));
-			for(EmployerInfo employerInfo : employerEmailList){
-				if("Y".equalsIgnoreCase(employerInfo.getPrimary())){
-					message.setRecipients(Message.RecipientType.TO,
-							InternetAddress.parse(employerInfo.getJoinedEmailEmployerId().getEmail()));
-				}else{
-					message.setRecipients(Message.RecipientType.CC,
-							InternetAddress.parse(employerInfo.getJoinedEmailEmployerId().getEmail()));
+			final String authenticationUserName = emailUserName;
+			final String authenticationPassword = password;
+			
+			Properties props = new Properties();
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.host", smtphost);
+			props.put("mail.smtp.port", port);
+			
+			Session session = Session.getInstance(props,
+			  new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(authenticationUserName, authenticationPassword);
 				}
-			}
-			
-			message.setSubject(subject);
-			
-			 //construct the text body part        
-			MimeBodyPart textBodyPart = new MimeBodyPart();          
-			textBodyPart.setText("Please find the attachment with the reminders of all the employees");
+			  });
+	 
+			try {
+	 
+				Message message = new MimeMessage(session);
+				message.setFrom(new InternetAddress(emailUserName));
+				for(EmployerEmailInfo employerInfo : employerEmailList){
+					if("Y".equalsIgnoreCase(employerInfo.getPrimary())){
+						message.setRecipients(Message.RecipientType.TO,
+								InternetAddress.parse(employerInfo.getJoinedEmailEmployerId().getEmail()));
+					}else{
+						message.setRecipients(Message.RecipientType.CC,
+								InternetAddress.parse(employerInfo.getJoinedEmailEmployerId().getEmail()));
+					}
+				}
 				
-			//construct the pdf body part          
-			DataSource dataSource = new ByteArrayDataSource(data, "application/pdf;charset=UTF-8");    
-			MimeBodyPart pdfBodyPart = new MimeBodyPart();       
-			pdfBodyPart.setDataHandler(new DataHandler(dataSource));
-			pdfBodyPart.setFileName("reminders.pdf");                                
-			
-			//construct the mime multi part            
-			MimeMultipart mimeMultipart = new MimeMultipart();         
-			mimeMultipart.addBodyPart(textBodyPart);           
-			mimeMultipart.addBodyPart(pdfBodyPart);
-			
-			message.setContent(mimeMultipart);
-			Transport.send(message);
- 
-			System.out.println("Email Send");
- 
-		} catch (Exception e) {
-			logger.error("Exception Occured in Sending an email", e);
+				message.setSubject(subject);
+				
+				 //construct the text body part        
+				MimeBodyPart textBodyPart = new MimeBodyPart();          
+				textBodyPart.setText("Please find the attachment with the reminders of all the employees");
+					
+				//construct the pdf body part          
+				DataSource dataSource = new ByteArrayDataSource(data, "application/pdf;charset=UTF-8");    
+				MimeBodyPart pdfBodyPart = new MimeBodyPart();       
+				pdfBodyPart.setDataHandler(new DataHandler(dataSource));
+				pdfBodyPart.setFileName("reminders.pdf");                                
+				
+				//construct the mime multi part            
+				MimeMultipart mimeMultipart = new MimeMultipart();         
+				mimeMultipart.addBodyPart(textBodyPart);           
+				mimeMultipart.addBodyPart(pdfBodyPart);
+				
+				message.setContent(mimeMultipart);
+				Transport.send(message);
+	 
+				System.out.println("Email Send");
+	 
+			} catch (Exception e) {
+				logger.error("Exception Occured in Sending an email", e);
+			}
 		}
+	}
+	
+	private boolean isDataExists(EmployerSendEmail employerSendEmail){
+		boolean isDataExists= false;
+		if(null != employerSendEmail 
+				&& null != employerSendEmail.getEmail() 
+				&& null != employerSendEmail.getPort() 
+				&& null != employerSendEmail.getPassword() 
+				&& null != employerSendEmail.getSmtphost()){
+			isDataExists = true;
+		}
+		return isDataExists;
 	}
 	
 }

@@ -17,7 +17,8 @@ import com.homecare.dao.IEmployeeDAO;
 import com.homecare.dao.IEmployerDAO;
 import com.homecare.domain.CodeValue;
 import com.homecare.domain.EmployeeInfo;
-import com.homecare.domain.EmployerInfo;
+import com.homecare.domain.EmployerEmailInfo;
+import com.homecare.domain.EmployerSendEmail;
 import com.homecare.utility.EmailUtility;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -52,7 +53,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		return employeeDAO.getAllEmployees(employeeInfo);
 	}
 
-	@Scheduled(cron="0 0 1 * * ?")
+	@Scheduled(cron="0 0/1 * * * ?")
 	@Async
 	public void generateEmail(){
 		System.out.println("*****Generate Email");
@@ -98,7 +99,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 				}
 				document.close();
 				
-				List<EmployerInfo> employerEmailList = employerDAO.getAllEmployerEmails(employerId);
+				List<EmployerEmailInfo> employerEmailList = employerDAO.getAllEmployerEmails(employerId);
 				EmailUtility emailUtility = new EmailUtility();
 				emailUtility.sendEmailWithAttachment("Reminders of all the employees", employerEmailList, out.toByteArray());		
 			} catch (Exception e) {
@@ -145,6 +146,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	
 	public EmployeeInfo sendEmail(Long employeeId) {
 		EmployeeInfo employeeInfo = employeeDAO.getEmployeeInfoByEmployeeId(employeeId);
+		EmployerSendEmail employerSendEmail = employerDAO.getEmployerSendEmail(employeeInfo.getEmployerId());
 		List<String> employeeReminderList = getRemindersByEmployee(employeeInfo);
 		// Send an email
 		String concatenatedReminderString ="<table>";
@@ -154,7 +156,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		concatenatedReminderString += "</table>";
 		if(!employeeReminderList.isEmpty()){
 			EmailUtility emailUtility = new EmailUtility();
-			emailUtility.sendEmail("Reminders", employeeInfo.getEmailAddress(), concatenatedReminderString);
+			emailUtility.sendEmail("Reminders", employeeInfo.getEmailAddress(), concatenatedReminderString,employerSendEmail);
 		}
 		return employeeInfo;
 	}
