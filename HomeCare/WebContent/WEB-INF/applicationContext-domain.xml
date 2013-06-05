@@ -17,11 +17,12 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.homecare.domain.User</value>
+				<value>com.homecare.domain.EmployerSendEmail</value>
 				<value>com.homecare.domain.CodeValue</value>
 				<value>com.homecare.domain.Patient</value>
 				<value>com.homecare.domain.Patient_Audit</value>
 				<value>com.homecare.domain.EmployeeInfo</value>
-				<value>com.homecare.domain.EmployerInfo</value>
+				<value>com.homecare.domain.EmployerEmailInfo</value>
 				<value>com.homecare.domain.EmployeeInfoAudit</value>
 			</list>
 		</property>
