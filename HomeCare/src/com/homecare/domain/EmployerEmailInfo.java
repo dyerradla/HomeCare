@@ -6,15 +6,18 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table(name = "employer", catalog = "homecare")
-public class EmployerInfo {
+@Table(name = "employer_email_Info", catalog = "homecare")
+public class EmployerEmailInfo {
 
 	private JoinedEmailEmployerId joinedEmailEmployerId;
 	private String employerName;
 	private String primary;
+	private EmployerSendEmail employerSendEmail;
 	
 	@EmbeddedId
 	public JoinedEmailEmployerId getJoinedEmailEmployerId() {
@@ -38,6 +41,15 @@ public class EmployerInfo {
 	public void setPrimary(String primary) {
 		this.primary = primary;
 	}
+	
+	@Transient
+	public EmployerSendEmail getEmployerSendEmail() {
+		return employerSendEmail;
+	}
+	public void setEmployerSendEmail(EmployerSendEmail employerSendEmail) {
+		this.employerSendEmail = employerSendEmail;
+	}
+
 	// required because JoinedUserRole contains composite id
     @Embeddable
     public static class JoinedEmailEmployerId implements Serializable {
