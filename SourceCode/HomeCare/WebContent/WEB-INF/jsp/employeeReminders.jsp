@@ -88,7 +88,7 @@
 	function sendEmail(employeeId){
 		$.ajax({
 			type : 'GET',
-			url : 'http://localhost:8080/HomeCare/sendEmail.do',
+			url : '/HomeCare/sendEmail.do',
 			data : {
 				employeeId : employeeId
 			},

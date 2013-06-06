@@ -53,7 +53,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		return employeeDAO.getAllEmployees(employeeInfo);
 	}
 
-	@Scheduled(cron="0 0/1 * * * ?")
+	@Scheduled(cron="0 0 1 * * ?")
 	@Async
 	public void generateEmail(){
 		System.out.println("*****Generate Email");
@@ -67,7 +67,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		}
 	}
 	
-	@Scheduled(cron="0 0/1 * * * ?")
+	@Scheduled(cron="0 0 1 * * ?")
 	@Async
 	public void generatePDFAndEmailForAllActiveEmployees(){
 		System.out.println("************************************Print All the Reminders");
