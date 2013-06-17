@@ -51,7 +51,7 @@
                                                         Middle Name
                                                     </td>
                                                     <td>
-                                                        <form:input maxlength="1" path="employeeInfo.middleName" />
+                                                        <form:input maxlength="1" id="middleName" path="employeeInfo.middleName" />
                                                     </td>
                                                     <td>
                                                         Last Name
@@ -496,18 +496,33 @@
 		}
 	}
 	
+	function isValidName(name,isMandatory){
+		var validName = true;
+		var rx=/^[A-Za-z]*[A-Za-z ][A-Za-z ]*$/; 
+		if(isMandatory && name== ''){
+			validName = false;
+		}
+		if(!rx.test(name)){
+			validName = false;
+		}
+		return validName;		
+	}
+	
 	function validateForm(){
 		var errorMessage = "";
 		var errorExists = false;
-		if($('#firstName').val() == ''){
+		if(!isValidName($('#firstName').val(),true)){
 			errorExists = true;
-			errorMessage += "Please Enter First Name" + "\n";
+			errorMessage += "Please Enter Valid First Name" + "\n";
 		}
-		if($('#lastName').val() == ''){
+		if(!isValidName($('#lastName').val(),true)){
 			errorExists = true;
-			errorMessage += "Please Enter Last Name" + "\n";
+			errorMessage += "Please Enter Valid Last Name" + "\n";
 		}
-		
+		if(!isValidName($('#middleName').val(),false)){
+			errorExists = true;
+			errorMessage += "Please Enter Valid Middle Name" + "\n";
+		}
 		if($('#emailAddress').val() == ''){
 			errorExists = true;
 			errorMessage += "Please Enter Email Address" + "\n";
