@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="styles/styleSheet.css" type="text/css" />
 <link href="Styles/zebra_datepicker.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
 <script src="Script/zebra_datepicker.js" type="text/javascript"></script>
 

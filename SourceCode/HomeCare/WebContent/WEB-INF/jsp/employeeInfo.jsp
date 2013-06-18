@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<script type="text/javascript" src="js/employeeInfo.js"></script>
 
 <form:form id="employeeInfoForm" name="employeeInfoForm" action="saveEmployeeInfo.do">
 	<input type="hidden" name="employeeInfo.employeeId" value="${command.employeeInfo.employeeId}" />
@@ -440,26 +441,9 @@
 	$(function() {
 		$( '.datepicker-example1' ).datepicker();
 		$( '.datepicker-example1' ).blur(function(){
-			var valid = true;
-			var date = this.value;
-			if(date != '' && date.length != 0){
-				date = date.replace('/-/g', '');
-		        var month = date.substring(0, 2);
-		        var day   = date.substring(3, 5);
-		        var year  = date.substring(6, 10);
-
-		        if(date.length != 10 || month.length != 2 || day.length != 2 || year.length != 4){
-		        	valid = false;
-		        }
-		        if(valid){
-		        	if((month < 1) || (month > 12)) valid = false;
-			        else if((day < 1) || (day > 31)) valid = false;
-			        else if(((month == 4) || (month == 6) || (month == 9) || (month == 11)) && (day > 30)) valid = false;
-			        else if((month == 2) && (((year % 400) == 0) || ((year % 4) == 0)) && ((year % 100) != 0) && (day > 29)) valid = false;
-			        else if((month == 2) && ((year % 100) == 0) && (day > 29)) valid = false;	
-		        }	
-			}
 			
+			var date = this.value;
+			var valid = validateDate(date);
 			if(!valid){
 				alert("Please enter the date in MM/DD/YYYY format or select it from calendar");
 				$(this).focus();
@@ -472,141 +456,19 @@
 			alert('Employee Information Saved Sucessfully');
 		}
 		
-		
-           //Default Action
-           $(".tab_content").hide(); //Hide all content
-           $("ul.tabs li:first").addClass("active").show(); //Activate first tab
-           $(".tab_content:first").show(); //Show first tab content
+        //Default Action
+        $(".tab_content").hide(); //Hide all content
+        $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+        $(".tab_content:first").show(); //Show first tab content
 
-           //On Click Event
-           $("ul.tabs li").click(function () {
-               $("ul.tabs li").removeClass("active"); //Remove any "active" class
-               $(this).addClass("active"); //Add "active" class to selected tab
-               $(".tab_content").hide(); //Hide all tab content
-               var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
-               $(activeTab).fadeIn(0); //Fade in the active content                
-               return false;
-           });
+        //On Click Event
+        $("ul.tabs li").click(function () {
+            $("ul.tabs li").removeClass("active"); //Remove any "active" class
+            $(this).addClass("active"); //Add "active" class to selected tab
+            $(".tab_content").hide(); //Hide all tab content
+            var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+            $(activeTab).fadeIn(0); //Fade in the active content                
+            return false;
+        });
 	});
-	
-	function submitEmployee(){
-		$("#employeeInfoForm").attr("action","/HomeCare/saveEmployeeInfo.do");
-		if(!validateForm()){
-			$("#employeeInfoForm").submit();		
-		}
-	}
-	
-	function isValidName(name,isMandatory){
-		var validName = true;
-		var rx=/^[A-Za-z]*[A-Za-z ][A-Za-z ]*$/; 
-		if(isMandatory && name== ''){
-			validName = false;
-		}
-		if(!rx.test(name)){
-			validName = false;
-		}
-		return validName;		
-	}
-	
-	function validateForm(){
-		var errorMessage = "";
-		var errorExists = false;
-		if(!isValidName($('#firstName').val(),true)){
-			errorExists = true;
-			errorMessage += "Please Enter Valid First Name" + "\n";
-		}
-		if(!isValidName($('#lastName').val(),true)){
-			errorExists = true;
-			errorMessage += "Please Enter Valid Last Name" + "\n";
-		}
-		if(!isValidName($('#middleName').val(),false)){
-			errorExists = true;
-			errorMessage += "Please Enter Valid Middle Name" + "\n";
-		}
-		if($('#emailAddress').val() == ''){
-			errorExists = true;
-			errorMessage += "Please Enter Email Address" + "\n";
-		}else{
-			var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-			if(!emailPattern.test($('#emailAddress').val())){
-				errorExists = true;
-				errorMessage += "Please Enter valid Email Address" + "\n";
-			}
-		}
-		
-		var phone = $('#phoneNumber').val();
-		var reg=/^\d{3}\-?\d{3}\-?\d{4}$/; 
-		if(!reg.test(phone)){
-			errorExists = true;
-			errorMessage += "Please Enter valid Phone Number" + "\n";
-		}
-		
-		if($('#employmentDate').val() == ''){
-			errorExists = true;
-			errorMessage += "Please Enter Employment Date" + "\n";
-		}
-		if(errorExists){
-			alert(errorMessage);
-		}
-		
-		return errorExists;
-	}
-	
-	function enableDisableFieldsOnDeptChange(){
-		$("#employeeInfoForm :input").removeAttr("disabled");
-		$("#employeeInfoForm :input").removeAttr("disabled");
-		if("100" == $('#department').val()){
-			$('#profLicense').attr("disabled","disabled");
-			$('#cprCard').attr("disabled","disabled");
-			$('#tbTest').attr("disabled","disabled");
-			$('#oshaTraining').attr("disabled","disabled");
-			$('#hvbTest').attr("disabled","disabled");
-			$('#verificationProfLicense').attr("disabled","disabled");
-		}
-		if("300" == $('#department').val()){
-			$('#application').attr("disabled","disabled");
-			$('#resume').attr("disabled","disabled");
-			$('#referenceChecks').attr("disabled","disabled");
-			$('#policy').attr("disabled","disabled");
-			$('#statementOfConfidentiality').attr("disabled","disabled");
-			$('#socialSecurityCard').attr("disabled","disabled");
-			$('#nonCompete').attr("disabled","disabled");
-			
-			// Licenses Section
-			$('#initialCompetencyEvaluation').attr("disabled","disabled");
-			$('#ongoinCompetencyEvaluation').attr("disabled","disabled");
-			$('#annualEvaluation').attr("disabled","disabled");
-			$('#hippaTraining').attr("disabled","disabled");
-			$('#oshaTraining').attr("disabled","disabled");
-			$('#hvbTest').attr("disabled","disabled");
-			
-			// Employment Section
-			$('#i9').attr("disabled","disabled");
-			$('#federalW4').attr("disabled","disabled");
-			$('#michiganW4').attr("disabled","disabled");
-			$('#criminalCheck').attr("disabled","disabled");
-			$('#authorizationCriminalCheck').attr("disabled","disabled");
-			$('#fingerprintsResults').attr("disabled","disabled");
-		}
-	}
-	
-	function newEmployee(){
-		$("#employeeInfoForm").attr("action","/HomeCare/loadEmployeeInfo.do?newEmployee=Y");
-		$("#employeeInfoForm").submit();
-	}
-
-	function getRemindersByEmployee(employeeId){
-		$("#employeeInfoForm").attr("action","/HomeCare/getRemindersByEmployee.do?employeeId="+employeeId);
-		$("#employeeInfoForm").submit();
-	}
-	
-	function getAllEmployees(){
-		$("#employeeInfoForm").attr("action","/HomeCare/getAllEmployees.do");
-		$("#employeeInfoForm").submit();
-	}
-	
-	function searchEmployee(){
-		$("#employeeInfoForm").attr("action","/HomeCare/getSelectedEmployeeInfo.do");
-		$("#employeeInfoForm").submit();
-	}
 </script>

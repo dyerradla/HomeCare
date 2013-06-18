@@ -28,7 +28,7 @@
 							  <li class="contentContainer" id="employee${employeeReminder.key}">
 							  	<c:set var="employeeReminderMessageList" value="${employeeReminder.value.employeeReminderMessage}"/>
 							  	<c:out value="${employeeReminder.key}"/>(${fn:length(employeeReminderMessageList)} Reminders Found) 
-							  	<input type="button" value="Send Email" onclick="sendEmail(${employeeReminder.value.employeeId})"/>
+							  	<input type="button" value="Send Email" onclick="sendEmail(${employeeReminder.value.employeeId},'${employeeReminder.value.status}')"/>
 							  	<input type="button" value="Load Employee" onclick="loadEmployee(${employeeReminder.value.employeeId})"/>
 							  	<ul style="display: none;">
 							  		<c:if test="${empty employeeReminder.value.employeeReminderMessage}">No Reminders Found</c:if>
@@ -85,20 +85,24 @@
 		$("#employeeInfoForm").submit();
 	}
 	
-	function sendEmail(employeeId){
-		$.ajax({
-			type : 'GET',
-			url : '/HomeCare/sendEmail.do',
-			data : {
-				employeeId : employeeId
-			},
-			error : function(){
-				alert('Error in Sending the Email');
-			},
-			success : function(){
-				alert('Email send Successfully');
-			}
-		});
+	function sendEmail(employeeId,status){
+		if("A" == status){
+			$.ajax({
+				type : 'GET',
+				url : '/HomeCare/sendEmail.do',
+				data : {
+					employeeId : employeeId
+				},
+				error : function(){
+					alert('Error in Sending the Email');
+				},
+				success : function(){
+					alert('Email send Successfully');
+				}
+			});
+		}	
+		else{
+			alert("Email can't be send for InActive Employees");
+		}
 	}
-
 </script>
