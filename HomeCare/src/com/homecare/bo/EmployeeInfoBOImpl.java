@@ -204,11 +204,13 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		Map<String,String> messagesMap = getMessageMapByType("R");
 		
 		Calendar currentcal = Calendar.getInstance();
-		currentcal.add(Calendar.MONTH, 1);
+		currentcal.add(Calendar.DATE, 15);
+//		currentcal.add(Calendar.MONTH, 1);
 		
 		Calendar annualEvaluation = Calendar.getInstance();
 		annualEvaluation.add(Calendar.YEAR, -1);
-		annualEvaluation.add(Calendar.MONTH, 1);
+		annualEvaluation.add(Calendar.DATE, 15);
+//		annualEvaluation.add(Calendar.MONTH, 1);
 		
 		List<String> employeeReminderList = new ArrayList<String>();
 		if(null == employeeInfo.getApplication() || employeeInfo.getApplication() == 'N'){
