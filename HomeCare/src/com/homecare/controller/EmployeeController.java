@@ -172,13 +172,6 @@ public class EmployeeController extends BaseFormController{
 			errorList.add(messagesMap.get("ANNUAL_EVALUATION_AFTER_CURRENTDATE_ERROR"));
 		}
 		
-		if(null != employeeInfo.getAnnualEvaluation() && null != employmentDate){
-			employmentDateToCompareWithDates.setTime(employmentDate);
-			employmentDateToCompareWithDates.add(Calendar.YEAR, 1);
-			if(employeeInfo.getAnnualEvaluation().after(employmentDateToCompareWithDates.getTime())){
-				errorList.add(messagesMap.get("ANNUAL_EVALUATION_NOT_IN_RANGE_OF_EMPLOYMENT_DATE_ERROR"));
-			}
-		}
 		return errorList;
 	}
 	
