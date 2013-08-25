@@ -12,13 +12,12 @@
        			http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
        			
     <bean id="baseController" class="com.homecare.controller.BaseFormController" />
-       			
-	<bean id="patientController" class="com.homecare.controller.PatientController"
-		parent="baseController" />
 	<bean id="employeeController" class="com.homecare.controller.EmployeeController"
 		parent="baseController" />
 	<bean id="loginController" class="com.homecare.controller.LoginController"
 		parent="baseController" />
 	<bean id="homeController" class="com.homecare.controller.HomeController"
+		parent="baseController" />	
+	<bean id="userController" class="com.homecare.controller.UserController"
 		parent="baseController" />	
 </beans>

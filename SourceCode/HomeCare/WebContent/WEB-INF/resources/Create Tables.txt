@@ -58,15 +58,15 @@ CREATE TABLE `employer_email_info` (
   PRIMARY KEY (`EMPLOYER_ID`,`EMAIL`)
 )
 
-CREATE TABLE `employer_send_email` (
-  `id` int(11) NOT NULL,
+CREATE TABLE `employer_info` (
   `employer_id` int(11) NOT NULL,
+  `employer_name` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
   `smtphost` varchar(45) DEFAULT NULL,
   `port` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) 
+  PRIMARY KEY (`employer_id`)
+)
 
 CREATE TABLE `user` (
   `USER_NAME` varchar(25) NOT NULL,
@@ -75,5 +75,6 @@ CREATE TABLE `user` (
   `LAST_NAME` varchar(45) DEFAULT NULL,
   `MIDDLE_NAME` varchar(45) DEFAULT NULL,
   `EMPLOYER_ID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`USER_NAME`)
+  `USER_ID` int(11) NOT NULL,
+  PRIMARY KEY (`USER_ID`)
 )

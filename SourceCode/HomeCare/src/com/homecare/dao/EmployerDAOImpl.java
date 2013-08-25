@@ -6,7 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
 import com.homecare.domain.EmployerEmailInfo;
-import com.homecare.domain.EmployerSendEmail;
+import com.homecare.domain.EmployerInfo;
 
 public class EmployerDAOImpl extends BaseDAO implements IEmployerDAO {
 
@@ -18,23 +18,28 @@ public class EmployerDAOImpl extends BaseDAO implements IEmployerDAO {
 		List<EmployerEmailInfo> employerEmailList = criteria.list();
 		if(null != employerEmailList && !employerEmailList.isEmpty()){
 			for(EmployerEmailInfo employerInfo : employerEmailList){
-				employerInfo.setEmployerSendEmail(getEmployerSendEmail(employerId));
+				employerInfo.setEmployerInfo(getEmployerInfo(employerId));
 			}
 		}
 		return employerEmailList;
 	}
 	
 	
-	public EmployerSendEmail getEmployerSendEmail(Long employerId) {
-		Criteria criteria = getSession().createCriteria(EmployerSendEmail.class);
+	public EmployerInfo getEmployerInfo(Long employerId) {
+		EmployerInfo returnEmployer = null;
+		Criteria criteria = getSession().createCriteria(EmployerInfo.class);
 		if(null != employerId){
 			criteria.add(Restrictions.like("employerId", employerId));
 		}
-		List<EmployerSendEmail> employerSendEmailList = criteria.list();
-		EmployerSendEmail returnEmployerSendEmail = null;
-		if(null != employerSendEmailList && !employerSendEmailList.isEmpty()){
-			returnEmployerSendEmail = employerSendEmailList.get(0);
+		List<EmployerInfo> employers = criteria.list();
+		if(null != employers && !employers.isEmpty()){
+			returnEmployer = employers.get(0);
 		}
-		return returnEmployerSendEmail;
+		return returnEmployer;
 	}
+	
+	public void saveEmployer(EmployerInfo employerInfo){
+		saveOrUpdateObject(employerInfo);
+	}
+	
 }

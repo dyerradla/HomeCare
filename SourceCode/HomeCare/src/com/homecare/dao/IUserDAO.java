@@ -5,4 +5,6 @@ import com.homecare.domain.User;
 public interface IUserDAO {
 
 	public User validateUser(String userName, String password);
+	
+	public void saveUser(User user);
 }

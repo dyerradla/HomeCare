@@ -6,27 +6,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table(name = "employer_send_email", catalog = "homecare")
-public class EmployerSendEmail {
-	private Long employerSendEmailId;
+@Table(name = "employer_info", catalog = "homecare")
+public class EmployerInfo {
 	private Long employerId;
+	private String employerName;
 	private String email;
 	private String password;
 	private String smtphost;
 	private String port;
+	private String emailType;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id", nullable = false)
-	public Long getEmployerSendEmailId() {
-		return employerSendEmailId;
-	}
-	public void setEmployerSendEmailId(Long employerSendEmailId) {
-		this.employerSendEmailId = employerSendEmailId;
-	}
-	
 	@Column(name="employer_id", nullable = false)
 	public Long getEmployerId() {
 		return employerId;
@@ -35,6 +29,13 @@ public class EmployerSendEmail {
 		this.employerId = employerId;
 	}
 	
+	@Column(name="employer_name")
+	public String getEmployerName() {
+		return employerName;
+	}
+	public void setEmployerName(String employerName) {
+		this.employerName = employerName;
+	}
 	@Column(name="email", nullable = false)
 	public String getEmail() {
 		return email;
@@ -66,5 +67,13 @@ public class EmployerSendEmail {
 	}
 	public void setPort(String port) {
 		this.port = port;
+	}
+	
+	@Transient
+	public String getEmailType() {
+		return emailType;
+	}
+	public void setEmailType(String emailType) {
+		this.emailType = emailType;
 	}
 }

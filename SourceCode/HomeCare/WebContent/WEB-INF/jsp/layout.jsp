@@ -24,7 +24,7 @@
     <center>
         <div class="main_div">
             <div class="top_bg">
-            </div>
+            </div> 
             <div class="middle_bg" align="left">
                 <tiles:insertAttribute name="header" />
                 <div class="main_logindiv" align="center">
