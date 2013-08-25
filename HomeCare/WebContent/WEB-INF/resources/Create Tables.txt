@@ -1,9 +1,9 @@
 CREATE TABLE `code_value` (
   `code` varchar(75) NOT NULL,
   `value` varchar(250) NOT NULL,
-  `type` char(1) NOT NULL,
+  `type` varchar(25) NOT NULL,
   PRIMARY KEY (`code`)
-)
+);
 
 
 CREATE TABLE `employee_info` (
@@ -48,15 +48,16 @@ CREATE TABLE `employee_info` (
   `PHONE_NUMBER` varchar(10) DEFAULT NULL,
   `DEPARTMENT` varchar(10) DEFAULT '100',
   PRIMARY KEY (`EMPLOYEE_ID`)
-)
+) 
+
 
 CREATE TABLE `employer_email_info` (
   `EMAIL` varchar(45) NOT NULL,
-  `EMPLOYER_NAME` varchar(45) DEFAULT NULL,
   `EMPLOYER_ID` int(11) NOT NULL,
   `PRIMARY` varchar(1) NOT NULL,
   PRIMARY KEY (`EMPLOYER_ID`,`EMAIL`)
 )
+
 
 CREATE TABLE `employer_info` (
   `employer_id` int(11) NOT NULL,
@@ -68,13 +69,15 @@ CREATE TABLE `employer_info` (
   PRIMARY KEY (`employer_id`)
 )
 
+
 CREATE TABLE `user` (
-  `USER_NAME` varchar(25) NOT NULL,
-  `PASSWORD` varchar(25) NOT NULL,
-  `FIRST_NAME` varchar(45) DEFAULT NULL,
-  `LAST_NAME` varchar(45) DEFAULT NULL,
+  `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USER_NAME` varchar(45) NOT NULL,
+  `PASSWORD` varchar(45) NOT NULL,
+  `FIRST_NAME` varchar(45) NOT NULL,
+  `LAST_NAME` varchar(45) NOT NULL,
   `MIDDLE_NAME` varchar(45) DEFAULT NULL,
-  `EMPLOYER_ID` int(11) DEFAULT NULL,
-  `USER_ID` int(11) NOT NULL,
+  `EMPLOYER_ID` int(11) NOT NULL,
+  `ROLE` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`USER_ID`)
 )
