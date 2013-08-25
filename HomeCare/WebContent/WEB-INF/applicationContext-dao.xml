@@ -10,9 +10,6 @@
        			http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
        			http://www.springframework.org/schema/tx 
        			http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
-	<bean id="patientDAO" class="com.homecare.dao.PatientDAOImpl">
-		<property name="sessionFactory" ref="mySessionFactory"></property>
-	</bean>
 	<bean id="employeeDAO" class="com.homecare.dao.EmployeeDAOImpl">
 		<property name="sessionFactory" ref="mySessionFactory"></property>
 	</bean>

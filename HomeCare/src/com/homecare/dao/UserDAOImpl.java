@@ -22,5 +22,8 @@ public class UserDAOImpl extends BaseDAO implements IUserDAO {
 		}
 		return selectedUser;
 	}
-
+	
+	public void saveUser(User user){
+		saveOrUpdateObject(user);
+	}
 }

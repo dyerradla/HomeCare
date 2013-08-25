@@ -28,6 +28,16 @@
         <put-attribute name="body" value="/WEB-INF/jsp/employeeInfo.jsp" />
     </definition>
     
+    <definition name="userInfo" extends=".mainTemplate">
+        <put-attribute name="title" value="User" />
+        <put-attribute name="body" value="/WEB-INF/jsp/userInfo.jsp" />
+    </definition>
+    
+    <definition name="employerInfo" extends=".mainTemplate">
+        <put-attribute name="title" value="User" />
+        <put-attribute name="body" value="/WEB-INF/jsp/employerInfo.jsp" />
+    </definition>
+    
      <definition name="employeeList" extends=".mainTemplate">
         <put-attribute name="title" value="Employee List" />
         <put-attribute name="body" value="/WEB-INF/jsp/employeeList.jsp" />

@@ -1,10 +1,12 @@
 package com.homecare.command;
 
+import com.homecare.domain.EmployerInfo;
 import com.homecare.domain.User;
 
 public class UserForm {
 	
 	private User user = new User();
+	private EmployerInfo employerInfo = new EmployerInfo();
 	private String validUser;
 	public User getUser() {
 		return user;
@@ -22,4 +24,11 @@ public class UserForm {
 		this.validUser = validUser;
 	}
 
+	public EmployerInfo getEmployerInfo() {
+		return employerInfo;
+	}
+
+	public void setEmployerInfo(EmployerInfo employerInfo) {
+		this.employerInfo = employerInfo;
+	}
 }

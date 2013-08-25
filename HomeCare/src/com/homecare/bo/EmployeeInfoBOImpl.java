@@ -18,7 +18,7 @@ import com.homecare.dao.IEmployerDAO;
 import com.homecare.domain.CodeValue;
 import com.homecare.domain.EmployeeInfo;
 import com.homecare.domain.EmployerEmailInfo;
-import com.homecare.domain.EmployerSendEmail;
+import com.homecare.domain.EmployerInfo;
 import com.homecare.utility.EmailUtility;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -146,7 +146,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 	
 	public EmployeeInfo sendEmail(Long employeeId) {
 		EmployeeInfo employeeInfo = employeeDAO.getEmployeeInfoByEmployeeId(employeeId);
-		EmployerSendEmail employerSendEmail = employerDAO.getEmployerSendEmail(employeeInfo.getEmployerId());
+		EmployerInfo employerInfo = employerDAO.getEmployerInfo(employeeInfo.getEmployerId());
 		List<String> employeeReminderList = getRemindersByEmployee(employeeInfo);
 		// Send an email
 		String concatenatedReminderString ="<table>";
@@ -156,7 +156,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		concatenatedReminderString += "</table>";
 		if(!employeeReminderList.isEmpty()){
 			EmailUtility emailUtility = new EmailUtility();
-			emailUtility.sendEmail("Reminders", employeeInfo.getEmailAddress(), concatenatedReminderString,employerSendEmail);
+			emailUtility.sendEmail("Reminders", employeeInfo.getEmailAddress(), concatenatedReminderString,employerInfo);
 		}
 		return employeeInfo;
 	}
@@ -213,16 +213,59 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 //		annualEvaluation.add(Calendar.MONTH, 1);
 		
 		List<String> employeeReminderList = new ArrayList<String>();
-		if(null == employeeInfo.getApplication() || employeeInfo.getApplication() == 'N'){
-			employeeReminderList.add(messagesMap.get("APPLICATION_REMINDER"));
-		}
-		
-		if(null == employeeInfo.getResume() || employeeInfo.getResume() =='N'){
-			employeeReminderList.add(messagesMap.get("RESUME_REMINDER"));
-		}
-		
-		if(null == employeeInfo.getReferenceChecks() || employeeInfo.getReferenceChecks() == 'N'){
-			employeeReminderList.add(messagesMap.get("REFERENCES_CHECK_REMINDER"));
+		// Check the reminders for some fields only if Department code is not 300
+		if(null != employeeInfo.getDepartment() && !"300".equalsIgnoreCase(employeeInfo.getDepartment())){
+			if(null == employeeInfo.getApplication() || employeeInfo.getApplication() == 'N'){
+				employeeReminderList.add(messagesMap.get("APPLICATION_REMINDER"));
+			}
+			
+			if(null == employeeInfo.getResume() || employeeInfo.getResume() =='N'){
+				employeeReminderList.add(messagesMap.get("RESUME_REMINDER"));
+			}
+			
+			if(null == employeeInfo.getReferenceChecks() || employeeInfo.getReferenceChecks() == 'N'){
+				employeeReminderList.add(messagesMap.get("REFERENCES_CHECK_REMINDER"));
+			}
+			
+			if(null == employeeInfo.getStatementOfConfidentiality() || employeeInfo.getStatementOfConfidentiality() =='N'){
+				employeeReminderList.add(messagesMap.get("STATEMENT_OF_CONFIDENTIALITY_REMINDER"));
+			}
+			
+			if(null == employeeInfo.getPolicy() || employeeInfo.getPolicy() =='N'){
+				employeeReminderList.add(messagesMap.get("POLICY_REMINDER"));
+			}
+			
+			if(null == employeeInfo.getSocialSecurityCard() || employeeInfo.getSocialSecurityCard() =='N'){
+				employeeReminderList.add(messagesMap.get("SSN_REMINDER"));
+			}
+			
+			if(null == employeeInfo.getNonCompete() || employeeInfo.getNonCompete() =='N'){
+				employeeReminderList.add(messagesMap.get("NON_COMPETE_REMINDER"));
+			}
+			 
+			if(null == employeeInfo.getAuthorizationCriminalCheck() || employeeInfo.getAuthorizationCriminalCheck() =='N'){
+				employeeReminderList.add(messagesMap.get("AUTHORIZATION_CRIMINAL_CHECK_REMINDER"));
+			}
+			
+			if(null == employeeInfo.getCriminalCheck() || employeeInfo.getCriminalCheck() =='N'){
+				employeeReminderList.add(messagesMap.get("CRIMINAL_CHECK_REMINDER"));
+			}
+			
+			if(null == employeeInfo.getFingerprintsResults() || employeeInfo.getFingerprintsResults() =='N'){
+				employeeReminderList.add(messagesMap.get("FINGER_PRINT_RESULTS_REMINDER"));
+			}
+			
+			if(null == employeeInfo.getFederalW4() || employeeInfo.getFederalW4() =='N'){
+				employeeReminderList.add(messagesMap.get("FEDERAL_W4_REMINDER"));
+			} 
+			 
+			if(null == employeeInfo.getMichiganW4() || employeeInfo.getMichiganW4() =='N'){
+				employeeReminderList.add(messagesMap.get("MICHIGAN_W4_REMINDER"));
+			}
+			
+			if(null == employeeInfo.getI9() || employeeInfo.getI9() =='N'){
+				employeeReminderList.add(messagesMap.get("I9_REMINDER"));
+			}
 		}
 		
 		if(null == employeeInfo.getSignedJobDescription() || employeeInfo.getSignedJobDescription() =='N'){
@@ -231,46 +274,6 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		
 		if(null == employeeInfo.getOrientationChecklist() || employeeInfo.getOrientationChecklist() =='N'){
 			employeeReminderList.add(messagesMap.get("ORIENTATION_CHECKLIST_REMINDER"));
-		}
-		
-		if(null == employeeInfo.getStatementOfConfidentiality() || employeeInfo.getStatementOfConfidentiality() =='N'){
-			employeeReminderList.add(messagesMap.get("STATEMENT_OF_CONFIDENTIALITY_REMINDER"));
-		}
-		
-		if(null == employeeInfo.getPolicy() || employeeInfo.getPolicy() =='N'){
-			employeeReminderList.add(messagesMap.get("POLICY_REMINDER"));
-		}
-		
-		if(null == employeeInfo.getSocialSecurityCard() || employeeInfo.getSocialSecurityCard() =='N'){
-			employeeReminderList.add(messagesMap.get("SSN_REMINDER"));
-		}
-		
-		if(null == employeeInfo.getNonCompete() || employeeInfo.getNonCompete() =='N'){
-			employeeReminderList.add(messagesMap.get("NON_COMPETE_REMINDER"));
-		}
-		 
-		if(null == employeeInfo.getAuthorizationCriminalCheck() || employeeInfo.getAuthorizationCriminalCheck() =='N'){
-			employeeReminderList.add(messagesMap.get("AUTHORIZATION_CRIMINAL_CHECK_REMINDER"));
-		}
-		
-		if(null == employeeInfo.getCriminalCheck() || employeeInfo.getCriminalCheck() =='N'){
-			employeeReminderList.add(messagesMap.get("CRIMINAL_CHECK_REMINDER"));
-		}
-		
-		if(null == employeeInfo.getFingerprintsResults() || employeeInfo.getFingerprintsResults() =='N'){
-			employeeReminderList.add(messagesMap.get("FINGER_PRINT_RESULTS_REMINDER"));
-		}
-		
-		if(null == employeeInfo.getFederalW4() || employeeInfo.getFederalW4() =='N'){
-			employeeReminderList.add(messagesMap.get("FEDERAL_W4_REMINDER"));
-		} 
-		 
-		if(null == employeeInfo.getMichiganW4() || employeeInfo.getMichiganW4() =='N'){
-			employeeReminderList.add(messagesMap.get("MICHIGAN_W4_REMINDER"));
-		}
-		
-		if(null == employeeInfo.getI9() || employeeInfo.getI9() =='N'){
-			employeeReminderList.add(messagesMap.get("I9_REMINDER"));
 		}
 		
 		Calendar employmentDate = Calendar.getInstance();
@@ -297,8 +300,8 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 			}
 		}
 		
-		// Check the reminders for some fields only if Department code is 200
-		if(null != employeeInfo.getDepartment() && "200".equalsIgnoreCase(employeeInfo.getDepartment())){
+		// Check the reminders for some fields only if Department code is not 100
+		if(null != employeeInfo.getDepartment() && !"100".equalsIgnoreCase(employeeInfo.getDepartment())){
 			if(null == employeeInfo.getProfLicense() || !employeeInfo.getProfLicense().after(currentcal.getTime())){
 				employeeReminderList.add(messagesMap.get("PROF_LICENSE_REMINDER"));
 			}
@@ -311,10 +314,6 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 				employeeReminderList.add(messagesMap.get("TBTEST_REMINDER"));
 			}
 
-			if(null == employeeInfo.getHippaTraining() || employeeInfo.getHippaTraining() =='N'){
-				employeeReminderList.add(messagesMap.get("HIPPA_REMINDER"));
-			}
-			 
 			if(null == employeeInfo.getOshaTraining() || employeeInfo.getOshaTraining() =='N'){
 				employeeReminderList.add(messagesMap.get("OSHA_REMINDER"));
 			}
@@ -329,6 +328,9 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 			
 		}
 		
+		if(null == employeeInfo.getHippaTraining() || employeeInfo.getHippaTraining() =='N'){
+			employeeReminderList.add(messagesMap.get("HIPPA_REMINDER"));
+		}
 		if(null == employeeInfo.getProofValidCarInsurance() || !employeeInfo.getProofValidCarInsurance().after(currentcal.getTime())){
 			employeeReminderList.add(messagesMap.get("PROOF_OF_CAR_INSURANCE_REMINDER"));
 		}

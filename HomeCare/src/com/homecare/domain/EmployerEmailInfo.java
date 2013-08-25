@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -15,9 +14,8 @@ import javax.persistence.Transient;
 public class EmployerEmailInfo {
 
 	private JoinedEmailEmployerId joinedEmailEmployerId;
-	private String employerName;
 	private String primary;
-	private EmployerSendEmail employerSendEmail;
+	private EmployerInfo employerInfo;
 	
 	@EmbeddedId
 	public JoinedEmailEmployerId getJoinedEmailEmployerId() {
@@ -26,14 +24,7 @@ public class EmployerEmailInfo {
 	public void setJoinedEmailEmployerId(JoinedEmailEmployerId joinedEmailEmployerId) {
 		this.joinedEmailEmployerId = joinedEmailEmployerId;
 	}
-	@Column(name="employer_name")
-	public String getEmployerName() {
-		return employerName;
-	}
-	public void setEmployerName(String employerName) {
-		this.employerName = employerName;
-	}
-	
+		
 	@Column(name="primary",nullable = false)
 	public String getPrimary() {
 		return primary;
@@ -43,11 +34,11 @@ public class EmployerEmailInfo {
 	}
 	
 	@Transient
-	public EmployerSendEmail getEmployerSendEmail() {
-		return employerSendEmail;
+	public EmployerInfo getEmployerInfo() {
+		return employerInfo;
 	}
-	public void setEmployerSendEmail(EmployerSendEmail employerSendEmail) {
-		this.employerSendEmail = employerSendEmail;
+	public void setEmployerInfo(EmployerInfo employerInfo) {
+		this.employerInfo = employerInfo;
 	}
 
 	// required because JoinedUserRole contains composite id

@@ -19,7 +19,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.homecare.domain.EmployerEmailInfo;
-import com.homecare.domain.EmployerSendEmail;
+import com.homecare.domain.EmployerInfo;
 
 public class EmailUtility {
 	private Log logger = LogFactory.getLog(EmailUtility.class);
@@ -27,12 +27,12 @@ public class EmailUtility {
 	String password = "madhup";
 	String smtphost = "smtpout.secureserver.net";
 	String port = "80";
-	public void sendEmail(String subject,String email,String body,EmployerSendEmail employerSendEmail){
-		if(isDataExists(employerSendEmail)){
-			emailUserName = employerSendEmail.getEmail();
-			password = employerSendEmail.getPassword();
-			smtphost = employerSendEmail.getSmtphost();
-			port = employerSendEmail.getPort();
+	public void sendEmail(String subject,String email,String body,EmployerInfo employerInfo){
+		if(isDataExists(employerInfo)){
+			emailUserName = employerInfo.getEmail();
+			password = employerInfo.getPassword();
+			smtphost = employerInfo.getSmtphost();
+			port = employerInfo.getPort();
 		}
 		final String authenticationUserName = emailUserName;
 		final String authenticationPassword = password;
@@ -70,12 +70,12 @@ public class EmailUtility {
 
 	public void sendEmailWithAttachment(String subject,List<EmployerEmailInfo> employerEmailList,byte[] data){
 		if(null != employerEmailList && !employerEmailList.isEmpty()){
-			EmployerSendEmail employerSendEmail = employerEmailList.get(0).getEmployerSendEmail();
-			if(isDataExists(employerSendEmail)){
-				emailUserName = employerSendEmail.getEmail();
-				password = employerSendEmail.getPassword();
-				smtphost = employerSendEmail.getSmtphost();
-				port = employerSendEmail.getPort();
+			EmployerInfo employerInfo = employerEmailList.get(0).getEmployerInfo();
+			if(isDataExists(employerInfo)){
+				emailUserName = employerInfo.getEmail();
+				password = employerInfo.getPassword();
+				smtphost = employerInfo.getSmtphost();
+				port = employerInfo.getPort();
 			}
 			final String authenticationUserName = emailUserName;
 			final String authenticationPassword = password;
@@ -97,13 +97,13 @@ public class EmailUtility {
 	 
 				Message message = new MimeMessage(session);
 				message.setFrom(new InternetAddress(emailUserName));
-				for(EmployerEmailInfo employerInfo : employerEmailList){
-					if("Y".equalsIgnoreCase(employerInfo.getPrimary())){
+				for(EmployerEmailInfo employerEmailInfo : employerEmailList){
+					if("Y".equalsIgnoreCase(employerEmailInfo.getPrimary())){
 						message.setRecipients(Message.RecipientType.TO,
-								InternetAddress.parse(employerInfo.getJoinedEmailEmployerId().getEmail()));
+								InternetAddress.parse(employerEmailInfo.getJoinedEmailEmployerId().getEmail()));
 					}else{
 						message.setRecipients(Message.RecipientType.CC,
-								InternetAddress.parse(employerInfo.getJoinedEmailEmployerId().getEmail()));
+								InternetAddress.parse(employerEmailInfo.getJoinedEmailEmployerId().getEmail()));
 					}
 				}
 				
@@ -135,13 +135,13 @@ public class EmailUtility {
 		}
 	}
 	
-	private boolean isDataExists(EmployerSendEmail employerSendEmail){
+	private boolean isDataExists(EmployerInfo employerInfo){
 		boolean isDataExists= false;
-		if(null != employerSendEmail 
-				&& null != employerSendEmail.getEmail() 
-				&& null != employerSendEmail.getPort() 
-				&& null != employerSendEmail.getPassword() 
-				&& null != employerSendEmail.getSmtphost()){
+		if(null != employerInfo 
+				&& null != employerInfo.getEmail() 
+				&& null != employerInfo.getPort() 
+				&& null != employerInfo.getPassword() 
+				&& null != employerInfo.getSmtphost()){
 			isDataExists = true;
 		}
 		return isDataExists;
