@@ -149,11 +149,17 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		EmployerInfo employerInfo = employerDAO.getEmployerInfo(employeeInfo.getEmployerId());
 		List<String> employeeReminderList = getRemindersByEmployee(employeeInfo);
 		// Send an email
-		String concatenatedReminderString ="<table>";
+		String concatenatedReminderString = "Hi "+employeeInfo.getLastName()+" "+employeeInfo.getFirstName()+",\n";
+		concatenatedReminderString += "<table>";
 		for(String remiderString : employeeReminderList){
-			concatenatedReminderString += "<tr><td>"+remiderString + "\n\n</td></tr>";
+			concatenatedReminderString += "<tr><td>"+remiderString + "</td></tr>";
 		}
-		concatenatedReminderString += "</table>";
+		concatenatedReminderString += "<tr><td></td></tr>" +
+				"<tr><td></td></tr>" +
+				"<tr><td></td></tr>" +
+				"<tr><td>Thanks </td></tr>" +
+				"<tr><td>"+employerInfo.getEmployerName()+"</td></tr>" +
+						"</table>";
 		if(!employeeReminderList.isEmpty()){
 			EmailUtility emailUtility = new EmailUtility();
 			emailUtility.sendEmail("Reminders", employeeInfo.getEmailAddress(), concatenatedReminderString,employerInfo);
