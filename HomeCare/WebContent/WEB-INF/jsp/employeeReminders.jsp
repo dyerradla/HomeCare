@@ -15,38 +15,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <form:form id="employeeInfoForm" name="employeeInfoForm" action="">
-	<table>
-		<%@ include file="loggedInUserInfo.jsp" %>	
-		<tr>
-			<td class="menu_td" align="right">
-            	<%@ include file="leftMenu.jsp" %>
-            </td>
-			<td class="data_td" align="left">
-				<div>
+	<div class="div_blackheader">Validate User</div>
+	<div class="maindata_div" align="center">
+		<table border="0" cellpadding="5" cellspacing="5" class="table">
+			<%@ include file="loggedInUserInfo.jsp" %>	
+			<tr>
+				<td class="menu_td" align="right">
+	            	<%@ include file="leftMenu.jsp" %>
+	            </td>
+				<td class="data_td" align="center">
 					<c:forEach var="employeeReminder" items="${employeeReminders}">
 						<ul id="treeMenu">
 							  <li class="contentContainer" id="employee${employeeReminder.key}">
 							  	<c:set var="employeeReminderMessageList" value="${employeeReminder.value.employeeReminderMessage}"/>
-							  	<c:out value="${employeeReminder.key}"/>(${fn:length(employeeReminderMessageList)} Reminders Found) 
-							  	<input type="button" value="Send Email" onclick="sendEmail(${employeeReminder.value.employeeId},'${employeeReminder.value.status}')"/>
-							  	<input type="button" value="Load Employee" onclick="loadEmployee(${employeeReminder.value.employeeId})"/>
+							  	<div style="text-align: left;"><c:out value="${employeeReminder.key}"/>(${fn:length(employeeReminderMessageList)} Reminders Found) 
+								  	<input type="button" value="Send Email" class="btn_css" onclick="sendEmail(${employeeReminder.value.employeeId},'${employeeReminder.value.status}')"/>
+								  	<input type="button" value="Load Employee" class="btn_css" onclick="loadEmployee(${employeeReminder.value.employeeId})"/>
+							  	</div>
 							  	<ul style="display: none;">
 							  		<c:if test="${empty employeeReminder.value.employeeReminderMessage}">No Reminders Found</c:if>
 							  	 	<c:forEach var="employeeReminderMessage" items="${employeeReminder.value.employeeReminderMessage}">
-								  		<li>
+								  		<li style="text-align: left;">
 										 	<c:out value="${employeeReminderMessage}"/>
 									 	</li>
 							 		 </c:forEach>
 								 </ul>
 							 </li>
 						 </ul>
-						</c:forEach>
-						<input type="button" value="Email All Employee Remiders" onclick="emailAllReminders()" />
-				</div>
-			</td>
-		</tr>
-	</table>
-	
+					</c:forEach>
+					<div style="text-align: left; padding: 10px 0px;">
+                       	<input type="button" value="Email All Employee Remiders" onclick="emailAllReminders()" class="btn_css"/>
+                    </div>
+				</td>
+			</tr>
+		</table>
+	</div>
 </form:form>
 <script type="text/javascript">
 	$(document).ready(function() {

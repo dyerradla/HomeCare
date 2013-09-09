@@ -2,64 +2,57 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<link rel="stylesheet" href="styles/common.css" type="text/css">
+<link rel="stylesheet" href="styles/EmpoyeeManagement.css" type="text/css">
 <link rel="stylesheet" href="styles/jquery-ui-1.8.18.custom.css" type="text/css">
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <form:form id="employeeInfoForm" name="employeeInfoForm" action="loadEmployeeInfo.do">
-	<table>
-		<%@ include file="loggedInUserInfo.jsp" %>
-		<tr>
-			<td class="menu_td" align="right">
-            	<%@ include file="leftMenu.jsp" %>
-            </td>
-			<td class="data_td" align="left">
-				<table>
-					<tr>
-						<td>First Name:<form:input type="text" path="selectedEmployeeFirstName"></form:input></td>
-						<td>Last Name:<form:input type="text" path="selectedEmployeeLastName"></form:input></td>
-						<td>Status:
-							<form:select id="selectedStatus" path="selectedStatus" >
-								<form:option value="">All</form:option>
-								<form:option value="A">Active</form:option>
-								<form:option value="IA">In Active</form:option>
-							</form:select>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<input type="button" value="Search Employee" onclick="searchEmployee()"/>
-							<input type="button" value="Get All Reminders" onclick="getReminders()">
-							<input type="submit" value="New Employee">	
-						</td>
-					</tr>
-				</table>
-				<br /><br />
-				<table style="width: 100%;">
-					<tr>
-						<td>
-							<div class="displayTableFrame"> 
-								<display:table class="dataTable" uid="employeeListTable" name="${employeeList}">
-									<display:column headerClass="columnHeader" class="hidden" headerClass="hidden" title="Employee Id" property="employeeId" />
-									<display:column headerClass="columnHeader" title="First Name" property="firstName" />
-									<display:column headerClass="columnHeader" title="Middle Name" property="middleName" />
-									<display:column headerClass="columnHeader" title="Last Name" property="lastName" />
-									<display:column headerClass="columnHeader" title="Status" property="status" />
-								</display:table>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="button" value="Load Employee" onclick="loadEmployee()"/>
-							<input type="button" value="Delete Employee" onclick="deleteEmployee(${employeeListTable.employeeId})"/>
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>
+	<div class="div_blackheader">Validate User</div>
+	<div class="maindata_div" align="center">
+        <table border="0" cellpadding="5" cellspacing="5" class="table">
+				<%@ include file="loggedInUserInfo.jsp" %>
+				<tr>
+					<td class="menu_td" align="right">
+		            	<%@ include file="leftMenu.jsp" %>
+		            </td>
+					<td class="data_td" align="left">
+						<table border="0" cellpadding="2" cellspacing="2" style="width: 100%;">
+							<tr>
+								<td style="width: 33.3%; vertical-align: top;">First Name:<form:input type="text" path="selectedEmployeeFirstName"></form:input></td>
+								<td style="width: 33.3%; vertical-align: top;">Last Name:<form:input type="text" path="selectedEmployeeLastName"></form:input></td>
+								<td style="width: 33.3%; vertical-align: top;">Status:
+									<form:select id="selectedStatus" path="selectedStatus" >
+										<form:option value="">All</form:option>
+										<form:option value="A">Active</form:option>
+										<form:option value="IA">In Active</form:option>
+									</form:select>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3" style="text-align: center; padding: 10px 0px;">
+									<input type="button" class="btn_css" value="Search Employee" onclick="searchEmployee()"/>
+									<input type="button" class="btn_css" value="Get All Reminders" onclick="getReminders()">
+									<input type="submit" class="btn_css" value="New Employee">	
+								</td>
+							</tr>
+						</table>
+						
+						<display:table cellspacing="2" cellpadding="2" class="empdata_table" uid="employeeListTable" name="${employeeList}">
+							<display:column class="hidden" headerClass="hidden" title="Employee Id" property="employeeId" />
+							<display:column headerClass="td_empheader" title="First Name" property="firstName" />
+							<display:column headerClass="td_empheader" title="Middle Name" property="middleName" />
+							<display:column headerClass="td_empheader" title="Last Name" property="lastName" />
+							<display:column headerClass="td_empheader" title="Status" property="status" />
+						</display:table>
+						<div class="div_empbtns">
+							<input type="button" class="btn_css" value="Load Employee" onclick="loadEmployee()"/>
+							<input type="button" class="btn_css" value="Delete Employee" onclick="deleteEmployee(${employeeListTable.employeeId})"/>
+						</div>
+					</td>
+				</tr>
+		</table>
+		</div>
 </form:form>
 <style type="text/css">
 table.alternateColor tr.selectRow
