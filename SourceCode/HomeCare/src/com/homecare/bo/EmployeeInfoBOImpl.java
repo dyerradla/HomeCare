@@ -152,7 +152,7 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		String concatenatedReminderString = "Hi "+employeeInfo.getLastName()+" "+employeeInfo.getFirstName()+",\n";
 		concatenatedReminderString += "<table>";
 		for(String remiderString : employeeReminderList){
-			concatenatedReminderString += "<tr><td></td></tr><tr><td>"+remiderString + "</td></tr>";
+			concatenatedReminderString += "<tr><td> </td></tr><tr><td>"+remiderString + "</td></tr>";
 		}
 		concatenatedReminderString += "<tr><td></td></tr>" +
 				"<tr><td></td></tr>" +

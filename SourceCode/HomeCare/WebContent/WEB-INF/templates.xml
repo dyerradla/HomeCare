@@ -13,6 +13,14 @@
         <put-attribute name="menu" value="/WEB-INF/jsp/menu.jsp" />
         <put-attribute name="body" value="" />
     </definition>
+    
+     <definition name=".loginTemplate" template="/WEB-INF/jsp/loginLayout.jsp">
+        <put-attribute name="title" value="Paragon HHC" type="string" />
+        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/jsp/menu.jsp" />
+        <put-attribute name="body" value="" />
+    </definition>
  
     <definition name="home" extends=".mainTemplate">
         <put-attribute name="body" value="/WEB-INF/jsp/Home.jsp" />
@@ -43,7 +51,7 @@
         <put-attribute name="body" value="/WEB-INF/jsp/employeeList.jsp" />
     </definition>
     
-    <definition name="login" extends=".mainTemplate">
+    <definition name="login" extends=".loginTemplate">
         <put-attribute name="title" value="Login" />
         <put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
     </definition>

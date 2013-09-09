@@ -3,7 +3,7 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<link rel="stylesheet" href="styles/EmpoyeeManagement.css" type="text/css" />	
+<link rel="stylesheet" href="styles/Demo.css" type="text/css" />	
 <link rel="stylesheet" href="styles/jquery-ui-1.8.18.custom.css" type="text/css">
 <link href="Styles/zebra_datepicker.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
@@ -21,7 +21,7 @@
 </head>
 <body>
     <center>
-        <div class="main_div">
+        <div class="main_div" style="width:73%">
             <div class="middle_bg" align="left">
                 <tiles:insertAttribute name="header" />
                 <tiles:insertAttribute name="body" />
