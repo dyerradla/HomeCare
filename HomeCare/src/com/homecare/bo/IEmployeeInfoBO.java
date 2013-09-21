@@ -28,7 +28,7 @@ public interface IEmployeeInfoBO {
 	
 	public Map<String,EmployeeInfo> getRemindersByEmployee(Long employeeId);
 	
-	public List<EmployeeInfo> deleteEmployeeInfo(Long employeeId);
+	public List<EmployeeInfo> deleteEmployeeInfo(Long employeeId,Long employerId);
 	
 	public Map<String,String> getMessageMapByType(String type);
 	

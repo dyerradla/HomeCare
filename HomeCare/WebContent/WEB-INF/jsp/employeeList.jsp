@@ -8,6 +8,7 @@
 <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <form:form id="employeeInfoForm" name="employeeInfoForm" action="loadEmployeeInfo.do">
+	<input type="hidden" id="employerId" value="${sessionScope.user.employerId}"/>
 	<div class="div_blackheader">Validate User</div>
 	<div class="maindata_div" align="center">
         <table border="0" cellpadding="5" cellspacing="5" class="table">
@@ -47,7 +48,7 @@
 						</display:table>
 						<div class="div_empbtns">
 							<input type="button" class="btn_css" value="Load Employee" onclick="loadEmployee()"/>
-							<input type="button" class="btn_css" value="Delete Employee" onclick="deleteEmployee(${employeeListTable.employeeId})"/>
+							<input type="button" class="btn_css" value="Delete Employee" onclick="deleteEmployee()"/>
 						</div>
 					</td>
 				</tr>
@@ -82,10 +83,11 @@ function loadEmployee(){
 	}
 };
 
-function deleteEmployee(employeeId){
+function deleteEmployee(){
 	if($("#employeeListTable .selectRow").find(".hidden").text()){
 		var employeeId = $("#employeeListTable .selectRow").find(".hidden").text();
-		$("#employeeInfoForm").attr("action","/HomeCare/deleteEmployeeInfo.do?employeeId="+employeeId);
+		var employerId = $("#employerId").val();
+		$("#employeeInfoForm").attr("action","/HomeCare/deleteEmployeeInfo.do?employeeId="+employeeId+"&employerId="+employerId);
 		$("#employeeInfoForm").submit();	
 	}else{
 		alert('Plese select an Employee');
