@@ -46,7 +46,7 @@
 	                                                </tr>
 	                                                <tr>
 	                                                    <td>
-	                                                        First Name123
+	                                                        First Name
 	                                                    </td>
 	                                                    <td>
 	                                                        <form:input maxlength="32" id="firstName" path="employeeInfo.firstName" />

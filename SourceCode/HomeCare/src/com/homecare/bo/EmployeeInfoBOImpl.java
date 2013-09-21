@@ -167,9 +167,13 @@ public class EmployeeInfoBOImpl implements IEmployeeInfoBO {
 		return employeeInfo;
 	}
 	
-	public List<EmployeeInfo> deleteEmployeeInfo(Long employeeId){
+	public List<EmployeeInfo> deleteEmployeeInfo(Long employeeId,Long employerId){
 		employeeDAO.deleteEmployee(employeeId);
-		return getAllEmployees(new EmployeeInfo());
+		
+		EmployeeInfo employeeInfo = new EmployeeInfo();
+		employeeInfo.setEmployerId(employerId);
+		employeeInfo.setStatus("A");
+		return getAllEmployees(employeeInfo);
 	}
 	
 	public Map<String,EmployeeInfo> getAllReminders(Long employerId) {

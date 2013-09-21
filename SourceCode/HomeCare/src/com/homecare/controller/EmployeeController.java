@@ -62,8 +62,10 @@ public class EmployeeController extends BaseFormController{
 	@RequestMapping("/deleteEmployeeInfo")
 	public ModelAndView deleteEmployeeInfo(@ModelAttribute("command") EmployeeInfoForm employeeInfoForm,HttpServletRequest httpServletRequest){
 		String employeeId = httpServletRequest.getParameter("employeeId");
+		String employerId = httpServletRequest.getParameter("employerId");
+		logger.debug("Starting delete Employee Info with Employee Id :"+employeeId + " And Employer Id :"+employerId );
 		ModelAndView modelAndView = new ModelAndView("employeeList");
-		List<EmployeeInfo> employeeList = employeeInfoBO.deleteEmployeeInfo(new Long(employeeId));
+		List<EmployeeInfo> employeeList = employeeInfoBO.deleteEmployeeInfo(new Long(employeeId),new Long(employerId));
 		modelAndView.addObject("employeeList", employeeList);
 		return modelAndView;
 	}
