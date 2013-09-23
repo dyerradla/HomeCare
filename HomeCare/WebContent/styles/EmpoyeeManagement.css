@@ -167,7 +167,7 @@ a:hover {
 
 .menu_td ul li {
     line-height: 22px;
-    list-style-image: url(../images/arrow.gif);
+    list-style-image: url(../images/arrow.png);
     list-style-position: inherit;
     margin: 0px auto;
     padding: 0px auto;
@@ -558,7 +558,7 @@ select {
 
 .div_loademail ul li {
     line-height: 22px;
-    list-style-image: url(../images/arrow.gif);
+    list-style-image: url(../images/arrow.png);
     list-style-position: inherit;
     margin: 0px;
     padding: 0px;
