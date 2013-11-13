@@ -1,6 +1,7 @@
 package com.homecare.filter;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -22,12 +23,17 @@ public class AuthorizationFilter implements Filter {
 	private IUserBO userBO;
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
 		FilterChain filterChain) throws IOException, ServletException {
+		HashMap<String,String> ignoreUrls = new HashMap<String, String>();
+		ignoreUrls.put("validateUser.do", "validateUser.do");
+		ignoreUrls.put("forgotPassword.do", "forgotPassword.do");
+		ignoreUrls.put("sendPasswordEmail.do", "sendPasswordEmail.do");
+		
 		HttpServletRequest httpServletRequest = (HttpServletRequest)servletRequest;
 		HttpServletResponse httpServletResponse = (HttpServletResponse)servletResponse;
 		User user = (User)httpServletRequest.getSession().getAttribute("user");
 		String requestURI = httpServletRequest.getRequestURI();
 		requestURI = requestURI.substring(requestURI.lastIndexOf("/")+1);
-		if(null == user && !"validateUser.do".equalsIgnoreCase(requestURI)){
+		if(null == user && !ignoreUrls.containsKey(requestURI)){
 			httpServletRequest.getRequestDispatcher("login.do").forward(httpServletRequest, httpServletResponse);
 		}
 		

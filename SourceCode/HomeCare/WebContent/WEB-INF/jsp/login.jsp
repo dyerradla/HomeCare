@@ -46,7 +46,7 @@
 	                     <td>
 	                     </td>
 	                     <td>
-	                         <a href="#">Forgot Password?</a>
+	                         <a href="/HomeCare/forgotPassword.do" class="links_support">Forgot User name/Password?</a>
 	                     </td>
 	                 </tr>
 	                 <tr>
@@ -99,26 +99,26 @@
 
   </form:form>
  <script>
-if($('#validUser').val() == "N"){
-	$('#invalidErrorMessage').show();
-}
-
-function login(){
-	var errorMessage = "";
-	var errorExists = false;
-	if($('#userName').val() == ''){
-		errorExists = true;
-		errorMessage += "Please Enter User Name" + "\n";
+	if($('#validUser').val() == "N"){
+		$('#invalidErrorMessage').show();
 	}
-	if($('#password').val() == ''){
-		errorExists = true;
-		errorMessage += "Please Enter password" + "\n";
+	
+	function login(){
+		var errorMessage = "";
+		var errorExists = false;
+		if($('#userName').val() == ''){
+			errorExists = true;
+			errorMessage += "Please Enter User Name" + "\n";
+		}
+		if($('#password').val() == ''){
+			errorExists = true;
+			errorMessage += "Please Enter password" + "\n";
+		}
+		if(errorExists){
+			alert(errorMessage);
+			return false;
+		}else{
+			$("#userForm").submit();	
+		}
 	}
-	if(errorExists){
-		alert(errorMessage);
-		return false;
-	}else{
-		$("#userForm").submit();	
-	}
-}
 </script>
