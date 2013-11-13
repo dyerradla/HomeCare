@@ -4,12 +4,14 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.hibernate.validator.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.homecare.dao.IEmployerDAO;
 import com.homecare.dao.IUserDAO;
 import com.homecare.domain.EmployerInfo;
 import com.homecare.domain.User;
+import com.homecare.utility.EmailUtility;
 
 public class UserBOImpl implements IUserBO {
 
@@ -58,5 +60,24 @@ public class UserBOImpl implements IUserBO {
 		employerInfo.setSmtphost(hostName);
 		employerInfo.setPort(port);
 		employerDAO.saveEmployer(employerInfo);
+	}
+	
+	public String sendPasswordEmail(String email){
+		String status = "Your username and password send successfully to your email address";
+		User user = userDAO.findUserByEmail(email);
+		
+		// User Found we will be sending the Email
+		if(null != user){
+			StringBuffer body = new StringBuffer("Hi "+user.getLastName()+" "+user.getFirstName()+",\n");
+			body.append("<table><tr><td>Please find the following user name and password</td></tr>");
+			body.append("<tr><td> User Name :"+ user.getUserName()+"</td></tr>");
+			body.append("<tr><td> Password :"+ user.getPassword()+"</td></tr>");
+			body.append("</table>");
+			EmailUtility emailUtility = new EmailUtility();
+			emailUtility.sendEmail("Forgot UserName/Password", email, body.toString(), null);
+		}else{
+			status = "No User found with given email address";
+		}
+		return status;
 	}
 }

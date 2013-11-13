@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.homecare.bo.IUserBO;
 import com.homecare.command.EmployeeInfoForm;
@@ -61,6 +62,19 @@ public class LoginController extends BaseFormController{
 			userForm.setUser(userForm.getUser());
 		}
 		return modelAndView;
+	}
+	
+	@RequestMapping("/forgotPassword")
+	public ModelAndView forgotPassword(@ModelAttribute("command") UserForm userForm, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
+		return new ModelAndView("forgotPassword");
+	}
+	
+	@RequestMapping("/sendPasswordEmail")
+	public ModelAndView sendPasswordEmail(@ModelAttribute("command") UserForm userForm, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
+		String status = userBO.sendPasswordEmail(userForm.getEmail());
+		userForm.setStatus(status);
+		System.out.println("Status**********"+status);
+		return new ModelAndView("forgotPassword");
 	}
 }
 

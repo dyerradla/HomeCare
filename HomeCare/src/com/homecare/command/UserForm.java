@@ -8,6 +8,8 @@ public class UserForm {
 	private User user = new User();
 	private EmployerInfo employerInfo = new EmployerInfo();
 	private String validUser;
+	private String email;
+	private String status;
 	public User getUser() {
 		return user;
 	}
@@ -31,4 +33,21 @@ public class UserForm {
 	public void setEmployerInfo(EmployerInfo employerInfo) {
 		this.employerInfo = employerInfo;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 }

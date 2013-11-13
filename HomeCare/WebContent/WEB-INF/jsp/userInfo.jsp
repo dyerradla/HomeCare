@@ -34,6 +34,10 @@
 								<td class="td_editfields"><form:input type="text" path="user.middleName"></form:input></td>
 							</tr>
 							<tr>
+								<td class="td_editnames">Email:</td>
+								<td class="td_editfields"><form:input type="text" path="user.email"></form:input></td>
+							</tr>
+							<tr>
 								<td class="td_editnames">User Name:</td>
 								<td class="td_editfields"><form:input type="text" path="user.userName"></form:input></td>
 							</tr>

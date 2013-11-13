@@ -23,8 +23,8 @@ import com.homecare.domain.EmployerInfo;
 
 public class EmailUtility {
 	private Log logger = LogFactory.getLog(EmailUtility.class);
-	String emailUserName = "peddyb@paragonhhc.com";
-	String password = "madhup";
+	String emailUserName = "info@topcompliance.com";
+	String password = "topcompliance";
 	String smtphost = "smtpout.secureserver.net";
 	String port = "80";
 	public void sendEmail(String subject,String email,String body,EmployerInfo employerInfo){

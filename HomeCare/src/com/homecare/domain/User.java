@@ -19,6 +19,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String middleName;
+	private String email;
 	private Long employerId;
 	private String role;
 	private boolean validUser = false;
@@ -73,6 +74,14 @@ public class User {
 	}
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
+	}
+	
+	@Column(name = "email")
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	@Column(name = "EMPLOYER_ID")

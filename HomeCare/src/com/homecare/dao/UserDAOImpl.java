@@ -23,6 +23,17 @@ public class UserDAOImpl extends BaseDAO implements IUserDAO {
 		return selectedUser;
 	}
 	
+	public User findUserByEmail(String email){
+		Criteria criteria = getSession().createCriteria(User.class);
+		criteria.add(Restrictions.eq("email", email));
+		List<User> userList = criteria.list();
+		User selectedUser = null;
+		if(null != userList && !userList.isEmpty()){
+			selectedUser = userList.get(0);
+		}
+		return selectedUser;
+	}
+	
 	public void saveUser(User user){
 		saveOrUpdateObject(user);
 	}

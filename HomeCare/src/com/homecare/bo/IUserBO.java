@@ -10,6 +10,8 @@ public interface IUserBO {
 	public void saveUser(User user);
 	
 	public EmployerInfo loadEmployer(Long employerId);
+	
+	public String sendPasswordEmail(String email);
 
 	public void saveEmployer(EmployerInfo employerInfo);
 }
